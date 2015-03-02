@@ -4,7 +4,8 @@
 # Alan Viars, Videntity 2011
 
 import os, sys
-from bluebutton.parse import *
+#from bluebutton.parse import *
+from parse import *
 
 if __name__ == "__main__":
     """
@@ -19,11 +20,11 @@ if __name__ == "__main__":
             level=int(sys.argv[4])
     except(IndexError):
         print "You must supply an an infile and an outfile."
-        print "Example: bbp.py [all|bp|wt|mds|green] bluebutton_infile.txt bluebutton_outfile.json [level]"
+        print "Example: bbp.py [all|bp|wt|mds|green|segments] bluebutton_infile.txt bluebutton_outfile.json [level]"
         exit(1)
 
     try:
-        items = simple_parse(infile, outfile)
+        items = simple_parse(infile)
 
         if outtype=="green":
             green_parse(infile, outfile, level)
@@ -47,6 +48,12 @@ if __name__ == "__main__":
             demodict = build_simple_demographics_readings(items)
             print tojson(demodict)
 
+        if outtype=="segments":
+            demodict = section_parse(infile)
+            #print tojson(demodict)
+            result = write_file(demodict,outfile)
+
+
     except():
-        print "An unexpected error occured. Here is the post-mortem:"
+        print "An unexpected error occurred. Here is the post-mortem:"
         print sys.exc_info()

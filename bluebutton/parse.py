@@ -4,13 +4,18 @@ convert bluebutton to json
 """
 
 import json
+import re
 import os, sys
 from datetime import datetime, date, timedelta
+
+import collections
 
 #inPath="va_sample_file.txt"
 #OutPath="va_sample_file.json"
 
-sections=("MY HEALTHEVET PERSONAL HEALTH INFORMATION",
+sections=("MYMEDICARE.GOV PERSONAL HEALTH INFORMATION",
+"DEMOGRAPHIC",
+"MY HEALTHEVET PERSONAL HEALTH INFORMATION",
 "MY HEALTHEVET ACCOUNT SUMMARY",
 "DEMOGRAPHICS",
 "ALLERGIES/ADVERSE REACTIONS",
@@ -24,8 +29,50 @@ sections=("MY HEALTHEVET PERSONAL HEALTH INFORMATION",
 "VITALS AND READINGS"
 )
 
+section_info=[{"MYMEDICARE.GOV PERSONAL HEALTH INFORMATION":{"title": "MyMedicare.gov Personal Health Information",
+            "languageCode": "code=\"en-US\"",
+            "versionNumber": {"value": "3"},
+            "effectiveTime": {"value": "20150210171504+0500"},
+            "confidentialityCode": {"code": "N",
+                                    "codeSystem": "2.16.840.1.113883.5.25"},
+            "originator": "MyMedicare.gov"}},
+              ]
 
+#divider="--------------------------------"
+divider = "----------"
 vitals= ("Blood pressure", "Body weight")
+
+# Redefine the Parsing process
+# get the line from the input file
+# reset the generic_dict to blank
+# is_header (ie. the line doesn't have a ":")
+# if is_header
+#   Match header.upper() against segment.header.upper() entries
+#       if matched
+#          get segment.prefill_content for segment
+#          get segment.level (ie. header = 0)
+#          get segment.name
+#          get segment.key_match_end
+#          get segment.prefix
+# else
+#   split line by ":" to key and val
+#   Match segment.prefix.upper()+key.upper() against body.header.upper()
+#       if matched
+#          get body.prefill_content for key
+#          get body.level (ie. level of dict embed)
+#          get body.name
+#          get body.key_match_end
+#   Deal with special case content
+#   eg. date inside header (key[2]="/")
+#          reset key and val
+#          format date
+#   Match segment.prefix.upper()+key.upper() against field.name
+#          reset key with field.name
+#
+#   write the generic_dict with [key]=val
+#   write section[level]=generic_dict
+
+
 
 
 def age(dob):
@@ -41,7 +88,7 @@ def age(dob):
 def simple_parse(inPath):
     line=[]
     items=[]
-    generic_dict={}
+    generic_dict=collections.OrderedDict()
     with open(inPath, 'r') as f:
         for i, l in enumerate(f):
             generic_dict={}  
@@ -49,15 +96,120 @@ def simple_parse(inPath):
             if len(line)>1:
                 k=line[0]
                 v=line[1]
+                if len(k)>1:
+                    # do we have a date and time
+                    k = "Date"
+
                 if v[0]==" ":
                     v=v.lstrip()
                 if len(line)>2 and k=="Time":
                     v="%s:%s" % (line[1], line[2])
                 v=v.rstrip()
                 generic_dict[k]=v
+
                 items.append(generic_dict)	
     f.close()
     return items
+
+
+def section_parse(inPath):
+    #print "in Section Parse"
+    line=[]
+    items=[]
+    generic_dict=collections.OrderedDict()
+    segments=collections.OrderedDict()
+    segment_open=False
+    current_segment=""
+    segment_dict = collections.OrderedDict()
+    segment_source=""
+
+    with open(inPath, 'r') as f:
+        for i, l in enumerate(f):
+            generic_dict = {}
+            # print "input: %s" % l
+            line=l.split(":")
+            if len(line)>1:
+                k=line[0]
+                v=line[1]
+                print "Line %s: %s" % (i, line)
+                if v[0]==" ":
+                    v=v.lstrip()
+                v=v.rstrip()
+                segment_source=set_source(segment_source,k,v)
+                if k.upper()=="SOURCE":
+                    v=segment_source
+                if current_segment=="header":
+                    if k[2]=="/":
+                        print "got the date line"
+                        v = {"value": parse_time(l)}
+                        k = "effectiveTime"
+                generic_dict[k]=v
+                segment_dict[k]=v
+                segments.update({current_segment : segment_dict})
+                #print "Segments-current_segment: %s" % current_segment
+                #print segments[current_segment]
+                #print "*******"
+
+            else:
+                #print "Line: %s Not processed" % i
+                if divider in l:
+                    if segment_open:
+                        segment_open=False
+                    else:
+                        segment_open=True
+                if (divider not in l) and (segment_open==True):
+                    l=l.strip()
+                    if len(l)<=1:
+                        l="Claim"
+                    current_segment, segment_dict = segment_evaluation(l.strip())
+
+
+    f.close()
+    return segments
+
+def parse_time(t):
+    # convert time to  json format
+    t = t.strip()
+    time_value = datetime.strptime(t, "%m/%d/%Y %I:%M %p")
+    #print time_value
+    return_value = time_value.strftime("%Y%m%d%H%M%S+0500")
+    #print return_value
+    return return_value
+
+def segment_evaluation(input_line):
+    # check for section and load in any pre-defined values to the dict
+    segment_dict = collections.OrderedDict()
+    if input_line=="MYMEDICARE.GOV PERSONAL HEALTH INFORMATION":
+        current_segment = "header"
+        segment_dict["title"] = input_line
+        segment_dict["languageCode"] = "code=\"en-US\""
+        segment_dict["versionNumber"] = {"value":"3"}
+        segment_dict["effectiveTime"] = {}
+        segment_dict["confidentialityCode"] = {"code": "N","codeSystem": "2.16.840.1.113883.5.25"}
+        segment_dict["originator"] = "MyMedicare.gov"
+    else:
+        current_segment = input_line
+
+    return current_segment, segment_dict
+
+
+def set_source(current_source,key,value):
+    # Set the source of the data
+
+    if key.upper() == "SOURCE":
+        result = ""
+        print "Found Source: [%s:%s]" % (key,value)
+        if value.upper() == "SELF-ENTERED":
+            result = "patient"
+        elif value.upper() == "MYMEDICARE.GOV":
+            result = "MyMedicare.gov"
+        else:
+            result = value.upper()
+        print "[%s]" % result
+        return result
+    else:
+        return current_source
+
 
 
 def build_bp_readings(items):
@@ -154,4 +306,9 @@ def tojson(items):
     """tojson"""
     itemsjson = json.dumps(items, indent=4)
     return itemsjson
+
+def write_file(write_dict,Outfile):
+    f = open(Outfile, 'w')
+    f.write(tojson(write_dict))
+    f.close()
 
