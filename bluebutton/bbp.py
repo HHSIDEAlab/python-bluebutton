@@ -6,6 +6,7 @@
 import os, sys
 #from bluebutton.parse import *
 from parse import *
+from cms_parser import *
 
 if __name__ == "__main__":
     """
@@ -20,7 +21,7 @@ if __name__ == "__main__":
             level=int(sys.argv[4])
     except(IndexError):
         print "You must supply an an infile and an outfile."
-        print "Example: bbp.py [all|bp|wt|mds|green|segments] bluebutton_infile.txt bluebutton_outfile.json [level]"
+        print "Example: bbp.py [all|bp|wt|mds|green|segments|bluebutton|CMS] bluebutton_infile.txt bluebutton_outfile.json [level]"
         exit(1)
 
     try:
@@ -53,6 +54,15 @@ if __name__ == "__main__":
             #print tojson(demodict)
             result = write_file(demodict,outfile)
 
+
+        if outtype=="bluebutton":
+            demodict = bb_file_parse(infile)
+            result = write_file(demodict, outfile)
+
+        if outtype=="CMS":
+#            demodict = cms_file_parse(infile)
+            demodict = cms_file_parse2(infile)
+            result = write_file(demodict, outfile)
 
     except():
         print "An unexpected error occurred. Here is the post-mortem:"
