@@ -18,191 +18,11 @@ from datetime import datetime, date, timedelta
 import collections
 
 
+from file_def_cms import SEG_DEF
+
 # divider = "--------------------------------"
 divider = "----------"
 
-# Seg is used to control and translate headings and lines
-seg = [{"match": "mymedicare.GovPersonalHealthInformation",
-        "pre": {"title": "MyMedicare.gov Personal Health Information",
-            "languageCode": "code=\"en-US\"", "versionNumber": {"value": "3"},
-            "effectiveTime": {"value": "20150210171504+0500"},
-            "confidentialityCode": {"code": "N", "codeSystem": "2.16.840.1.113883.5.25"},
-            "originator": "MyMedicare.gov"},
-        "level": 0,
-        "name": "header",
-        "this_entry": "",
-        "content": "dict",
-        "multi": "False",
-        "parent": "",
-        "file_source": "CMS",
-        },
-    {"match": "demographic",
-     "pre": {},
-     "level": 0,
-     "name": "patient",
-     "content": "dict",
-     "mode": "",
-     "multi": "False",
-     "parent": "",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact",
-     "pre": {},
-     "level": 0,
-     "name": "emergencyContact",
-     "type": "list",
-     "mode": "",
-     "multi": "True",
-     "parent": "",
-     "file_source": "CMS",
-    },
-    {"match": "emergencyContact.contactName",
-     "pre": {},
-     "level": 1,
-     "list": True,
-     "name": "name",
-     "end_match": "emailAddress",
-     "type": "dict",
-     "mode": "block",
-     "dict_name": "",
-     "multi": "False",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact.addressType",
-     "pre": {},
-     "level": 2,
-     "type": "dict",
-     "mode": "block",
-     "dict_name": "address",
-     "multi": "False",
-     "name": "type",
-     "end_match": "zip",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact.addressLine1",
-     "pre": {},
-     "level": 2,
-     "type": "dict",
-     "mode": "block",
-     "dict_name": "address",
-     "multi": "False",
-     "name": "line1",
-     "end_match": "zip",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact.addressLine2",
-     "pre": {},
-     "level": 2,
-     "type": "dict",
-     "mode": "block",
-     "dict_name": "address",
-     "multi": "False",
-     "name": "line2",
-     "end_match": "zip",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact.city",
-     "pre": {},
-     "level": 2,
-     "type": "dict",
-     "mode": "block",
-     "dict_name": "address",
-     "multi": "False",
-     "name": "city",
-     "end_match": "zip",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact.state",
-     "pre": {},
-     "level": 2,
-     "type": "dict",
-     "mode": "block",
-     "dict_name": "address",
-     "multi": "False",
-     "name": "state",
-     "end_match": "zip",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact.zip",
-     "pre": {},
-     "level": 2,
-     "type": "dict",
-     "mode": "close",
-     "dict_name": "address",
-     "multi": "False",
-     "name": "zip",
-     "end_match": "zip",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact.homePhone",
-     "pre": {},
-     "level": 2,
-     "type": "dict",
-     "dict_name": "phone",
-     "mode": "block",
-     "multi": "False",
-     "name": "home",
-     "field": "home",
-     "end_match": "mobilePhone",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact.workPhone",
-     "pre": {},
-     "level": 2,
-     "type": "dict",
-     "dict_name": "phone",
-     "mode": "block",
-     "multi": "False",
-     "name": "work",
-     "field": "work",
-     "end_match": "mobilePhone",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-    {"match": "emergencyContact.mobilePhone",
-     "pre": {},
-     "level": 2,
-     "type": "dict",
-     "dict_name": "phone",
-     "mode": "close",
-     "multi": "False",
-     "name": "mobile",
-     "field": "mobile",
-     "end_match": "mobilePhone",
-     "parent": "emergencyContact",
-     "file_source": "CMS",
-     },
-
-    {"match": "selfReportedMedicalConditions", "name": "medicalConditions"},
-    {"match": "selfReportedAllergies", "name": "Allergies"},
-    {"match": "selfReportedImplantableDevice", "name": "ImplantableDevices"},
-    {"match": "selfReportedImmunizations", "name": "Immunizations"},
-    {"match": "selfReportedLabsAndTests", "name": "Labs"},
-    {"match": "selfReportedVitalStatistics", "name": "vitals"},
-    {"match": "familyMedicalHistory", "name": "familyHistory"},
-    {"match": "drugs", "name": "medications"},
-    {"match": "preventiveServices", "name": "preventiveServices"},
-    {"match": "providers", "name": "providers"},
-    {"match": "pharmacies", "name": "pharmacies"},
-    {"match": "plans", "name": "insurance", "type": "list"},
-    {"match": "employerSubsidy", "name": "category", "level": 1},
-    {"match": "primaryInsurance", "name": "category", "level": 1},
-    {"match": "otherInsurance", "name": "category", "level": 1},
-    {"match": "claimSummary", "name": "claims", "type": "list",
-     "level": 0},
-    {"match": "claimHeader", "name": "claim", "type": "dict",
-     "level": 1},
-    {"match": "claimLinesForClaimNumber", "name": "details",
-     "type": "list", "level": 2, "multi": "True"},
-    ]
 
 # TODO: define all field translations in seg[]
 # TODO: Assign level to each field. Start with base 0
@@ -214,8 +34,83 @@ fld_tx = [{"input":"Emergency Contact","output":"emergency_contact"},
     {"input":"emergency_contact.Address Line 2","output":"line_2"},
     ]
 
+def cms_file_read(inPath):
+    # Read file and save in OrderedDict
+    # Assigning a level
+
+    ln_cntr = 0
+    blank_ln = 0
+    f_lines = collections.OrderedDict()
+
+    line_type = "BODY"
+    header_line = False
+
+
+    with open(inPath, 'r') as f:
+        # get the line from the input file
+        print "Processing:",
+        for i, l in enumerate(f):
+            # Read each line in file
+            l = l.rstrip()
+            # remove white space from end of line
+
+            if (i % 10) == 0:
+                print ".",
+                # Show progress every 10 steps
+
+            if len(l) < 1:
+                # skip blank lines
+                blank_ln += 1
+                continue
+
+            ln_cntr += 1
+            if line_type == "BODY" and (divider in l):
+                header_line = True
+                get_title = True
+                line_type = "HEADER"
+            elif line_type == "Header" and header_line and get_title:
+                # Get the title line
+                # print "we found title:",l
+                # print i, "[About to set Seg:", l, "]"
+                # Save the current_segment before we overwrite it
+                if not (divider in l):
+                    if len(l.strip()) > 0:
+                        # print "title length:", len(l.strip())
+
+                        # Remove : from Title - for Claims LineNumber:
+                        titleline = l.split(":")
+                        tl = titleline[0].rstrip()
+                else:
+                    # we didn't find a title
+                    # So set a default
+                    # Only claim summary title segments are blank
+                    # save current_segment
+                    previous_segment = current_segment
+                    current_segment = "claimHeader"
+                    # print "set title to", current_segment
+                    # print i,"We never got a title line...", current_segment
+                    header_line = False
+                    line_type = "Body"
+
+
+
+
+
+
+    f.close()
+
+    print i, "records"
+    print ln_cntr, "written."
+    print blank_ln, "skipped"
+
+
+
+
+
 def cms_file_parse2(inPath):
     # Parse a CMS BlueButton file (inPath)
+
+    result = cms_file_read(inPath)
 
     # Set default variables on entry
     k = ""
@@ -294,7 +189,7 @@ def cms_file_parse2(inPath):
                     if len(l.strip()) > 0:
                         # print "title length:", len(l.strip())
 
-                        # TODO: remove : from Title - for Claims LineNumber:
+                        # Remove : from Title - for Claims LineNumber:
                         titleline = l.split(":")
                         tl = titleline[0].rstrip()
 
@@ -389,7 +284,7 @@ def cms_file_parse2(inPath):
                         # match key against segment
                         match_string = current_segment + "." + k
 
-                        print "Match with:", match_string
+                        print "Match:", match_string
 
                         if find_segment(match_string):
                             # Get info about how to treat this key
@@ -660,7 +555,7 @@ def get_segment(title):
 
     result = {}
     # cycle through the seg dictionary to match against title
-    for ky in seg:
+    for ky in SEG_DEF:
         if title in ky["match"]:
             result = ky
             break
@@ -670,7 +565,7 @@ def get_segment(title):
 def find_segment(title):
 
     result = False
-    for ky in seg:
+    for ky in SEG_DEF:
         # print k
         if title in ky["match"]:
             # print "Match: %s : %s" % (title, ky['key'])
