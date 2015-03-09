@@ -36,20 +36,29 @@ fld_tx = [{"input":"Emergency Contact","output":"emergency_contact"},
 
 def cms_file_read(inPath):
     # Read file and save in OrderedDict
-    # Assigning a level
+    # Identify Headings and set them as level 0
+    # Everything else assign as Level 1
 
     ln_cntr = 0
     blank_ln = 0
-    f_lines = collections.OrderedDict()
+    f_lines = []
+    set_level = 0
 
     line_type = "BODY"
     header_line = False
+    set_header = "HEADER"
+    current_segment = ""
+
+    line_dict = {}
 
 
     with open(inPath, 'r') as f:
         # get the line from the input file
         print "Processing:",
         for i, l in enumerate(f):
+            # reset the dictionary
+            line_dict = {}
+
             # Read each line in file
             l = l.rstrip()
             # remove white space from end of line
@@ -63,12 +72,13 @@ def cms_file_read(inPath):
                 blank_ln += 1
                 continue
 
-            ln_cntr += 1
             if line_type == "BODY" and (divider in l):
                 header_line = True
                 get_title = True
                 line_type = "HEADER"
-            elif line_type == "Header" and header_line and get_title:
+                blank_ln += 1
+                continue
+            elif line_type == "HEADER" and header_line and get_title:
                 # Get the title line
                 # print "we found title:",l
                 # print i, "[About to set Seg:", l, "]"
@@ -80,6 +90,13 @@ def cms_file_read(inPath):
                         # Remove : from Title - for Claims LineNumber:
                         titleline = l.split(":")
                         tl = titleline[0].rstrip()
+                        set_header =line_type
+                        current_segment = tl
+                        get_title = False
+                        if "Claim Lines for Claim Number" in l:
+                            set_level = 2
+                        else:
+                            set_level = 0
                 else:
                     # we didn't find a title
                     # So set a default
@@ -89,12 +106,40 @@ def cms_file_read(inPath):
                     current_segment = "claimHeader"
                     # print "set title to", current_segment
                     # print i,"We never got a title line...", current_segment
+                    set_level = 1
                     header_line = False
-                    line_type = "Body"
+                    set_header = "HEADER"
+                    line_type = "BODY"
+
+                line_dict = {"key": ln_cntr,
+                             "level": set_level,
+                             "line": current_segment,
+                             "type": set_header}
+
+            elif line_type == "HEADER" and not get_title:
+                # we got a second divider
+                if divider in l:
+                    set_header = "BODY"
+                    line_type = "BODY"
+                    header_line = False
+
+                    blank_ln += 1
+                    continue
 
 
+            else:
+                line_type = "BODY"
+                set_header = line_type
 
 
+                line_dict = {"key": ln_cntr,
+                             "level": set_level + 1,
+                             "line": l,
+                             "type": set_header}
+
+            f_lines.append({ ln_cntr : line_dict})
+
+            ln_cntr += 1
 
 
     f.close()
@@ -103,8 +148,9 @@ def cms_file_read(inPath):
     print ln_cntr, "written."
     print blank_ln, "skipped"
 
+    print f_lines
 
-
+    return f_lines
 
 
 def cms_file_parse2(inPath):

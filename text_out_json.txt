@@ -1,219 +1,6858 @@
-{
-    "header": {
-        "originator": "MyMedicare.gov", 
-        "languageCode": "code=\"en-US\"", 
-        "title": "MyMedicare.gov Personal Health Information", 
-        "effectiveTime": {
-            "value": "20150204091800+0500"
-        }, 
-        "confidentialityCode": {
-            "code": "N", 
-            "codeSystem": "2.16.840.1.113883.5.25"
-        }, 
-        "versionNumber": {
-            "value": "3"
-        }, 
-        "source": ""
-    }, 
-    "patient": {
-        "source": "MyMedicare.gov", 
-        "name": "JOHN DOE", 
-        "dateOfBirth": "1/1/1910", 
-        "addressLine1": "123 ANY ROAD", 
-        "addressLine2": "", 
-        "city": "ANYTOWN", 
-        "state": "IN", 
-        "zip": "46250", 
-        "phoneNumber": "215-248-0684", 
-        "email": "", 
-        "partAEffectiveDate": "2/1/2014", 
-        "partBEffectiveDate": "2/1/2014"
-    }, 
-    "emergencyContact": [
-        {
-            "source": "patient", 
-            "address": {
-                "name": "Enoch Snow", 
-                "type": "Home", 
-                "line1": "2345 Fish Head Cove", 
-                "line2": "Lobster Bay, ME 11112", 
-                "city": "", 
-                "state": "", 
-                "zip": ""
-            }, 
-            "relationship": "Friend", 
-            "phone": {
-                "home": "", 
-                "work": "", 
-                "mobile": ""
-            }, 
-            "emailAddress": ""
-        }, 
-        {
-            "relationship": "Friend", 
-            "source": "patient", 
-            "phone": {
-                "home": "", 
-                "work": "", 
-                "mobile": ""
-            }, 
-            "emailAddress": ""
+[
+    {
+        "0": {
+            "line": "MYMEDICARE.GOV PERSONAL HEALTH INFORMATION", 
+            "type": "HEADER", 
+            "key": 0, 
+            "level": 0
         }
-    ], 
-    "medicalConditions": {
-        "source": "patient", 
-        "conditionName": "Other", 
-        "medicalConditionStartDate": "2/28/2012", 
-        "medicalConditionEndDate": ""
     }, 
-    "Allergies": {
-        "source": "patient", 
-        "allergyName": "Other - other", 
-        "type": "Other - other", 
-        "reaction": "", 
-        "severity": "", 
-        "diagnosed": "", 
-        "treatment": "", 
-        "firstEpisodeDate": "", 
-        "lastEpisodeDate": "", 
-        "lastTreatmentDate": "", 
-        "comments": ""
-    }, 
-    "ImplantableDevices": {
-        "source": "patient", 
-        "deviceName": "nov20", 
-        "dateImplanted": "12/15/2007"
-    }, 
-    "Immunizations": {
-        "source": "patient", 
-        "immunizationName": "shingles", 
-        "dateAdministered": "2/3/2010", 
-        "method": "Injection", 
-        "wereYouVaccinatedInTheUs": "Yes", 
-        "comments": "", 
-        "booster1Date": "2/4/2011", 
-        "booster2Date": "4/6/2012", 
-        "booster3Date": ""
-    }, 
-    "Labs": {
-        "source": "patient", 
-        "test/LabType": "Test", 
-        "dateTaken": "1/2/2013", 
-        "administeredBy": "Inova", 
-        "requestingDoctor": "Dr. John Doe", 
-        "reasonTest/LabRequested": "", 
-        "results": "", 
-        "comments": ""
-    }, 
-    "vitals": {
-        "source": "patient", 
-        "vitalStatisticType": "Temperature", 
-        "date": "4/4/2008", 
-        "time": "9", 
-        "reading/Value": "99", 
-        "comments": ""
-    }, 
-    "familyHistory": {
-        "source": "patient", 
-        "familyMember": "Brother", 
-        "type": "Condition", 
-        "dob": "4/4/2012", 
-        "dod": "", 
-        "age": "", 
-        "description": "Alzheimer's Disease"
-    }, 
-    "medications": {
-        "source": "patient", 
-        "drugName": "Zaltrap INJ 100/4ML", 
-        "supply": "1 X 4ML Vial Every 1 Month", 
-        "origDrugEntry": "Zaltrap"
-    }, 
-    "preventiveServices": {
-        "source": "MyMedicare.gov", 
-        "description": "SMOKING CESSATION (counseling to stop smoking)", 
-        "nextEligibleDate": "", 
-        "lastDateOfService": ""
-    }, 
-    "providers": {
-        "source": "patient", 
-        "providerName": "NORTON COMMUNITY HOSPITAL", 
-        "providerAddress": "100  15TH ST NW NORTON, VA 24273", 
-        "type": "Hospital", 
-        "specialty": "", 
-        "medicareProvider": "Not Available"
-    }, 
-    "pharmacies": {
-        "source": "patient", 
-        "pharmacyName": "Costco Pharmacy Indianapolis, IN 462506110 East 86th Street Castleton, IN 46250", 
-        "pharmacyPhone": "317-558-1452"
-    }, 
-    "insurance": {
-        "source": "MyMedicare.gov", 
-        "contractId/PlanId": "S1111/801", 
-        "planPeriod": "12/01/2012 - current", 
-        "planName": "", 
-        "marketingName": "", 
-        "planAddress": "", 
-        "planType": "11 - Medicare Prescription Drug Plan"
-    }, 
-    "category": {
-        "source": "MyMedicare.gov", 
-        "mspType": "", 
-        "policyNumber": "30002", 
-        "insurerName": "UNITEDHEALTH GROUP", 
-        "insurerAddress": "601 OFFICE CENTER DRIVE FORT WASHINGTON, PA 19034", 
-        "effectiveDate": "10/01/1984", 
-        "terminationDate": ""
-    }, 
-    "claims": {
-        "source": "MyMedicare.gov", 
-        "claimNumber": "11122233330000", 
-        "provider": "No Information Available", 
-        "providerBillingAddress": "", 
-        "serviceStartDate": "01/05/2014", 
-        "serviceEndDate": "01/05/2014", 
-        "amountCharged": "$135.00", 
-        "medicareApproved": "$92.53", 
-        "providerPaid": "$74.02", 
-        "youMayBeBilled": "$18.51", 
-        "claimType": "DME", 
-        "diagnosisCode1": "32723", 
-        "diagnosisCode2": "78051"
-    }, 
-    "details": [
-        {
-            "source": "MyMedicare.gov", 
-            "lineNumber": "1", 
-            "dateOfServiceFrom": "01/05/2014", 
-            "dateOfServiceTo": "01/05/2014", 
-            "procedureCode/Description": "E0601 - Continuous Positive Airway Pressure (Cpap) Device", 
-            "modifier1/Description": "MS - Six Month Maintenance And Servicing Fee For Reasonable And Necessary Parts And Labor Which Are", 
-            "modifier2/Description": "KX - Requirements Specified In The Medical Policy Have Been Met", 
-            "modifier3/Description": "", 
-            "modifier4/Description": "", 
-            "quantityBilled/Units": "1", 
-            "submittedAmount/Charges": "$135.00", 
-            "allowedAmount": "$90.45", 
-            "non-Covered": "$44.55", 
-            "placeOfService/Description": "12 - Home", 
-            "typeOfService/Description": "R - Rental of DME", 
-            "renderingProviderNo": "DMEPROVIDR", 
-            "renderingProviderNpi": ""
+    {
+        "1": {
+            "line": "**********CONFIDENTIAL***********", 
+            "type": "BODY", 
+            "key": 1, 
+            "level": 1
         }
-    ], 
-    "claimHeader": {
-        "claimNumber": "2333444555400", 
-        "provider": "No Information Available", 
-        "providerBillingAddress": "", 
-        "serviceStartDate": "01/05/2014", 
-        "serviceEndDate": "01/05/2014", 
-        "amountCharged": "$38.00", 
-        "medicareApproved": "$9.38", 
-        "providerPaid": "$7.50", 
-        "youMayBeBilled": "$1.88", 
-        "claimType": "PartB", 
-        "diagnosisCode1": "9593", 
-        "diagnosisCode2": "E8889", 
-        "source": "MyMedicare.gov"
+    }, 
+    {
+        "2": {
+            "line": "Produced by the Blue Button (v2.0)", 
+            "type": "BODY", 
+            "key": 2, 
+            "level": 1
+        }
+    }, 
+    {
+        "3": {
+            "line": "02/04/2015 9:18 AM", 
+            "type": "BODY", 
+            "key": 3, 
+            "level": 1
+        }
+    }, 
+    {
+        "4": {
+            "line": "Demographic", 
+            "type": "HEADER", 
+            "key": 4, 
+            "level": 0
+        }
+    }, 
+    {
+        "5": {
+            "line": "Source: MyMedicare.gov", 
+            "type": "BODY", 
+            "key": 5, 
+            "level": 1
+        }
+    }, 
+    {
+        "6": {
+            "line": "Name: JOHN DOE", 
+            "type": "BODY", 
+            "key": 6, 
+            "level": 1
+        }
+    }, 
+    {
+        "7": {
+            "line": "Date of Birth: 1/1/1910", 
+            "type": "BODY", 
+            "key": 7, 
+            "level": 1
+        }
+    }, 
+    {
+        "8": {
+            "line": "Address Line 1: 123 ANY ROAD", 
+            "type": "BODY", 
+            "key": 8, 
+            "level": 1
+        }
+    }, 
+    {
+        "9": {
+            "line": "Address Line 2:", 
+            "type": "BODY", 
+            "key": 9, 
+            "level": 1
+        }
+    }, 
+    {
+        "10": {
+            "line": "City: ANYTOWN", 
+            "type": "BODY", 
+            "key": 10, 
+            "level": 1
+        }
+    }, 
+    {
+        "11": {
+            "line": "State: IN", 
+            "type": "BODY", 
+            "key": 11, 
+            "level": 1
+        }
+    }, 
+    {
+        "12": {
+            "line": "Zip: 46250", 
+            "type": "BODY", 
+            "key": 12, 
+            "level": 1
+        }
+    }, 
+    {
+        "13": {
+            "line": "Phone Number: 215-248-0684", 
+            "type": "BODY", 
+            "key": 13, 
+            "level": 1
+        }
+    }, 
+    {
+        "14": {
+            "line": "Email:", 
+            "type": "BODY", 
+            "key": 14, 
+            "level": 1
+        }
+    }, 
+    {
+        "15": {
+            "line": "Part A Effective Date: 2/1/2014", 
+            "type": "BODY", 
+            "key": 15, 
+            "level": 1
+        }
+    }, 
+    {
+        "16": {
+            "line": "Part B Effective Date: 2/1/2014", 
+            "type": "BODY", 
+            "key": 16, 
+            "level": 1
+        }
+    }, 
+    {
+        "17": {
+            "line": "Emergency Contact", 
+            "type": "HEADER", 
+            "key": 17, 
+            "level": 0
+        }
+    }, 
+    {
+        "18": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 18, 
+            "level": 1
+        }
+    }, 
+    {
+        "19": {
+            "line": "Contact Name: Billy Bigelow2", 
+            "type": "BODY", 
+            "key": 19, 
+            "level": 1
+        }
+    }, 
+    {
+        "20": {
+            "line": "Address Type:Home", 
+            "type": "BODY", 
+            "key": 20, 
+            "level": 1
+        }
+    }, 
+    {
+        "21": {
+            "line": "Address Line 1: 1234 Carnival Lane", 
+            "type": "BODY", 
+            "key": 21, 
+            "level": 1
+        }
+    }, 
+    {
+        "22": {
+            "line": "Address Line 2: Lobster Bay, ME 11112", 
+            "type": "BODY", 
+            "key": 22, 
+            "level": 1
+        }
+    }, 
+    {
+        "23": {
+            "line": "City:", 
+            "type": "BODY", 
+            "key": 23, 
+            "level": 1
+        }
+    }, 
+    {
+        "24": {
+            "line": "State:", 
+            "type": "BODY", 
+            "key": 24, 
+            "level": 1
+        }
+    }, 
+    {
+        "25": {
+            "line": "Zip: 11111", 
+            "type": "BODY", 
+            "key": 25, 
+            "level": 1
+        }
+    }, 
+    {
+        "26": {
+            "line": "Relationship: Friend", 
+            "type": "BODY", 
+            "key": 26, 
+            "level": 1
+        }
+    }, 
+    {
+        "27": {
+            "line": "Home Phone:", 
+            "type": "BODY", 
+            "key": 27, 
+            "level": 1
+        }
+    }, 
+    {
+        "28": {
+            "line": "Work Phone:", 
+            "type": "BODY", 
+            "key": 28, 
+            "level": 1
+        }
+    }, 
+    {
+        "29": {
+            "line": "Mobile Phone:", 
+            "type": "BODY", 
+            "key": 29, 
+            "level": 1
+        }
+    }, 
+    {
+        "30": {
+            "line": "Email Address:", 
+            "type": "BODY", 
+            "key": 30, 
+            "level": 1
+        }
+    }, 
+    {
+        "31": {
+            "line": "Contact Name: Enoch Snow", 
+            "type": "BODY", 
+            "key": 31, 
+            "level": 1
+        }
+    }, 
+    {
+        "32": {
+            "line": "Address Type:Home", 
+            "type": "BODY", 
+            "key": 32, 
+            "level": 1
+        }
+    }, 
+    {
+        "33": {
+            "line": "Address Line 1: 2345 Fish Head Cove", 
+            "type": "BODY", 
+            "key": 33, 
+            "level": 1
+        }
+    }, 
+    {
+        "34": {
+            "line": "Address Line 2: Lobster Bay, ME 11112", 
+            "type": "BODY", 
+            "key": 34, 
+            "level": 1
+        }
+    }, 
+    {
+        "35": {
+            "line": "City:", 
+            "type": "BODY", 
+            "key": 35, 
+            "level": 1
+        }
+    }, 
+    {
+        "36": {
+            "line": "State:", 
+            "type": "BODY", 
+            "key": 36, 
+            "level": 1
+        }
+    }, 
+    {
+        "37": {
+            "line": "Zip:", 
+            "type": "BODY", 
+            "key": 37, 
+            "level": 1
+        }
+    }, 
+    {
+        "38": {
+            "line": "Relationship: Friend", 
+            "type": "BODY", 
+            "key": 38, 
+            "level": 1
+        }
+    }, 
+    {
+        "39": {
+            "line": "Home Phone:", 
+            "type": "BODY", 
+            "key": 39, 
+            "level": 1
+        }
+    }, 
+    {
+        "40": {
+            "line": "Work Phone:", 
+            "type": "BODY", 
+            "key": 40, 
+            "level": 1
+        }
+    }, 
+    {
+        "41": {
+            "line": "Mobile Phone:", 
+            "type": "BODY", 
+            "key": 41, 
+            "level": 1
+        }
+    }, 
+    {
+        "42": {
+            "line": "Email Address:", 
+            "type": "BODY", 
+            "key": 42, 
+            "level": 1
+        }
+    }, 
+    {
+        "43": {
+            "line": "Self Reported Medical Conditions", 
+            "type": "HEADER", 
+            "key": 43, 
+            "level": 0
+        }
+    }, 
+    {
+        "44": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 44, 
+            "level": 1
+        }
+    }, 
+    {
+        "45": {
+            "line": "Condition Name: Allergies", 
+            "type": "BODY", 
+            "key": 45, 
+            "level": 1
+        }
+    }, 
+    {
+        "46": {
+            "line": "Medical Condition Start Date: 1/29/2013", 
+            "type": "BODY", 
+            "key": 46, 
+            "level": 1
+        }
+    }, 
+    {
+        "47": {
+            "line": "Medical Condition End Date:", 
+            "type": "BODY", 
+            "key": 47, 
+            "level": 1
+        }
+    }, 
+    {
+        "48": {
+            "line": "Condition Name: Arthritis", 
+            "type": "BODY", 
+            "key": 48, 
+            "level": 1
+        }
+    }, 
+    {
+        "49": {
+            "line": "Medical Condition Start Date: 8/1/1960", 
+            "type": "BODY", 
+            "key": 49, 
+            "level": 1
+        }
+    }, 
+    {
+        "50": {
+            "line": "Medical Condition End Date: 12/31/1980", 
+            "type": "BODY", 
+            "key": 50, 
+            "level": 1
+        }
+    }, 
+    {
+        "51": {
+            "line": "Condition Name: Broken Wrist", 
+            "type": "BODY", 
+            "key": 51, 
+            "level": 1
+        }
+    }, 
+    {
+        "52": {
+            "line": "Medical Condition Start Date: 2/6/1910", 
+            "type": "BODY", 
+            "key": 52, 
+            "level": 1
+        }
+    }, 
+    {
+        "53": {
+            "line": "Medical Condition End Date: 2/6/2013", 
+            "type": "BODY", 
+            "key": 53, 
+            "level": 1
+        }
+    }, 
+    {
+        "54": {
+            "line": "Condition Name: Other", 
+            "type": "BODY", 
+            "key": 54, 
+            "level": 1
+        }
+    }, 
+    {
+        "55": {
+            "line": "Medical Condition Start Date: 2/1/2011", 
+            "type": "BODY", 
+            "key": 55, 
+            "level": 1
+        }
+    }, 
+    {
+        "56": {
+            "line": "Medical Condition End Date:", 
+            "type": "BODY", 
+            "key": 56, 
+            "level": 1
+        }
+    }, 
+    {
+        "57": {
+            "line": "Condition Name: Other", 
+            "type": "BODY", 
+            "key": 57, 
+            "level": 1
+        }
+    }, 
+    {
+        "58": {
+            "line": "Medical Condition Start Date: 2/28/2012", 
+            "type": "BODY", 
+            "key": 58, 
+            "level": 1
+        }
+    }, 
+    {
+        "59": {
+            "line": "Medical Condition End Date:", 
+            "type": "BODY", 
+            "key": 59, 
+            "level": 1
+        }
+    }, 
+    {
+        "60": {
+            "line": "Self Reported Allergies", 
+            "type": "HEADER", 
+            "key": 60, 
+            "level": 0
+        }
+    }, 
+    {
+        "61": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 61, 
+            "level": 1
+        }
+    }, 
+    {
+        "62": {
+            "line": "Allergy Name: Antibotic", 
+            "type": "BODY", 
+            "key": 62, 
+            "level": 1
+        }
+    }, 
+    {
+        "63": {
+            "line": "Type: Drugs", 
+            "type": "BODY", 
+            "key": 63, 
+            "level": 1
+        }
+    }, 
+    {
+        "64": {
+            "line": "Reaction:", 
+            "type": "BODY", 
+            "key": 64, 
+            "level": 1
+        }
+    }, 
+    {
+        "65": {
+            "line": "Severity:", 
+            "type": "BODY", 
+            "key": 65, 
+            "level": 1
+        }
+    }, 
+    {
+        "66": {
+            "line": "Diagnosed:", 
+            "type": "BODY", 
+            "key": 66, 
+            "level": 1
+        }
+    }, 
+    {
+        "67": {
+            "line": "Treatment:", 
+            "type": "BODY", 
+            "key": 67, 
+            "level": 1
+        }
+    }, 
+    {
+        "68": {
+            "line": "First Episode Date:", 
+            "type": "BODY", 
+            "key": 68, 
+            "level": 1
+        }
+    }, 
+    {
+        "69": {
+            "line": "Last Episode Date:", 
+            "type": "BODY", 
+            "key": 69, 
+            "level": 1
+        }
+    }, 
+    {
+        "70": {
+            "line": "Last Treatment Date:", 
+            "type": "BODY", 
+            "key": 70, 
+            "level": 1
+        }
+    }, 
+    {
+        "71": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 71, 
+            "level": 1
+        }
+    }, 
+    {
+        "72": {
+            "line": "Allergy Name: Corn", 
+            "type": "BODY", 
+            "key": 72, 
+            "level": 1
+        }
+    }, 
+    {
+        "73": {
+            "line": "Type: Food", 
+            "type": "BODY", 
+            "key": 73, 
+            "level": 1
+        }
+    }, 
+    {
+        "74": {
+            "line": "Reaction: Blisters", 
+            "type": "BODY", 
+            "key": 74, 
+            "level": 1
+        }
+    }, 
+    {
+        "75": {
+            "line": "Severity: Mild", 
+            "type": "BODY", 
+            "key": 75, 
+            "level": 1
+        }
+    }, 
+    {
+        "76": {
+            "line": "Diagnosed: Yes", 
+            "type": "BODY", 
+            "key": 76, 
+            "level": 1
+        }
+    }, 
+    {
+        "77": {
+            "line": "Treatment: Other", 
+            "type": "BODY", 
+            "key": 77, 
+            "level": 1
+        }
+    }, 
+    {
+        "78": {
+            "line": "First Episode Date:", 
+            "type": "BODY", 
+            "key": 78, 
+            "level": 1
+        }
+    }, 
+    {
+        "79": {
+            "line": "Last Episode Date:", 
+            "type": "BODY", 
+            "key": 79, 
+            "level": 1
+        }
+    }, 
+    {
+        "80": {
+            "line": "Last Treatment Date:", 
+            "type": "BODY", 
+            "key": 80, 
+            "level": 1
+        }
+    }, 
+    {
+        "81": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 81, 
+            "level": 1
+        }
+    }, 
+    {
+        "82": {
+            "line": "Allergy Name: Milk", 
+            "type": "BODY", 
+            "key": 82, 
+            "level": 1
+        }
+    }, 
+    {
+        "83": {
+            "line": "Type: Food", 
+            "type": "BODY", 
+            "key": 83, 
+            "level": 1
+        }
+    }, 
+    {
+        "84": {
+            "line": "Reaction: Anaphylaxis", 
+            "type": "BODY", 
+            "key": 84, 
+            "level": 1
+        }
+    }, 
+    {
+        "85": {
+            "line": "Severity: Severe", 
+            "type": "BODY", 
+            "key": 85, 
+            "level": 1
+        }
+    }, 
+    {
+        "86": {
+            "line": "Diagnosed: Yes", 
+            "type": "BODY", 
+            "key": 86, 
+            "level": 1
+        }
+    }, 
+    {
+        "87": {
+            "line": "Treatment: Epinephrine (Epi-Pen)", 
+            "type": "BODY", 
+            "key": 87, 
+            "level": 1
+        }
+    }, 
+    {
+        "88": {
+            "line": "First Episode Date: 3/21/1985", 
+            "type": "BODY", 
+            "key": 88, 
+            "level": 1
+        }
+    }, 
+    {
+        "89": {
+            "line": "Last Episode Date: 3/31/2012", 
+            "type": "BODY", 
+            "key": 89, 
+            "level": 1
+        }
+    }, 
+    {
+        "90": {
+            "line": "Last Treatment Date: 3/31/2012", 
+            "type": "BODY", 
+            "key": 90, 
+            "level": 1
+        }
+    }, 
+    {
+        "91": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 91, 
+            "level": 1
+        }
+    }, 
+    {
+        "92": {
+            "line": "Allergy Name: Other - other", 
+            "type": "BODY", 
+            "key": 92, 
+            "level": 1
+        }
+    }, 
+    {
+        "93": {
+            "line": "Type: Other - other", 
+            "type": "BODY", 
+            "key": 93, 
+            "level": 1
+        }
+    }, 
+    {
+        "94": {
+            "line": "Reaction:", 
+            "type": "BODY", 
+            "key": 94, 
+            "level": 1
+        }
+    }, 
+    {
+        "95": {
+            "line": "Severity:", 
+            "type": "BODY", 
+            "key": 95, 
+            "level": 1
+        }
+    }, 
+    {
+        "96": {
+            "line": "Diagnosed:", 
+            "type": "BODY", 
+            "key": 96, 
+            "level": 1
+        }
+    }, 
+    {
+        "97": {
+            "line": "Treatment:", 
+            "type": "BODY", 
+            "key": 97, 
+            "level": 1
+        }
+    }, 
+    {
+        "98": {
+            "line": "First Episode Date:", 
+            "type": "BODY", 
+            "key": 98, 
+            "level": 1
+        }
+    }, 
+    {
+        "99": {
+            "line": "Last Episode Date:", 
+            "type": "BODY", 
+            "key": 99, 
+            "level": 1
+        }
+    }, 
+    {
+        "100": {
+            "line": "Last Treatment Date:", 
+            "type": "BODY", 
+            "key": 100, 
+            "level": 1
+        }
+    }, 
+    {
+        "101": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 101, 
+            "level": 1
+        }
+    }, 
+    {
+        "102": {
+            "line": "Self Reported Implantable Device", 
+            "type": "HEADER", 
+            "key": 102, 
+            "level": 0
+        }
+    }, 
+    {
+        "103": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 103, 
+            "level": 1
+        }
+    }, 
+    {
+        "104": {
+            "line": "Device Name: COronary stent", 
+            "type": "BODY", 
+            "key": 104, 
+            "level": 1
+        }
+    }, 
+    {
+        "105": {
+            "line": "Date Implanted: 11/27/2005", 
+            "type": "BODY", 
+            "key": 105, 
+            "level": 1
+        }
+    }, 
+    {
+        "106": {
+            "line": "Device Name: Knee replacement", 
+            "type": "BODY", 
+            "key": 106, 
+            "level": 1
+        }
+    }, 
+    {
+        "107": {
+            "line": "Date Implanted: 2/2/2014", 
+            "type": "BODY", 
+            "key": 107, 
+            "level": 1
+        }
+    }, 
+    {
+        "108": {
+            "line": "Device Name: Pace maker", 
+            "type": "BODY", 
+            "key": 108, 
+            "level": 1
+        }
+    }, 
+    {
+        "109": {
+            "line": "Date Implanted: 2/28/2012", 
+            "type": "BODY", 
+            "key": 109, 
+            "level": 1
+        }
+    }, 
+    {
+        "110": {
+            "line": "Device Name: foot", 
+            "type": "BODY", 
+            "key": 110, 
+            "level": 1
+        }
+    }, 
+    {
+        "111": {
+            "line": "Date Implanted: 9/9/1984", 
+            "type": "BODY", 
+            "key": 111, 
+            "level": 1
+        }
+    }, 
+    {
+        "112": {
+            "line": "Device Name: hearing aid", 
+            "type": "BODY", 
+            "key": 112, 
+            "level": 1
+        }
+    }, 
+    {
+        "113": {
+            "line": "Date Implanted: 1/1/2013", 
+            "type": "BODY", 
+            "key": 113, 
+            "level": 1
+        }
+    }, 
+    {
+        "114": {
+            "line": "Device Name: nov20", 
+            "type": "BODY", 
+            "key": 114, 
+            "level": 1
+        }
+    }, 
+    {
+        "115": {
+            "line": "Date Implanted: 12/15/2007", 
+            "type": "BODY", 
+            "key": 115, 
+            "level": 1
+        }
+    }, 
+    {
+        "116": {
+            "line": "Self Reported Immunizations", 
+            "type": "HEADER", 
+            "key": 116, 
+            "level": 0
+        }
+    }, 
+    {
+        "117": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 117, 
+            "level": 1
+        }
+    }, 
+    {
+        "118": {
+            "line": "Immunization Name: shingles", 
+            "type": "BODY", 
+            "key": 118, 
+            "level": 1
+        }
+    }, 
+    {
+        "119": {
+            "line": "Date Administered:2/3/2010", 
+            "type": "BODY", 
+            "key": 119, 
+            "level": 1
+        }
+    }, 
+    {
+        "120": {
+            "line": "Method: Injection", 
+            "type": "BODY", 
+            "key": 120, 
+            "level": 1
+        }
+    }, 
+    {
+        "121": {
+            "line": "Were you vaccinated in the US: Yes", 
+            "type": "BODY", 
+            "key": 121, 
+            "level": 1
+        }
+    }, 
+    {
+        "122": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 122, 
+            "level": 1
+        }
+    }, 
+    {
+        "123": {
+            "line": "Booster 1 Date: 2/4/2011", 
+            "type": "BODY", 
+            "key": 123, 
+            "level": 1
+        }
+    }, 
+    {
+        "124": {
+            "line": "Booster 2 Date: 4/6/2012", 
+            "type": "BODY", 
+            "key": 124, 
+            "level": 1
+        }
+    }, 
+    {
+        "125": {
+            "line": "Booster 3 Date:", 
+            "type": "BODY", 
+            "key": 125, 
+            "level": 1
+        }
+    }, 
+    {
+        "126": {
+            "line": "Self Reported Labs and Tests", 
+            "type": "HEADER", 
+            "key": 126, 
+            "level": 0
+        }
+    }, 
+    {
+        "127": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 127, 
+            "level": 1
+        }
+    }, 
+    {
+        "128": {
+            "line": "Test/Lab Type: Test", 
+            "type": "BODY", 
+            "key": 128, 
+            "level": 1
+        }
+    }, 
+    {
+        "129": {
+            "line": "Date Taken: 1/2/2013", 
+            "type": "BODY", 
+            "key": 129, 
+            "level": 1
+        }
+    }, 
+    {
+        "130": {
+            "line": "Administered by: Inova", 
+            "type": "BODY", 
+            "key": 130, 
+            "level": 1
+        }
+    }, 
+    {
+        "131": {
+            "line": "Requesting Doctor: Dr. John Doe", 
+            "type": "BODY", 
+            "key": 131, 
+            "level": 1
+        }
+    }, 
+    {
+        "132": {
+            "line": "Reason Test/Lab Requested:", 
+            "type": "BODY", 
+            "key": 132, 
+            "level": 1
+        }
+    }, 
+    {
+        "133": {
+            "line": "Results:", 
+            "type": "BODY", 
+            "key": 133, 
+            "level": 1
+        }
+    }, 
+    {
+        "134": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 134, 
+            "level": 1
+        }
+    }, 
+    {
+        "135": {
+            "line": "Self Reported Vital Statistics", 
+            "type": "HEADER", 
+            "key": 135, 
+            "level": 0
+        }
+    }, 
+    {
+        "136": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 136, 
+            "level": 1
+        }
+    }, 
+    {
+        "137": {
+            "line": "Vital Statistic Type: Glucose", 
+            "type": "BODY", 
+            "key": 137, 
+            "level": 1
+        }
+    }, 
+    {
+        "138": {
+            "line": "Date: 2/7/2008", 
+            "type": "BODY", 
+            "key": 138, 
+            "level": 1
+        }
+    }, 
+    {
+        "139": {
+            "line": "Time: 12:00 AM", 
+            "type": "BODY", 
+            "key": 139, 
+            "level": 1
+        }
+    }, 
+    {
+        "140": {
+            "line": "Reading/Value: 322", 
+            "type": "BODY", 
+            "key": 140, 
+            "level": 1
+        }
+    }, 
+    {
+        "141": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 141, 
+            "level": 1
+        }
+    }, 
+    {
+        "142": {
+            "line": "Vital Statistic Type: Glucose", 
+            "type": "BODY", 
+            "key": 142, 
+            "level": 1
+        }
+    }, 
+    {
+        "143": {
+            "line": "Date: 4/3/2009", 
+            "type": "BODY", 
+            "key": 143, 
+            "level": 1
+        }
+    }, 
+    {
+        "144": {
+            "line": "Time: 12:02 PM", 
+            "type": "BODY", 
+            "key": 144, 
+            "level": 1
+        }
+    }, 
+    {
+        "145": {
+            "line": "Reading/Value: 24", 
+            "type": "BODY", 
+            "key": 145, 
+            "level": 1
+        }
+    }, 
+    {
+        "146": {
+            "line": "Comments: fwrqwrgreg", 
+            "type": "BODY", 
+            "key": 146, 
+            "level": 1
+        }
+    }, 
+    {
+        "147": {
+            "line": "Vital Statistic Type: Glucose", 
+            "type": "BODY", 
+            "key": 147, 
+            "level": 1
+        }
+    }, 
+    {
+        "148": {
+            "line": "Date: 5/14/2009", 
+            "type": "BODY", 
+            "key": 148, 
+            "level": 1
+        }
+    }, 
+    {
+        "149": {
+            "line": "Time: 12:17 PM", 
+            "type": "BODY", 
+            "key": 149, 
+            "level": 1
+        }
+    }, 
+    {
+        "150": {
+            "line": "Reading/Value: 134", 
+            "type": "BODY", 
+            "key": 150, 
+            "level": 1
+        }
+    }, 
+    {
+        "151": {
+            "line": "Comments: rwrtrt", 
+            "type": "BODY", 
+            "key": 151, 
+            "level": 1
+        }
+    }, 
+    {
+        "152": {
+            "line": "Vital Statistic Type: Otro - other", 
+            "type": "BODY", 
+            "key": 152, 
+            "level": 1
+        }
+    }, 
+    {
+        "153": {
+            "line": "Date: 1/1/1939", 
+            "type": "BODY", 
+            "key": 153, 
+            "level": 1
+        }
+    }, 
+    {
+        "154": {
+            "line": "Time: 12:00 AM", 
+            "type": "BODY", 
+            "key": 154, 
+            "level": 1
+        }
+    }, 
+    {
+        "155": {
+            "line": "Reading/Value: other", 
+            "type": "BODY", 
+            "key": 155, 
+            "level": 1
+        }
+    }, 
+    {
+        "156": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 156, 
+            "level": 1
+        }
+    }, 
+    {
+        "157": {
+            "line": "Vital Statistic Type: Pulse", 
+            "type": "BODY", 
+            "key": 157, 
+            "level": 1
+        }
+    }, 
+    {
+        "158": {
+            "line": "Date: 4/6/2013", 
+            "type": "BODY", 
+            "key": 158, 
+            "level": 1
+        }
+    }, 
+    {
+        "159": {
+            "line": "Time: 12:00 AM", 
+            "type": "BODY", 
+            "key": 159, 
+            "level": 1
+        }
+    }, 
+    {
+        "160": {
+            "line": "Reading/Value: 333", 
+            "type": "BODY", 
+            "key": 160, 
+            "level": 1
+        }
+    }, 
+    {
+        "161": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 161, 
+            "level": 1
+        }
+    }, 
+    {
+        "162": {
+            "line": "Vital Statistic Type: Pulse", 
+            "type": "BODY", 
+            "key": 162, 
+            "level": 1
+        }
+    }, 
+    {
+        "163": {
+            "line": "Date: 3/2/2011", 
+            "type": "BODY", 
+            "key": 163, 
+            "level": 1
+        }
+    }, 
+    {
+        "164": {
+            "line": "Time: 12:09 AM", 
+            "type": "BODY", 
+            "key": 164, 
+            "level": 1
+        }
+    }, 
+    {
+        "165": {
+            "line": "Reading/Value: 80", 
+            "type": "BODY", 
+            "key": 165, 
+            "level": 1
+        }
+    }, 
+    {
+        "166": {
+            "line": "Comments: wwqrgtrt", 
+            "type": "BODY", 
+            "key": 166, 
+            "level": 1
+        }
+    }, 
+    {
+        "167": {
+            "line": "Vital Statistic Type: Temperature", 
+            "type": "BODY", 
+            "key": 167, 
+            "level": 1
+        }
+    }, 
+    {
+        "168": {
+            "line": "Date: 6/5/2009", 
+            "type": "BODY", 
+            "key": 168, 
+            "level": 1
+        }
+    }, 
+    {
+        "169": {
+            "line": "Time: 8:06 AM", 
+            "type": "BODY", 
+            "key": 169, 
+            "level": 1
+        }
+    }, 
+    {
+        "170": {
+            "line": "Reading/Value: 100", 
+            "type": "BODY", 
+            "key": 170, 
+            "level": 1
+        }
+    }, 
+    {
+        "171": {
+            "line": "Comments: fwqerqwr", 
+            "type": "BODY", 
+            "key": 171, 
+            "level": 1
+        }
+    }, 
+    {
+        "172": {
+            "line": "Vital Statistic Type: Temperature", 
+            "type": "BODY", 
+            "key": 172, 
+            "level": 1
+        }
+    }, 
+    {
+        "173": {
+            "line": "Date: 4/4/2008", 
+            "type": "BODY", 
+            "key": 173, 
+            "level": 1
+        }
+    }, 
+    {
+        "174": {
+            "line": "Time: 9:02 AM", 
+            "type": "BODY", 
+            "key": 174, 
+            "level": 1
+        }
+    }, 
+    {
+        "175": {
+            "line": "Reading/Value: 99", 
+            "type": "BODY", 
+            "key": 175, 
+            "level": 1
+        }
+    }, 
+    {
+        "176": {
+            "line": "Comments:", 
+            "type": "BODY", 
+            "key": 176, 
+            "level": 1
+        }
+    }, 
+    {
+        "177": {
+            "line": "Family Medical History", 
+            "type": "HEADER", 
+            "key": 177, 
+            "level": 0
+        }
+    }, 
+    {
+        "178": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 178, 
+            "level": 1
+        }
+    }, 
+    {
+        "179": {
+            "line": "Family Member: Daughter", 
+            "type": "BODY", 
+            "key": 179, 
+            "level": 1
+        }
+    }, 
+    {
+        "180": {
+            "line": "Type: Maternal", 
+            "type": "BODY", 
+            "key": 180, 
+            "level": 1
+        }
+    }, 
+    {
+        "181": {
+            "line": "DOB:1/1/1994", 
+            "type": "BODY", 
+            "key": 181, 
+            "level": 1
+        }
+    }, 
+    {
+        "182": {
+            "line": "DOD:", 
+            "type": "BODY", 
+            "key": 182, 
+            "level": 1
+        }
+    }, 
+    {
+        "183": {
+            "line": "Age: 31", 
+            "type": "BODY", 
+            "key": 183, 
+            "level": 1
+        }
+    }, 
+    {
+        "184": {
+            "line": "Type: Allergy", 
+            "type": "BODY", 
+            "key": 184, 
+            "level": 1
+        }
+    }, 
+    {
+        "185": {
+            "line": "Description: Dyes", 
+            "type": "BODY", 
+            "key": 185, 
+            "level": 1
+        }
+    }, 
+    {
+        "186": {
+            "line": "Type: Condition", 
+            "type": "BODY", 
+            "key": 186, 
+            "level": 1
+        }
+    }, 
+    {
+        "187": {
+            "line": "Description: Diabetes, Type 2", 
+            "type": "BODY", 
+            "key": 187, 
+            "level": 1
+        }
+    }, 
+    {
+        "188": {
+            "line": "Description: Skin Cancer", 
+            "type": "BODY", 
+            "key": 188, 
+            "level": 1
+        }
+    }, 
+    {
+        "189": {
+            "line": "Family Member: Brother", 
+            "type": "BODY", 
+            "key": 189, 
+            "level": 1
+        }
+    }, 
+    {
+        "190": {
+            "line": "Type:", 
+            "type": "BODY", 
+            "key": 190, 
+            "level": 1
+        }
+    }, 
+    {
+        "191": {
+            "line": "DOB:4/4/2012", 
+            "type": "BODY", 
+            "key": 191, 
+            "level": 1
+        }
+    }, 
+    {
+        "192": {
+            "line": "DOD:", 
+            "type": "BODY", 
+            "key": 192, 
+            "level": 1
+        }
+    }, 
+    {
+        "193": {
+            "line": "Age:", 
+            "type": "BODY", 
+            "key": 193, 
+            "level": 1
+        }
+    }, 
+    {
+        "194": {
+            "line": "Type: Allergy", 
+            "type": "BODY", 
+            "key": 194, 
+            "level": 1
+        }
+    }, 
+    {
+        "195": {
+            "line": "Description: Chemotherapy", 
+            "type": "BODY", 
+            "key": 195, 
+            "level": 1
+        }
+    }, 
+    {
+        "196": {
+            "line": "Type: Condition", 
+            "type": "BODY", 
+            "key": 196, 
+            "level": 1
+        }
+    }, 
+    {
+        "197": {
+            "line": "Description: Alzheimer's Disease", 
+            "type": "BODY", 
+            "key": 197, 
+            "level": 1
+        }
+    }, 
+    {
+        "198": {
+            "line": "Drugs", 
+            "type": "HEADER", 
+            "key": 198, 
+            "level": 0
+        }
+    }, 
+    {
+        "199": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 199, 
+            "level": 1
+        }
+    }, 
+    {
+        "200": {
+            "line": "Drug Name: Abacavir TAB 300MG", 
+            "type": "BODY", 
+            "key": 200, 
+            "level": 1
+        }
+    }, 
+    {
+        "201": {
+            "line": "Supply: 60 Every 1 Month", 
+            "type": "BODY", 
+            "key": 201, 
+            "level": 1
+        }
+    }, 
+    {
+        "202": {
+            "line": "Orig Drug Entry: Abacavir", 
+            "type": "BODY", 
+            "key": 202, 
+            "level": 1
+        }
+    }, 
+    {
+        "203": {
+            "line": "Drug Name: Abilify Maintena INJ 300MG", 
+            "type": "BODY", 
+            "key": 203, 
+            "level": 1
+        }
+    }, 
+    {
+        "204": {
+            "line": "Supply: 1 X Vial Every 1 Month", 
+            "type": "BODY", 
+            "key": 204, 
+            "level": 1
+        }
+    }, 
+    {
+        "205": {
+            "line": "Orig Drug Entry: Abilify Maintena", 
+            "type": "BODY", 
+            "key": 205, 
+            "level": 1
+        }
+    }, 
+    {
+        "206": {
+            "line": "Drug Name: Amlodipine Besylate TAB 10MG", 
+            "type": "BODY", 
+            "key": 206, 
+            "level": 1
+        }
+    }, 
+    {
+        "207": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 207, 
+            "level": 1
+        }
+    }, 
+    {
+        "208": {
+            "line": "Orig Drug Entry: Amlodipine Besylate", 
+            "type": "BODY", 
+            "key": 208, 
+            "level": 1
+        }
+    }, 
+    {
+        "209": {
+            "line": "Drug Name: Amlodipine Besylate TAB 2.5MG", 
+            "type": "BODY", 
+            "key": 209, 
+            "level": 1
+        }
+    }, 
+    {
+        "210": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 210, 
+            "level": 1
+        }
+    }, 
+    {
+        "211": {
+            "line": "Orig Drug Entry: Amlodipine Besylate", 
+            "type": "BODY", 
+            "key": 211, 
+            "level": 1
+        }
+    }, 
+    {
+        "212": {
+            "line": "Drug Name: Amlodipine Besylate TAB 5MG", 
+            "type": "BODY", 
+            "key": 212, 
+            "level": 1
+        }
+    }, 
+    {
+        "213": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 213, 
+            "level": 1
+        }
+    }, 
+    {
+        "214": {
+            "line": "Orig Drug Entry: Amlodipine Besylate", 
+            "type": "BODY", 
+            "key": 214, 
+            "level": 1
+        }
+    }, 
+    {
+        "215": {
+            "line": "Drug Name: Amlodipine Besylate/Atorvastatin Calcium TAB 10-10MG", 
+            "type": "BODY", 
+            "key": 215, 
+            "level": 1
+        }
+    }, 
+    {
+        "216": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 216, 
+            "level": 1
+        }
+    }, 
+    {
+        "217": {
+            "line": "Orig Drug Entry: Amlodipine Besylate/Atorvastatin Calcium", 
+            "type": "BODY", 
+            "key": 217, 
+            "level": 1
+        }
+    }, 
+    {
+        "218": {
+            "line": "Drug Name: Amlodipine Besylate/Atorvastatin Calcium TAB 10-20MG", 
+            "type": "BODY", 
+            "key": 218, 
+            "level": 1
+        }
+    }, 
+    {
+        "219": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 219, 
+            "level": 1
+        }
+    }, 
+    {
+        "220": {
+            "line": "Orig Drug Entry: Amlodipine Besylate/Atorvastatin Calcium", 
+            "type": "BODY", 
+            "key": 220, 
+            "level": 1
+        }
+    }, 
+    {
+        "221": {
+            "line": "Drug Name: Amlodipine Besylate/Atorvastatin Calcium TAB 10-40MG", 
+            "type": "BODY", 
+            "key": 221, 
+            "level": 1
+        }
+    }, 
+    {
+        "222": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 222, 
+            "level": 1
+        }
+    }, 
+    {
+        "223": {
+            "line": "Orig Drug Entry: Amlodipine Besylate/Atorvastatin Calcium", 
+            "type": "BODY", 
+            "key": 223, 
+            "level": 1
+        }
+    }, 
+    {
+        "224": {
+            "line": "Drug Name: Amlodipine Besylate/Atorvastatin Calcium TAB 10-80MG", 
+            "type": "BODY", 
+            "key": 224, 
+            "level": 1
+        }
+    }, 
+    {
+        "225": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 225, 
+            "level": 1
+        }
+    }, 
+    {
+        "226": {
+            "line": "Orig Drug Entry: Amlodipine Besylate/Atorvastatin Calcium", 
+            "type": "BODY", 
+            "key": 226, 
+            "level": 1
+        }
+    }, 
+    {
+        "227": {
+            "line": "Drug Name: Amlodipine Besylate/Atorvastatin Calcium TAB 5-10MG", 
+            "type": "BODY", 
+            "key": 227, 
+            "level": 1
+        }
+    }, 
+    {
+        "228": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 228, 
+            "level": 1
+        }
+    }, 
+    {
+        "229": {
+            "line": "Orig Drug Entry: Caduet", 
+            "type": "BODY", 
+            "key": 229, 
+            "level": 1
+        }
+    }, 
+    {
+        "230": {
+            "line": "Drug Name: Amlodipine Besylate/Atorvastatin Calcium TAB 5-80MG", 
+            "type": "BODY", 
+            "key": 230, 
+            "level": 1
+        }
+    }, 
+    {
+        "231": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 231, 
+            "level": 1
+        }
+    }, 
+    {
+        "232": {
+            "line": "Orig Drug Entry: Amlodipine Besylate/Atorvastatin Calcium", 
+            "type": "BODY", 
+            "key": 232, 
+            "level": 1
+        }
+    }, 
+    {
+        "233": {
+            "line": "Drug Name: Androgel Pump GEL 1.62%", 
+            "type": "BODY", 
+            "key": 233, 
+            "level": 1
+        }
+    }, 
+    {
+        "234": {
+            "line": "Supply: 2 X 75GM Pump Bottle (sold in a package of 1 pump bottle) Every 1 Month", 
+            "type": "BODY", 
+            "key": 234, 
+            "level": 1
+        }
+    }, 
+    {
+        "235": {
+            "line": "Orig Drug Entry: Androgel Pump", 
+            "type": "BODY", 
+            "key": 235, 
+            "level": 1
+        }
+    }, 
+    {
+        "236": {
+            "line": "Drug Name: Drospirenone/Ethinyl Estradiol TAB 3-0.03MG", 
+            "type": "BODY", 
+            "key": 236, 
+            "level": 1
+        }
+    }, 
+    {
+        "237": {
+            "line": "Supply: 28 Every 1 Month", 
+            "type": "BODY", 
+            "key": 237, 
+            "level": 1
+        }
+    }, 
+    {
+        "238": {
+            "line": "Orig Drug Entry: Yasmin 28", 
+            "type": "BODY", 
+            "key": 238, 
+            "level": 1
+        }
+    }, 
+    {
+        "239": {
+            "line": "Drug Name: Gabapentin CAP 100MG", 
+            "type": "BODY", 
+            "key": 239, 
+            "level": 1
+        }
+    }, 
+    {
+        "240": {
+            "line": "Supply: 90 Every 1 Month", 
+            "type": "BODY", 
+            "key": 240, 
+            "level": 1
+        }
+    }, 
+    {
+        "241": {
+            "line": "Orig Drug Entry: Gabapentin", 
+            "type": "BODY", 
+            "key": 241, 
+            "level": 1
+        }
+    }, 
+    {
+        "242": {
+            "line": "Drug Name: Gabapentin SOL 250/5ML", 
+            "type": "BODY", 
+            "key": 242, 
+            "level": 1
+        }
+    }, 
+    {
+        "243": {
+            "line": "Supply: 1 X 470ML Bottle Every 1 Month", 
+            "type": "BODY", 
+            "key": 243, 
+            "level": 1
+        }
+    }, 
+    {
+        "244": {
+            "line": "Orig Drug Entry: Gabapentin", 
+            "type": "BODY", 
+            "key": 244, 
+            "level": 1
+        }
+    }, 
+    {
+        "245": {
+            "line": "Drug Name: Jakafi TAB 10MG", 
+            "type": "BODY", 
+            "key": 245, 
+            "level": 1
+        }
+    }, 
+    {
+        "246": {
+            "line": "Supply: 60 Every 1 Month", 
+            "type": "BODY", 
+            "key": 246, 
+            "level": 1
+        }
+    }, 
+    {
+        "247": {
+            "line": "Orig Drug Entry: Jakafi", 
+            "type": "BODY", 
+            "key": 247, 
+            "level": 1
+        }
+    }, 
+    {
+        "248": {
+            "line": "Drug Name: Losartan Potassium/Hydrochlorothiazide TAB 100-25", 
+            "type": "BODY", 
+            "key": 248, 
+            "level": 1
+        }
+    }, 
+    {
+        "249": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 249, 
+            "level": 1
+        }
+    }, 
+    {
+        "250": {
+            "line": "Orig Drug Entry: Losartan Potassium/Hydrochlorothiazide", 
+            "type": "BODY", 
+            "key": 250, 
+            "level": 1
+        }
+    }, 
+    {
+        "251": {
+            "line": "Drug Name: Montelukast Sodium TAB 10MG", 
+            "type": "BODY", 
+            "key": 251, 
+            "level": 1
+        }
+    }, 
+    {
+        "252": {
+            "line": "Supply: 90 Every 3 Month", 
+            "type": "BODY", 
+            "key": 252, 
+            "level": 1
+        }
+    }, 
+    {
+        "253": {
+            "line": "Orig Drug Entry: Montelukast Sodium", 
+            "type": "BODY", 
+            "key": 253, 
+            "level": 1
+        }
+    }, 
+    {
+        "254": {
+            "line": "Drug Name: Omeprazole CAP 20MG", 
+            "type": "BODY", 
+            "key": 254, 
+            "level": 1
+        }
+    }, 
+    {
+        "255": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 255, 
+            "level": 1
+        }
+    }, 
+    {
+        "256": {
+            "line": "Orig Drug Entry: Omeprazole", 
+            "type": "BODY", 
+            "key": 256, 
+            "level": 1
+        }
+    }, 
+    {
+        "257": {
+            "line": "Drug Name: Rabavert INJ", 
+            "type": "BODY", 
+            "key": 257, 
+            "level": 1
+        }
+    }, 
+    {
+        "258": {
+            "line": "Supply: 2 X Vial (sold in a package of 2) Every 12 Month", 
+            "type": "BODY", 
+            "key": 258, 
+            "level": 1
+        }
+    }, 
+    {
+        "259": {
+            "line": "Orig Drug Entry: Rabavert", 
+            "type": "BODY", 
+            "key": 259, 
+            "level": 1
+        }
+    }, 
+    {
+        "260": {
+            "line": "Drug Name: Tabloid TAB 40MG", 
+            "type": "BODY", 
+            "key": 260, 
+            "level": 1
+        }
+    }, 
+    {
+        "261": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 261, 
+            "level": 1
+        }
+    }, 
+    {
+        "262": {
+            "line": "Orig Drug Entry: Tabloid", 
+            "type": "BODY", 
+            "key": 262, 
+            "level": 1
+        }
+    }, 
+    {
+        "263": {
+            "line": "Drug Name: Vagifem TAB 10MCG", 
+            "type": "BODY", 
+            "key": 263, 
+            "level": 1
+        }
+    }, 
+    {
+        "264": {
+            "line": "Supply: 8 Every 1 Month", 
+            "type": "BODY", 
+            "key": 264, 
+            "level": 1
+        }
+    }, 
+    {
+        "265": {
+            "line": "Orig Drug Entry: Vagifem", 
+            "type": "BODY", 
+            "key": 265, 
+            "level": 1
+        }
+    }, 
+    {
+        "266": {
+            "line": "Drug Name: Zafirlukast TAB 20MG", 
+            "type": "BODY", 
+            "key": 266, 
+            "level": 1
+        }
+    }, 
+    {
+        "267": {
+            "line": "Supply: 60 Every 1 Month", 
+            "type": "BODY", 
+            "key": 267, 
+            "level": 1
+        }
+    }, 
+    {
+        "268": {
+            "line": "Orig Drug Entry: Zafirlukast", 
+            "type": "BODY", 
+            "key": 268, 
+            "level": 1
+        }
+    }, 
+    {
+        "269": {
+            "line": "Drug Name: Zaleplon CAP 10MG", 
+            "type": "BODY", 
+            "key": 269, 
+            "level": 1
+        }
+    }, 
+    {
+        "270": {
+            "line": "Supply: 30 Every 1 Month", 
+            "type": "BODY", 
+            "key": 270, 
+            "level": 1
+        }
+    }, 
+    {
+        "271": {
+            "line": "Orig Drug Entry: Zaleplon", 
+            "type": "BODY", 
+            "key": 271, 
+            "level": 1
+        }
+    }, 
+    {
+        "272": {
+            "line": "Drug Name: Zaltrap INJ 100/4ML", 
+            "type": "BODY", 
+            "key": 272, 
+            "level": 1
+        }
+    }, 
+    {
+        "273": {
+            "line": "Supply: 1 X 4ML Vial Every 1 Month", 
+            "type": "BODY", 
+            "key": 273, 
+            "level": 1
+        }
+    }, 
+    {
+        "274": {
+            "line": "Orig Drug Entry: Zaltrap", 
+            "type": "BODY", 
+            "key": 274, 
+            "level": 1
+        }
+    }, 
+    {
+        "275": {
+            "line": "Preventive Services", 
+            "type": "HEADER", 
+            "key": 275, 
+            "level": 0
+        }
+    }, 
+    {
+        "276": {
+            "line": "Source: MyMedicare.gov", 
+            "type": "BODY", 
+            "key": 276, 
+            "level": 1
+        }
+    }, 
+    {
+        "277": {
+            "line": "Description: ABDOMINAL AORTIC ANEURYSM", 
+            "type": "BODY", 
+            "key": 277, 
+            "level": 1
+        }
+    }, 
+    {
+        "278": {
+            "line": "Next Eligible Date: 2/1/2014", 
+            "type": "BODY", 
+            "key": 278, 
+            "level": 1
+        }
+    }, 
+    {
+        "279": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 279, 
+            "level": 1
+        }
+    }, 
+    {
+        "280": {
+            "line": "Description: CARDIOVASCULAR", 
+            "type": "BODY", 
+            "key": 280, 
+            "level": 1
+        }
+    }, 
+    {
+        "281": {
+            "line": "Next Eligible Date: 2/1/2014", 
+            "type": "BODY", 
+            "key": 281, 
+            "level": 1
+        }
+    }, 
+    {
+        "282": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 282, 
+            "level": 1
+        }
+    }, 
+    {
+        "283": {
+            "line": "Description: PPV", 
+            "type": "BODY", 
+            "key": 283, 
+            "level": 1
+        }
+    }, 
+    {
+        "284": {
+            "line": "Next Eligible Date: 2/1/2014", 
+            "type": "BODY", 
+            "key": 284, 
+            "level": 1
+        }
+    }, 
+    {
+        "285": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 285, 
+            "level": 1
+        }
+    }, 
+    {
+        "286": {
+            "line": "Description: PROSTATE", 
+            "type": "BODY", 
+            "key": 286, 
+            "level": 1
+        }
+    }, 
+    {
+        "287": {
+            "line": "Next Eligible Date: 2/1/2014", 
+            "type": "BODY", 
+            "key": 287, 
+            "level": 1
+        }
+    }, 
+    {
+        "288": {
+            "line": "Last Date of Service: 3/26/2012", 
+            "type": "BODY", 
+            "key": 288, 
+            "level": 1
+        }
+    }, 
+    {
+        "289": {
+            "line": "Description: PSA", 
+            "type": "BODY", 
+            "key": 289, 
+            "level": 1
+        }
+    }, 
+    {
+        "290": {
+            "line": "Next Eligible Date: 2/1/2014", 
+            "type": "BODY", 
+            "key": 290, 
+            "level": 1
+        }
+    }, 
+    {
+        "291": {
+            "line": "Last Date of Service: 3/26/2012", 
+            "type": "BODY", 
+            "key": 291, 
+            "level": 1
+        }
+    }, 
+    {
+        "292": {
+            "line": "Description: ANNUAL WELLNESS VISIT", 
+            "type": "BODY", 
+            "key": 292, 
+            "level": 1
+        }
+    }, 
+    {
+        "293": {
+            "line": "Next Eligible Date: 2/1/2015", 
+            "type": "BODY", 
+            "key": 293, 
+            "level": 1
+        }
+    }, 
+    {
+        "294": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 294, 
+            "level": 1
+        }
+    }, 
+    {
+        "295": {
+            "line": "Description: ALCOHOL MISUSE SCREENING", 
+            "type": "BODY", 
+            "key": 295, 
+            "level": 1
+        }
+    }, 
+    {
+        "296": {
+            "line": "Next Eligible Date:", 
+            "type": "BODY", 
+            "key": 296, 
+            "level": 1
+        }
+    }, 
+    {
+        "297": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 297, 
+            "level": 1
+        }
+    }, 
+    {
+        "298": {
+            "line": "Description: CARDIOVASCULAR DISEASE (BEHAVIORAL THERAPY)", 
+            "type": "BODY", 
+            "key": 298, 
+            "level": 1
+        }
+    }, 
+    {
+        "299": {
+            "line": "Next Eligible Date:", 
+            "type": "BODY", 
+            "key": 299, 
+            "level": 1
+        }
+    }, 
+    {
+        "300": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 300, 
+            "level": 1
+        }
+    }, 
+    {
+        "301": {
+            "line": "Description: COLORECTAL", 
+            "type": "BODY", 
+            "key": 301, 
+            "level": 1
+        }
+    }, 
+    {
+        "302": {
+            "line": "Next Eligible Date:", 
+            "type": "BODY", 
+            "key": 302, 
+            "level": 1
+        }
+    }, 
+    {
+        "303": {
+            "line": "Last Date of Service: 4/21/2011", 
+            "type": "BODY", 
+            "key": 303, 
+            "level": 1
+        }
+    }, 
+    {
+        "304": {
+            "line": "Description: DEPRESSION SCREENING", 
+            "type": "BODY", 
+            "key": 304, 
+            "level": 1
+        }
+    }, 
+    {
+        "305": {
+            "line": "Next Eligible Date:", 
+            "type": "BODY", 
+            "key": 305, 
+            "level": 1
+        }
+    }, 
+    {
+        "306": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 306, 
+            "level": 1
+        }
+    }, 
+    {
+        "307": {
+            "line": "Description: DIABETES", 
+            "type": "BODY", 
+            "key": 307, 
+            "level": 1
+        }
+    }, 
+    {
+        "308": {
+            "line": "Next Eligible Date:", 
+            "type": "BODY", 
+            "key": 308, 
+            "level": 1
+        }
+    }, 
+    {
+        "309": {
+            "line": "Last Date of Service: 5/21/2012", 
+            "type": "BODY", 
+            "key": 309, 
+            "level": 1
+        }
+    }, 
+    {
+        "310": {
+            "line": "Description: HIGH INTENSITY BEHAVIORAL COUNSELING", 
+            "type": "BODY", 
+            "key": 310, 
+            "level": 1
+        }
+    }, 
+    {
+        "311": {
+            "line": "Next Eligible Date:", 
+            "type": "BODY", 
+            "key": 311, 
+            "level": 1
+        }
+    }, 
+    {
+        "312": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 312, 
+            "level": 1
+        }
+    }, 
+    {
+        "313": {
+            "line": "Description: OBESITY COUNSELING", 
+            "type": "BODY", 
+            "key": 313, 
+            "level": 1
+        }
+    }, 
+    {
+        "314": {
+            "line": "Next Eligible Date:", 
+            "type": "BODY", 
+            "key": 314, 
+            "level": 1
+        }
+    }, 
+    {
+        "315": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 315, 
+            "level": 1
+        }
+    }, 
+    {
+        "316": {
+            "line": "Description: PHYSICAL", 
+            "type": "BODY", 
+            "key": 316, 
+            "level": 1
+        }
+    }, 
+    {
+        "317": {
+            "line": "Next Eligible Date:", 
+            "type": "BODY", 
+            "key": 317, 
+            "level": 1
+        }
+    }, 
+    {
+        "318": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 318, 
+            "level": 1
+        }
+    }, 
+    {
+        "319": {
+            "line": "Description: SMOKING CESSATION (counseling to stop smoking)", 
+            "type": "BODY", 
+            "key": 319, 
+            "level": 1
+        }
+    }, 
+    {
+        "320": {
+            "line": "Next Eligible Date:", 
+            "type": "BODY", 
+            "key": 320, 
+            "level": 1
+        }
+    }, 
+    {
+        "321": {
+            "line": "Last Date of Service:", 
+            "type": "BODY", 
+            "key": 321, 
+            "level": 1
+        }
+    }, 
+    {
+        "322": {
+            "line": "Providers", 
+            "type": "HEADER", 
+            "key": 322, 
+            "level": 0
+        }
+    }, 
+    {
+        "323": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 323, 
+            "level": 1
+        }
+    }, 
+    {
+        "324": {
+            "line": "Provider Name: ANGELO SCOTTI", 
+            "type": "BODY", 
+            "key": 324, 
+            "level": 1
+        }
+    }, 
+    {
+        "325": {
+            "line": "Provider Address: 180 WHITE RD LITTLE SILVER, NJ 07739", 
+            "type": "BODY", 
+            "key": 325, 
+            "level": 1
+        }
+    }, 
+    {
+        "326": {
+            "line": "Type: Physician & Other Healthcare Professional", 
+            "type": "BODY", 
+            "key": 326, 
+            "level": 1
+        }
+    }, 
+    {
+        "327": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 327, 
+            "level": 1
+        }
+    }, 
+    {
+        "328": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 328, 
+            "level": 1
+        }
+    }, 
+    {
+        "329": {
+            "line": "Provider Name: DOUGLAS KNOX", 
+            "type": "BODY", 
+            "key": 329, 
+            "level": 1
+        }
+    }, 
+    {
+        "330": {
+            "line": "Provider Address: 1104 E 23RD ST LAWRENCE, KS 66046", 
+            "type": "BODY", 
+            "key": 330, 
+            "level": 1
+        }
+    }, 
+    {
+        "331": {
+            "line": "Type: Physician & Other Healthcare Professional", 
+            "type": "BODY", 
+            "key": 331, 
+            "level": 1
+        }
+    }, 
+    {
+        "332": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 332, 
+            "level": 1
+        }
+    }, 
+    {
+        "333": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 333, 
+            "level": 1
+        }
+    }, 
+    {
+        "334": {
+            "line": "Provider Name: SIAMAK RASSADI", 
+            "type": "BODY", 
+            "key": 334, 
+            "level": 1
+        }
+    }, 
+    {
+        "335": {
+            "line": "Provider Address: 1331 N 7TH ST PHOENIX, AZ 85006", 
+            "type": "BODY", 
+            "key": 335, 
+            "level": 1
+        }
+    }, 
+    {
+        "336": {
+            "line": "Type: Physician & Other Healthcare Professional", 
+            "type": "BODY", 
+            "key": 336, 
+            "level": 1
+        }
+    }, 
+    {
+        "337": {
+            "line": "Specialty: Cardiac Electrophysiology,Cardiovascular Disease (Cardiology)", 
+            "type": "BODY", 
+            "key": 337, 
+            "level": 1
+        }
+    }, 
+    {
+        "338": {
+            "line": "Medicare Provider: May Accept Medicare", 
+            "type": "BODY", 
+            "key": 338, 
+            "level": 1
+        }
+    }, 
+    {
+        "339": {
+            "line": "Provider Name: PETER LEAVITT", 
+            "type": "BODY", 
+            "key": 339, 
+            "level": 1
+        }
+    }, 
+    {
+        "340": {
+            "line": "Provider Address: 2965 NECONNERS AVE BEND, OR 97701", 
+            "type": "BODY", 
+            "key": 340, 
+            "level": 1
+        }
+    }, 
+    {
+        "341": {
+            "line": "Type: Physician & Other Healthcare Professional", 
+            "type": "BODY", 
+            "key": 341, 
+            "level": 1
+        }
+    }, 
+    {
+        "342": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 342, 
+            "level": 1
+        }
+    }, 
+    {
+        "343": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 343, 
+            "level": 1
+        }
+    }, 
+    {
+        "344": {
+            "line": "Provider Name: JOHN KENNEDY", 
+            "type": "BODY", 
+            "key": 344, 
+            "level": 1
+        }
+    }, 
+    {
+        "345": {
+            "line": "Provider Address: 8888 KEYSTONE XING INDIANAPOLIS, IN 46240", 
+            "type": "BODY", 
+            "key": 345, 
+            "level": 1
+        }
+    }, 
+    {
+        "346": {
+            "line": "Type: Physician & Other Healthcare Professional", 
+            "type": "BODY", 
+            "key": 346, 
+            "level": 1
+        }
+    }, 
+    {
+        "347": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 347, 
+            "level": 1
+        }
+    }, 
+    {
+        "348": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 348, 
+            "level": 1
+        }
+    }, 
+    {
+        "349": {
+            "line": "Provider Name: REBECCA KELLY", 
+            "type": "BODY", 
+            "key": 349, 
+            "level": 1
+        }
+    }, 
+    {
+        "350": {
+            "line": "Provider Address: 7250 CLEARVISTA DR INDIANAPOLIS, IN 46256", 
+            "type": "BODY", 
+            "key": 350, 
+            "level": 1
+        }
+    }, 
+    {
+        "351": {
+            "line": "Type: Physician & Other Healthcare Professional", 
+            "type": "BODY", 
+            "key": 351, 
+            "level": 1
+        }
+    }, 
+    {
+        "352": {
+            "line": "Specialty: Addiction Medicine", 
+            "type": "BODY", 
+            "key": 352, 
+            "level": 1
+        }
+    }, 
+    {
+        "353": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 353, 
+            "level": 1
+        }
+    }, 
+    {
+        "354": {
+            "line": "Provider Name: RILEY HOSPITAL - PEDS DIALYSIS", 
+            "type": "BODY", 
+            "key": 354, 
+            "level": 1
+        }
+    }, 
+    {
+        "355": {
+            "line": "Provider Address: 705 RILEY HOSPITAL DRIVE INDIANAPOLIS, IN 46202", 
+            "type": "BODY", 
+            "key": 355, 
+            "level": 1
+        }
+    }, 
+    {
+        "356": {
+            "line": "Type: Dialysis Facility", 
+            "type": "BODY", 
+            "key": 356, 
+            "level": 1
+        }
+    }, 
+    {
+        "357": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 357, 
+            "level": 1
+        }
+    }, 
+    {
+        "358": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 358, 
+            "level": 1
+        }
+    }, 
+    {
+        "359": {
+            "line": "Provider Name: FMC - SHADELAND STATION", 
+            "type": "BODY", 
+            "key": 359, 
+            "level": 1
+        }
+    }, 
+    {
+        "360": {
+            "line": "Provider Address: 7155 SHADELAND STATION STE 130 INDIANAPOLIS, IN 46256", 
+            "type": "BODY", 
+            "key": 360, 
+            "level": 1
+        }
+    }, 
+    {
+        "361": {
+            "line": "Type: Dialysis Facility", 
+            "type": "BODY", 
+            "key": 361, 
+            "level": 1
+        }
+    }, 
+    {
+        "362": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 362, 
+            "level": 1
+        }
+    }, 
+    {
+        "363": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 363, 
+            "level": 1
+        }
+    }, 
+    {
+        "364": {
+            "line": "Provider Name: IU HEALTH - HOME DIALYSIS", 
+            "type": "BODY", 
+            "key": 364, 
+            "level": 1
+        }
+    }, 
+    {
+        "365": {
+            "line": "Provider Address: 8803 N. MERIDIAN ST., STE 150 INDIANAPOLIS, IN 46260", 
+            "type": "BODY", 
+            "key": 365, 
+            "level": 1
+        }
+    }, 
+    {
+        "366": {
+            "line": "Type: Dialysis Facility", 
+            "type": "BODY", 
+            "key": 366, 
+            "level": 1
+        }
+    }, 
+    {
+        "367": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 367, 
+            "level": 1
+        }
+    }, 
+    {
+        "368": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 368, 
+            "level": 1
+        }
+    }, 
+    {
+        "369": {
+            "line": "Provider Name: MESA VISTA OF BOULDER", 
+            "type": "BODY", 
+            "key": 369, 
+            "level": 1
+        }
+    }, 
+    {
+        "370": {
+            "line": "Provider Address: 2121 MESA DRIVE BOULDER, CO 80304", 
+            "type": "BODY", 
+            "key": 370, 
+            "level": 1
+        }
+    }, 
+    {
+        "371": {
+            "line": "Type: Nursing Home", 
+            "type": "BODY", 
+            "key": 371, 
+            "level": 1
+        }
+    }, 
+    {
+        "372": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 372, 
+            "level": 1
+        }
+    }, 
+    {
+        "373": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 373, 
+            "level": 1
+        }
+    }, 
+    {
+        "374": {
+            "line": "Provider Name: FAIRBANKS", 
+            "type": "BODY", 
+            "key": 374, 
+            "level": 1
+        }
+    }, 
+    {
+        "375": {
+            "line": "Provider Address: 8102 CLEARVISTA PARKWAY INDIANAPOLIS, IN 46256", 
+            "type": "BODY", 
+            "key": 375, 
+            "level": 1
+        }
+    }, 
+    {
+        "376": {
+            "line": "Type: Hospital", 
+            "type": "BODY", 
+            "key": 376, 
+            "level": 1
+        }
+    }, 
+    {
+        "377": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 377, 
+            "level": 1
+        }
+    }, 
+    {
+        "378": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 378, 
+            "level": 1
+        }
+    }, 
+    {
+        "379": {
+            "line": "Provider Name: ALLIANCE HOME HEALTH SERVICES INC", 
+            "type": "BODY", 
+            "key": 379, 
+            "level": 1
+        }
+    }, 
+    {
+        "380": {
+            "line": "Provider Address: 9615 N COLLEGE AVE INDIANAPOLIS, IN 46280", 
+            "type": "BODY", 
+            "key": 380, 
+            "level": 1
+        }
+    }, 
+    {
+        "381": {
+            "line": "Type: Home Health", 
+            "type": "BODY", 
+            "key": 381, 
+            "level": 1
+        }
+    }, 
+    {
+        "382": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 382, 
+            "level": 1
+        }
+    }, 
+    {
+        "383": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 383, 
+            "level": 1
+        }
+    }, 
+    {
+        "384": {
+            "line": "Provider Name: THE VIRGINIAN", 
+            "type": "BODY", 
+            "key": 384, 
+            "level": 1
+        }
+    }, 
+    {
+        "385": {
+            "line": "Provider Address: 9229 ARLINGTON BLVD FAIRFAX, VA 22031", 
+            "type": "BODY", 
+            "key": 385, 
+            "level": 1
+        }
+    }, 
+    {
+        "386": {
+            "line": "Type: Nursing Home", 
+            "type": "BODY", 
+            "key": 386, 
+            "level": 1
+        }
+    }, 
+    {
+        "387": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 387, 
+            "level": 1
+        }
+    }, 
+    {
+        "388": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 388, 
+            "level": 1
+        }
+    }, 
+    {
+        "389": {
+            "line": "Provider Name: KINDRED TRANSITIONAL CARE & REHAB-ALLISON POINTE", 
+            "type": "BODY", 
+            "key": 389, 
+            "level": 1
+        }
+    }, 
+    {
+        "390": {
+            "line": "Provider Address: 5226 E 82ND ST INDIANAPOLIS, IN 46250", 
+            "type": "BODY", 
+            "key": 390, 
+            "level": 1
+        }
+    }, 
+    {
+        "391": {
+            "line": "Type: Nursing Home", 
+            "type": "BODY", 
+            "key": 391, 
+            "level": 1
+        }
+    }, 
+    {
+        "392": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 392, 
+            "level": 1
+        }
+    }, 
+    {
+        "393": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 393, 
+            "level": 1
+        }
+    }, 
+    {
+        "394": {
+            "line": "Provider Name: INDIANA HEART HOSPITAL THE", 
+            "type": "BODY", 
+            "key": 394, 
+            "level": 1
+        }
+    }, 
+    {
+        "395": {
+            "line": "Provider Address: 8075 N SHADELAND AVE INDIANAPOLIS, IN 46250", 
+            "type": "BODY", 
+            "key": 395, 
+            "level": 1
+        }
+    }, 
+    {
+        "396": {
+            "line": "Type: Hospital", 
+            "type": "BODY", 
+            "key": 396, 
+            "level": 1
+        }
+    }, 
+    {
+        "397": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 397, 
+            "level": 1
+        }
+    }, 
+    {
+        "398": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 398, 
+            "level": 1
+        }
+    }, 
+    {
+        "399": {
+            "line": "Provider Name: COMMUNITY HOSPITAL NORTH", 
+            "type": "BODY", 
+            "key": 399, 
+            "level": 1
+        }
+    }, 
+    {
+        "400": {
+            "line": "Provider Address: 7150 CLEARVISTA DR INDIANAPOLIS, IN 46256", 
+            "type": "BODY", 
+            "key": 400, 
+            "level": 1
+        }
+    }, 
+    {
+        "401": {
+            "line": "Type: Hospital", 
+            "type": "BODY", 
+            "key": 401, 
+            "level": 1
+        }
+    }, 
+    {
+        "402": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 402, 
+            "level": 1
+        }
+    }, 
+    {
+        "403": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 403, 
+            "level": 1
+        }
+    }, 
+    {
+        "404": {
+            "line": "Provider Name: FORUM AT THE CROSSING", 
+            "type": "BODY", 
+            "key": 404, 
+            "level": 1
+        }
+    }, 
+    {
+        "405": {
+            "line": "Provider Address: 8505 WOODFIELD CROSSING BLVD INDIANAPOLIS, IN 46240", 
+            "type": "BODY", 
+            "key": 405, 
+            "level": 1
+        }
+    }, 
+    {
+        "406": {
+            "line": "Type: Nursing Home", 
+            "type": "BODY", 
+            "key": 406, 
+            "level": 1
+        }
+    }, 
+    {
+        "407": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 407, 
+            "level": 1
+        }
+    }, 
+    {
+        "408": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 408, 
+            "level": 1
+        }
+    }, 
+    {
+        "409": {
+            "line": "Provider Name: BEAUMONT HOSPITAL, TROY", 
+            "type": "BODY", 
+            "key": 409, 
+            "level": 1
+        }
+    }, 
+    {
+        "410": {
+            "line": "Provider Address: 44201 DEQUINDRE ROAD TROY, MI 48085", 
+            "type": "BODY", 
+            "key": 410, 
+            "level": 1
+        }
+    }, 
+    {
+        "411": {
+            "line": "Type: Hospital", 
+            "type": "BODY", 
+            "key": 411, 
+            "level": 1
+        }
+    }, 
+    {
+        "412": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 412, 
+            "level": 1
+        }
+    }, 
+    {
+        "413": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 413, 
+            "level": 1
+        }
+    }, 
+    {
+        "414": {
+            "line": "Provider Name: DAVITA - EAGLE HIGHLANDS", 
+            "type": "BODY", 
+            "key": 414, 
+            "level": 1
+        }
+    }, 
+    {
+        "415": {
+            "line": "Provider Address: 6925 SHORE TERRACE INDIANAPOLIS, IN 46254", 
+            "type": "BODY", 
+            "key": 415, 
+            "level": 1
+        }
+    }, 
+    {
+        "416": {
+            "line": "Type: Dialysis Facility", 
+            "type": "BODY", 
+            "key": 416, 
+            "level": 1
+        }
+    }, 
+    {
+        "417": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 417, 
+            "level": 1
+        }
+    }, 
+    {
+        "418": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 418, 
+            "level": 1
+        }
+    }, 
+    {
+        "419": {
+            "line": "Provider Name: FMC - CARMEL", 
+            "type": "BODY", 
+            "key": 419, 
+            "level": 1
+        }
+    }, 
+    {
+        "420": {
+            "line": "Provider Address: 12400 NORTH MERIDIAN ST., STE 200 CARMEL, IN 46032", 
+            "type": "BODY", 
+            "key": 420, 
+            "level": 1
+        }
+    }, 
+    {
+        "421": {
+            "line": "Type: Dialysis Facility", 
+            "type": "BODY", 
+            "key": 421, 
+            "level": 1
+        }
+    }, 
+    {
+        "422": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 422, 
+            "level": 1
+        }
+    }, 
+    {
+        "423": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 423, 
+            "level": 1
+        }
+    }, 
+    {
+        "424": {
+            "line": "Provider Name: DSI - NW INDIANAPOLIS RENAL CENTER", 
+            "type": "BODY", 
+            "key": 424, 
+            "level": 1
+        }
+    }, 
+    {
+        "425": {
+            "line": "Provider Address: 6488 CORPORATE DRIVE INDIANAPOLIS, IN 46268", 
+            "type": "BODY", 
+            "key": 425, 
+            "level": 1
+        }
+    }, 
+    {
+        "426": {
+            "line": "Type: Dialysis Facility", 
+            "type": "BODY", 
+            "key": 426, 
+            "level": 1
+        }
+    }, 
+    {
+        "427": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 427, 
+            "level": 1
+        }
+    }, 
+    {
+        "428": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 428, 
+            "level": 1
+        }
+    }, 
+    {
+        "429": {
+            "line": "Provider Name: GEORGE WASHINGTON UNIV HOSPITAL", 
+            "type": "BODY", 
+            "key": 429, 
+            "level": 1
+        }
+    }, 
+    {
+        "430": {
+            "line": "Provider Address: 900 23RD ST NW WASHINGTON, DC 20037", 
+            "type": "BODY", 
+            "key": 430, 
+            "level": 1
+        }
+    }, 
+    {
+        "431": {
+            "line": "Type: Hospital", 
+            "type": "BODY", 
+            "key": 431, 
+            "level": 1
+        }
+    }, 
+    {
+        "432": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 432, 
+            "level": 1
+        }
+    }, 
+    {
+        "433": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 433, 
+            "level": 1
+        }
+    }, 
+    {
+        "434": {
+            "line": "Provider Name: DAVITA - CARMEL HEALTH AND LIVING", 
+            "type": "BODY", 
+            "key": 434, 
+            "level": 1
+        }
+    }, 
+    {
+        "435": {
+            "line": "Provider Address: 118 MEDICAL DRIVE, SUITE 114 CARMEL, IN 46032", 
+            "type": "BODY", 
+            "key": 435, 
+            "level": 1
+        }
+    }, 
+    {
+        "436": {
+            "line": "Type: Dialysis Facility", 
+            "type": "BODY", 
+            "key": 436, 
+            "level": 1
+        }
+    }, 
+    {
+        "437": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 437, 
+            "level": 1
+        }
+    }, 
+    {
+        "438": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 438, 
+            "level": 1
+        }
+    }, 
+    {
+        "439": {
+            "line": "Provider Name: FMC-INDIANAPOLIS MIDTOWN", 
+            "type": "BODY", 
+            "key": 439, 
+            "level": 1
+        }
+    }, 
+    {
+        "440": {
+            "line": "Provider Address: 3007 DR ANDREW J BROWN AVENUE INDIANAPOLIS, IN 46205", 
+            "type": "BODY", 
+            "key": 440, 
+            "level": 1
+        }
+    }, 
+    {
+        "441": {
+            "line": "Type: Dialysis Facility", 
+            "type": "BODY", 
+            "key": 441, 
+            "level": 1
+        }
+    }, 
+    {
+        "442": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 442, 
+            "level": 1
+        }
+    }, 
+    {
+        "443": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 443, 
+            "level": 1
+        }
+    }, 
+    {
+        "444": {
+            "line": "Provider Name: MILLER'S SENIOR LIVING COMMUNITY", 
+            "type": "BODY", 
+            "key": 444, 
+            "level": 1
+        }
+    }, 
+    {
+        "445": {
+            "line": "Provider Address: 8400 CLEARVISTA PL INDIANAPOLIS, IN 46256", 
+            "type": "BODY", 
+            "key": 445, 
+            "level": 1
+        }
+    }, 
+    {
+        "446": {
+            "line": "Type: Nursing Home", 
+            "type": "BODY", 
+            "key": 446, 
+            "level": 1
+        }
+    }, 
+    {
+        "447": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 447, 
+            "level": 1
+        }
+    }, 
+    {
+        "448": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 448, 
+            "level": 1
+        }
+    }, 
+    {
+        "449": {
+            "line": "Provider Name: TEST QT", 
+            "type": "BODY", 
+            "key": 449, 
+            "level": 1
+        }
+    }, 
+    {
+        "450": {
+            "line": "Provider Address:  COEBURN, VA 24230", 
+            "type": "BODY", 
+            "key": 450, 
+            "level": 1
+        }
+    }, 
+    {
+        "451": {
+            "line": "Type: Home Health", 
+            "type": "BODY", 
+            "key": 451, 
+            "level": 1
+        }
+    }, 
+    {
+        "452": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 452, 
+            "level": 1
+        }
+    }, 
+    {
+        "453": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 453, 
+            "level": 1
+        }
+    }, 
+    {
+        "454": {
+            "line": "Provider Name: ADVANCED HOME CARE, INC", 
+            "type": "BODY", 
+            "key": 454, 
+            "level": 1
+        }
+    }, 
+    {
+        "455": {
+            "line": "Provider Address: 165 PLAZA ROAD, SUITE 20 WISE, VA 24293", 
+            "type": "BODY", 
+            "key": 455, 
+            "level": 1
+        }
+    }, 
+    {
+        "456": {
+            "line": "Type: Home Health", 
+            "type": "BODY", 
+            "key": 456, 
+            "level": 1
+        }
+    }, 
+    {
+        "457": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 457, 
+            "level": 1
+        }
+    }, 
+    {
+        "458": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 458, 
+            "level": 1
+        }
+    }, 
+    {
+        "459": {
+            "line": "Provider Name: TEST NHC QT", 
+            "type": "BODY", 
+            "key": 459, 
+            "level": 1
+        }
+    }, 
+    {
+        "460": {
+            "line": "Provider Address:  0 24230", 
+            "type": "BODY", 
+            "key": 460, 
+            "level": 1
+        }
+    }, 
+    {
+        "461": {
+            "line": "Type: Nursing Home", 
+            "type": "BODY", 
+            "key": 461, 
+            "level": 1
+        }
+    }, 
+    {
+        "462": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 462, 
+            "level": 1
+        }
+    }, 
+    {
+        "463": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 463, 
+            "level": 1
+        }
+    }, 
+    {
+        "464": {
+            "line": "Provider Name: HERITAGE HALL WISE", 
+            "type": "BODY", 
+            "key": 464, 
+            "level": 1
+        }
+    }, 
+    {
+        "465": {
+            "line": "Provider Address: 9434 COEBURN MOUNTAIN ROAD WISE, VA 24293", 
+            "type": "BODY", 
+            "key": 465, 
+            "level": 1
+        }
+    }, 
+    {
+        "466": {
+            "line": "Type: Nursing Home", 
+            "type": "BODY", 
+            "key": 466, 
+            "level": 1
+        }
+    }, 
+    {
+        "467": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 467, 
+            "level": 1
+        }
+    }, 
+    {
+        "468": {
+            "line": "Medicare Provider: Yes", 
+            "type": "BODY", 
+            "key": 468, 
+            "level": 1
+        }
+    }, 
+    {
+        "469": {
+            "line": "Provider Name: QT JAN 15 TEST", 
+            "type": "BODY", 
+            "key": 469, 
+            "level": 1
+        }
+    }, 
+    {
+        "470": {
+            "line": "Provider Address: 121 HOME STREET COEBURN, VA 24230", 
+            "type": "BODY", 
+            "key": 470, 
+            "level": 1
+        }
+    }, 
+    {
+        "471": {
+            "line": "Type: Hospital", 
+            "type": "BODY", 
+            "key": 471, 
+            "level": 1
+        }
+    }, 
+    {
+        "472": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 472, 
+            "level": 1
+        }
+    }, 
+    {
+        "473": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 473, 
+            "level": 1
+        }
+    }, 
+    {
+        "474": {
+            "line": "Provider Name: NORTON COMMUNITY HOSPITAL", 
+            "type": "BODY", 
+            "key": 474, 
+            "level": 1
+        }
+    }, 
+    {
+        "475": {
+            "line": "Provider Address: 100  15TH ST NW NORTON, VA 24273", 
+            "type": "BODY", 
+            "key": 475, 
+            "level": 1
+        }
+    }, 
+    {
+        "476": {
+            "line": "Type: Hospital", 
+            "type": "BODY", 
+            "key": 476, 
+            "level": 1
+        }
+    }, 
+    {
+        "477": {
+            "line": "Specialty:", 
+            "type": "BODY", 
+            "key": 477, 
+            "level": 1
+        }
+    }, 
+    {
+        "478": {
+            "line": "Medicare Provider: Not Available", 
+            "type": "BODY", 
+            "key": 478, 
+            "level": 1
+        }
+    }, 
+    {
+        "479": {
+            "line": "Pharmacies", 
+            "type": "HEADER", 
+            "key": 479, 
+            "level": 0
+        }
+    }, 
+    {
+        "480": {
+            "line": "Source: Self-Entered", 
+            "type": "BODY", 
+            "key": 480, 
+            "level": 1
+        }
+    }, 
+    {
+        "481": {
+            "line": "Pharmacy Name: Castleton Integrative Health 8208 Allisonville Rd Indianapolis, IN 46250", 
+            "type": "BODY", 
+            "key": 481, 
+            "level": 1
+        }
+    }, 
+    {
+        "482": {
+            "line": "Pharmacy Phone: 317-849-1222", 
+            "type": "BODY", 
+            "key": 482, 
+            "level": 1
+        }
+    }, 
+    {
+        "483": {
+            "line": "Pharmacy Name: Costco Pharmacy Indianapolis, IN 462506110 East 86th Street Castleton, IN 46250", 
+            "type": "BODY", 
+            "key": 483, 
+            "level": 1
+        }
+    }, 
+    {
+        "484": {
+            "line": "Pharmacy Phone: 317-558-1452", 
+            "type": "BODY", 
+            "key": 484, 
+            "level": 1
+        }
+    }, 
+    {
+        "485": {
+            "line": "Plans", 
+            "type": "HEADER", 
+            "key": 485, 
+            "level": 0
+        }
+    }, 
+    {
+        "486": {
+            "line": "Source: MyMedicare.gov", 
+            "type": "BODY", 
+            "key": 486, 
+            "level": 1
+        }
+    }, 
+    {
+        "487": {
+            "line": "Contract ID/Plan ID: S1111/801", 
+            "type": "BODY", 
+            "key": 487, 
+            "level": 1
+        }
+    }, 
+    {
+        "488": {
+            "line": "Plan Period: 12/01/2012 - current", 
+            "type": "BODY", 
+            "key": 488, 
+            "level": 1
+        }
+    }, 
+    {
+        "489": {
+            "line": "Plan Name:", 
+            "type": "BODY", 
+            "key": 489, 
+            "level": 1
+        }
+    }, 
+    {
+        "490": {
+            "line": "Marketing Name:", 
+            "type": "BODY", 
+            "key": 490, 
+            "level": 1
+        }
+    }, 
+    {
+        "491": {
+            "line": "Plan Address:", 
+            "type": "BODY", 
+            "key": 491, 
+            "level": 1
+        }
+    }, 
+    {
+        "492": {
+            "line": "Plan Type: 11 - Medicare Prescription Drug Plan", 
+            "type": "BODY", 
+            "key": 492, 
+            "level": 1
+        }
+    }, 
+    {
+        "493": {
+            "line": "Employer Subsidy", 
+            "type": "HEADER", 
+            "key": 493, 
+            "level": 0
+        }
+    }, 
+    {
+        "494": {
+            "line": "Source: MyMedicare.gov", 
+            "type": "BODY", 
+            "key": 494, 
+            "level": 1
+        }
+    }, 
+    {
+        "495": {
+            "line": "Primary Insurance", 
+            "type": "HEADER", 
+            "key": 495, 
+            "level": 0
+        }
+    }, 
+    {
+        "496": {
+            "line": "Source: MyMedicare.gov", 
+            "type": "BODY", 
+            "key": 496, 
+            "level": 1
+        }
+    }, 
+    {
+        "497": {
+            "line": "Other Insurance", 
+            "type": "HEADER", 
+            "key": 497, 
+            "level": 0
+        }
+    }, 
+    {
+        "498": {
+            "line": "Source: MyMedicare.gov", 
+            "type": "BODY", 
+            "key": 498, 
+            "level": 1
+        }
+    }, 
+    {
+        "499": {
+            "line": "MSP Type:", 
+            "type": "BODY", 
+            "key": 499, 
+            "level": 1
+        }
+    }, 
+    {
+        "500": {
+            "line": "Policy Number: 30002", 
+            "type": "BODY", 
+            "key": 500, 
+            "level": 1
+        }
+    }, 
+    {
+        "501": {
+            "line": "Insurer Name: UNITEDHEALTH GROUP", 
+            "type": "BODY", 
+            "key": 501, 
+            "level": 1
+        }
+    }, 
+    {
+        "502": {
+            "line": "Insurer Address: 601 OFFICE CENTER DRIVE FORT WASHINGTON, PA 19034", 
+            "type": "BODY", 
+            "key": 502, 
+            "level": 1
+        }
+    }, 
+    {
+        "503": {
+            "line": "Effective Date: 10/01/1984", 
+            "type": "BODY", 
+            "key": 503, 
+            "level": 1
+        }
+    }, 
+    {
+        "504": {
+            "line": "Termination Date:", 
+            "type": "BODY", 
+            "key": 504, 
+            "level": 1
+        }
+    }, 
+    {
+        "505": {
+            "line": "Claim Summary", 
+            "type": "HEADER", 
+            "key": 505, 
+            "level": 0
+        }
+    }, 
+    {
+        "506": {
+            "line": "Source: MyMedicare.gov", 
+            "type": "BODY", 
+            "key": 506, 
+            "level": 1
+        }
+    }, 
+    {
+        "507": {
+            "line": "Claim Number: 11122233330000", 
+            "type": "BODY", 
+            "key": 507, 
+            "level": 1
+        }
+    }, 
+    {
+        "508": {
+            "line": "Provider: No Information Available", 
+            "type": "BODY", 
+            "key": 508, 
+            "level": 1
+        }
+    }, 
+    {
+        "509": {
+            "line": "Provider Billing Address:", 
+            "type": "BODY", 
+            "key": 509, 
+            "level": 1
+        }
+    }, 
+    {
+        "510": {
+            "line": "Service Start Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 510, 
+            "level": 1
+        }
+    }, 
+    {
+        "511": {
+            "line": "Service End Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 511, 
+            "level": 1
+        }
+    }, 
+    {
+        "512": {
+            "line": "Amount Charged: $135.00", 
+            "type": "BODY", 
+            "key": 512, 
+            "level": 1
+        }
+    }, 
+    {
+        "513": {
+            "line": "Medicare Approved: $92.53", 
+            "type": "BODY", 
+            "key": 513, 
+            "level": 1
+        }
+    }, 
+    {
+        "514": {
+            "line": "Provider Paid: $74.02", 
+            "type": "BODY", 
+            "key": 514, 
+            "level": 1
+        }
+    }, 
+    {
+        "515": {
+            "line": "You May be Billed: $18.51", 
+            "type": "BODY", 
+            "key": 515, 
+            "level": 1
+        }
+    }, 
+    {
+        "516": {
+            "line": "Claim Type: DME", 
+            "type": "BODY", 
+            "key": 516, 
+            "level": 1
+        }
+    }, 
+    {
+        "517": {
+            "line": "Diagnosis Code 1: 32723", 
+            "type": "BODY", 
+            "key": 517, 
+            "level": 1
+        }
+    }, 
+    {
+        "518": {
+            "line": "Diagnosis Code 2: 78051", 
+            "type": "BODY", 
+            "key": 518, 
+            "level": 1
+        }
+    }, 
+    {
+        "519": {
+            "line": "Claim Lines for Claim Number", 
+            "type": "HEADER", 
+            "key": 519, 
+            "level": 2
+        }
+    }, 
+    {
+        "520": {
+            "line": "Line number:  1", 
+            "type": "BODY", 
+            "key": 520, 
+            "level": 3
+        }
+    }, 
+    {
+        "521": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 521, 
+            "level": 3
+        }
+    }, 
+    {
+        "522": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 522, 
+            "level": 3
+        }
+    }, 
+    {
+        "523": {
+            "line": "Procedure Code/Description:  E0601 - Continuous Positive Airway Pressure (Cpap) Device", 
+            "type": "BODY", 
+            "key": 523, 
+            "level": 3
+        }
+    }, 
+    {
+        "524": {
+            "line": "Modifier 1/Description:  MS - Six Month Maintenance And Servicing Fee For Reasonable And Necessary Parts And Labor Which Are", 
+            "type": "BODY", 
+            "key": 524, 
+            "level": 3
+        }
+    }, 
+    {
+        "525": {
+            "line": "Modifier 2/Description:  KX - Requirements Specified In The Medical Policy Have Been Met", 
+            "type": "BODY", 
+            "key": 525, 
+            "level": 3
+        }
+    }, 
+    {
+        "526": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 526, 
+            "level": 3
+        }
+    }, 
+    {
+        "527": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 527, 
+            "level": 3
+        }
+    }, 
+    {
+        "528": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 528, 
+            "level": 3
+        }
+    }, 
+    {
+        "529": {
+            "line": "Submitted Amount/Charges:  $135.00", 
+            "type": "BODY", 
+            "key": 529, 
+            "level": 3
+        }
+    }, 
+    {
+        "530": {
+            "line": "Allowed Amount:  $92.53", 
+            "type": "BODY", 
+            "key": 530, 
+            "level": 3
+        }
+    }, 
+    {
+        "531": {
+            "line": "Non-Covered:  $42.47", 
+            "type": "BODY", 
+            "key": 531, 
+            "level": 3
+        }
+    }, 
+    {
+        "532": {
+            "line": "Place of Service/Description:  12 - Home", 
+            "type": "BODY", 
+            "key": 532, 
+            "level": 3
+        }
+    }, 
+    {
+        "533": {
+            "line": "Type of Service/Description:  R - Rental of DME", 
+            "type": "BODY", 
+            "key": 533, 
+            "level": 3
+        }
+    }, 
+    {
+        "534": {
+            "line": "Rendering Provider No:  DMEPROVIDR", 
+            "type": "BODY", 
+            "key": 534, 
+            "level": 3
+        }
+    }, 
+    {
+        "535": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 535, 
+            "level": 3
+        }
+    }, 
+    {
+        "536": {
+            "line": "claimHeader", 
+            "type": "HEADER", 
+            "key": 536, 
+            "level": 1
+        }
+    }, 
+    {
+        "537": {
+            "line": "Claim Number: 11122233320000", 
+            "type": "BODY", 
+            "key": 537, 
+            "level": 2
+        }
+    }, 
+    {
+        "538": {
+            "line": "Provider: No Information Available", 
+            "type": "BODY", 
+            "key": 538, 
+            "level": 2
+        }
+    }, 
+    {
+        "539": {
+            "line": "Provider Billing Address:", 
+            "type": "BODY", 
+            "key": 539, 
+            "level": 2
+        }
+    }, 
+    {
+        "540": {
+            "line": "Service Start Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 540, 
+            "level": 2
+        }
+    }, 
+    {
+        "541": {
+            "line": "Service End Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 541, 
+            "level": 2
+        }
+    }, 
+    {
+        "542": {
+            "line": "Amount Charged: $135.00", 
+            "type": "BODY", 
+            "key": 542, 
+            "level": 2
+        }
+    }, 
+    {
+        "543": {
+            "line": "Medicare Approved: $90.45", 
+            "type": "BODY", 
+            "key": 543, 
+            "level": 2
+        }
+    }, 
+    {
+        "544": {
+            "line": "Provider Paid: $72.36", 
+            "type": "BODY", 
+            "key": 544, 
+            "level": 2
+        }
+    }, 
+    {
+        "545": {
+            "line": "You May be Billed: $18.09", 
+            "type": "BODY", 
+            "key": 545, 
+            "level": 2
+        }
+    }, 
+    {
+        "546": {
+            "line": "Claim Type: DME", 
+            "type": "BODY", 
+            "key": 546, 
+            "level": 2
+        }
+    }, 
+    {
+        "547": {
+            "line": "Diagnosis Code 1: 32723", 
+            "type": "BODY", 
+            "key": 547, 
+            "level": 2
+        }
+    }, 
+    {
+        "548": {
+            "line": "Diagnosis Code 2: 78051", 
+            "type": "BODY", 
+            "key": 548, 
+            "level": 2
+        }
+    }, 
+    {
+        "549": {
+            "line": "Claim Lines for Claim Number", 
+            "type": "HEADER", 
+            "key": 549, 
+            "level": 2
+        }
+    }, 
+    {
+        "550": {
+            "line": "Line number:  1", 
+            "type": "BODY", 
+            "key": 550, 
+            "level": 3
+        }
+    }, 
+    {
+        "551": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 551, 
+            "level": 3
+        }
+    }, 
+    {
+        "552": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 552, 
+            "level": 3
+        }
+    }, 
+    {
+        "553": {
+            "line": "Procedure Code/Description:  E0601 - Continuous Positive Airway Pressure (Cpap) Device", 
+            "type": "BODY", 
+            "key": 553, 
+            "level": 3
+        }
+    }, 
+    {
+        "554": {
+            "line": "Modifier 1/Description:  MS - Six Month Maintenance And Servicing Fee For Reasonable And Necessary Parts And Labor Which Are", 
+            "type": "BODY", 
+            "key": 554, 
+            "level": 3
+        }
+    }, 
+    {
+        "555": {
+            "line": "Modifier 2/Description:  KX - Requirements Specified In The Medical Policy Have Been Met", 
+            "type": "BODY", 
+            "key": 555, 
+            "level": 3
+        }
+    }, 
+    {
+        "556": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 556, 
+            "level": 3
+        }
+    }, 
+    {
+        "557": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 557, 
+            "level": 3
+        }
+    }, 
+    {
+        "558": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 558, 
+            "level": 3
+        }
+    }, 
+    {
+        "559": {
+            "line": "Submitted Amount/Charges:  $135.00", 
+            "type": "BODY", 
+            "key": 559, 
+            "level": 3
+        }
+    }, 
+    {
+        "560": {
+            "line": "Allowed Amount:  $90.45", 
+            "type": "BODY", 
+            "key": 560, 
+            "level": 3
+        }
+    }, 
+    {
+        "561": {
+            "line": "Non-Covered:  $44.55", 
+            "type": "BODY", 
+            "key": 561, 
+            "level": 3
+        }
+    }, 
+    {
+        "562": {
+            "line": "Place of Service/Description:  12 - Home", 
+            "type": "BODY", 
+            "key": 562, 
+            "level": 3
+        }
+    }, 
+    {
+        "563": {
+            "line": "Type of Service/Description:  R - Rental of DME", 
+            "type": "BODY", 
+            "key": 563, 
+            "level": 3
+        }
+    }, 
+    {
+        "564": {
+            "line": "Rendering Provider No:  DMEPROVIDR", 
+            "type": "BODY", 
+            "key": 564, 
+            "level": 3
+        }
+    }, 
+    {
+        "565": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 565, 
+            "level": 3
+        }
+    }, 
+    {
+        "566": {
+            "line": "claimHeader", 
+            "type": "HEADER", 
+            "key": 566, 
+            "level": 1
+        }
+    }, 
+    {
+        "567": {
+            "line": "Claim Number: 2333444555100", 
+            "type": "BODY", 
+            "key": 567, 
+            "level": 2
+        }
+    }, 
+    {
+        "568": {
+            "line": "Provider: No Information Available", 
+            "type": "BODY", 
+            "key": 568, 
+            "level": 2
+        }
+    }, 
+    {
+        "569": {
+            "line": "Provider Billing Address:", 
+            "type": "BODY", 
+            "key": 569, 
+            "level": 2
+        }
+    }, 
+    {
+        "570": {
+            "line": "Service Start Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 570, 
+            "level": 2
+        }
+    }, 
+    {
+        "571": {
+            "line": "Service End Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 571, 
+            "level": 2
+        }
+    }, 
+    {
+        "572": {
+            "line": "Amount Charged: * Not Available *", 
+            "type": "BODY", 
+            "key": 572, 
+            "level": 2
+        }
+    }, 
+    {
+        "573": {
+            "line": "Medicare Approved: * Not Available *", 
+            "type": "BODY", 
+            "key": 573, 
+            "level": 2
+        }
+    }, 
+    {
+        "574": {
+            "line": "Provider Paid: * Not Available *", 
+            "type": "BODY", 
+            "key": 574, 
+            "level": 2
+        }
+    }, 
+    {
+        "575": {
+            "line": "You May be Billed: * Not Available *", 
+            "type": "BODY", 
+            "key": 575, 
+            "level": 2
+        }
+    }, 
+    {
+        "576": {
+            "line": "Claim Type: PartB", 
+            "type": "BODY", 
+            "key": 576, 
+            "level": 2
+        }
+    }, 
+    {
+        "577": {
+            "line": "Diagnosis Code 1: 7392", 
+            "type": "BODY", 
+            "key": 577, 
+            "level": 2
+        }
+    }, 
+    {
+        "578": {
+            "line": "Diagnosis Code 2: 7241", 
+            "type": "BODY", 
+            "key": 578, 
+            "level": 2
+        }
+    }, 
+    {
+        "579": {
+            "line": "Diagnosis Code 3: 7393", 
+            "type": "BODY", 
+            "key": 579, 
+            "level": 2
+        }
+    }, 
+    {
+        "580": {
+            "line": "Diagnosis Code 4: 7391", 
+            "type": "BODY", 
+            "key": 580, 
+            "level": 2
+        }
+    }, 
+    {
+        "581": {
+            "line": "Claim Lines for Claim Number", 
+            "type": "HEADER", 
+            "key": 581, 
+            "level": 2
+        }
+    }, 
+    {
+        "582": {
+            "line": "Line number:  1", 
+            "type": "BODY", 
+            "key": 582, 
+            "level": 3
+        }
+    }, 
+    {
+        "583": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 583, 
+            "level": 3
+        }
+    }, 
+    {
+        "584": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 584, 
+            "level": 3
+        }
+    }, 
+    {
+        "585": {
+            "line": "Procedure Code/Description:  98941 - Chiropractic Manipulative Treatment, 3 To 4 Spinal Regions", 
+            "type": "BODY", 
+            "key": 585, 
+            "level": 3
+        }
+    }, 
+    {
+        "586": {
+            "line": "Modifier 1/Description:  GA - Waiver Of Liability Statement Issued As Required By Payer Policy, Individual Case", 
+            "type": "BODY", 
+            "key": 586, 
+            "level": 3
+        }
+    }, 
+    {
+        "587": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 587, 
+            "level": 3
+        }
+    }, 
+    {
+        "588": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 588, 
+            "level": 3
+        }
+    }, 
+    {
+        "589": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 589, 
+            "level": 3
+        }
+    }, 
+    {
+        "590": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 590, 
+            "level": 3
+        }
+    }, 
+    {
+        "591": {
+            "line": "Submitted Amount/Charges:  * Not Available *", 
+            "type": "BODY", 
+            "key": 591, 
+            "level": 3
+        }
+    }, 
+    {
+        "592": {
+            "line": "Allowed Amount:  * Not Available *", 
+            "type": "BODY", 
+            "key": 592, 
+            "level": 3
+        }
+    }, 
+    {
+        "593": {
+            "line": "Non-Covered:  * Not Available *", 
+            "type": "BODY", 
+            "key": 593, 
+            "level": 3
+        }
+    }, 
+    {
+        "594": {
+            "line": "Place of Service/Description:  11 - Office", 
+            "type": "BODY", 
+            "key": 594, 
+            "level": 3
+        }
+    }, 
+    {
+        "595": {
+            "line": "Type of Service/Description:  1 - Medical Care", 
+            "type": "BODY", 
+            "key": 595, 
+            "level": 3
+        }
+    }, 
+    {
+        "596": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 596, 
+            "level": 3
+        }
+    }, 
+    {
+        "597": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 597, 
+            "level": 3
+        }
+    }, 
+    {
+        "598": {
+            "line": "Line number:  2", 
+            "type": "BODY", 
+            "key": 598, 
+            "level": 3
+        }
+    }, 
+    {
+        "599": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 599, 
+            "level": 3
+        }
+    }, 
+    {
+        "600": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 600, 
+            "level": 3
+        }
+    }, 
+    {
+        "601": {
+            "line": "Procedure Code/Description:  G0283 - Electrical Stimulation (Unattended), To One Or More Areas For Indication(S) Other Than Wound", 
+            "type": "BODY", 
+            "key": 601, 
+            "level": 3
+        }
+    }, 
+    {
+        "602": {
+            "line": "Modifier 1/Description:  GY - Item Or Service Statutorily Excluded, Does Not Meet The Definition Of Any Medicare Benefit Or,", 
+            "type": "BODY", 
+            "key": 602, 
+            "level": 3
+        }
+    }, 
+    {
+        "603": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 603, 
+            "level": 3
+        }
+    }, 
+    {
+        "604": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 604, 
+            "level": 3
+        }
+    }, 
+    {
+        "605": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 605, 
+            "level": 3
+        }
+    }, 
+    {
+        "606": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 606, 
+            "level": 3
+        }
+    }, 
+    {
+        "607": {
+            "line": "Submitted Amount/Charges:  * Not Available *", 
+            "type": "BODY", 
+            "key": 607, 
+            "level": 3
+        }
+    }, 
+    {
+        "608": {
+            "line": "Allowed Amount:  * Not Available *", 
+            "type": "BODY", 
+            "key": 608, 
+            "level": 3
+        }
+    }, 
+    {
+        "609": {
+            "line": "Non-Covered:  * Not Available *", 
+            "type": "BODY", 
+            "key": 609, 
+            "level": 3
+        }
+    }, 
+    {
+        "610": {
+            "line": "Place of Service/Description:  11 - Office", 
+            "type": "BODY", 
+            "key": 610, 
+            "level": 3
+        }
+    }, 
+    {
+        "611": {
+            "line": "Type of Service/Description:  1 - Medical Care", 
+            "type": "BODY", 
+            "key": 611, 
+            "level": 3
+        }
+    }, 
+    {
+        "612": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 612, 
+            "level": 3
+        }
+    }, 
+    {
+        "613": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 613, 
+            "level": 3
+        }
+    }, 
+    {
+        "614": {
+            "line": "claimHeader", 
+            "type": "HEADER", 
+            "key": 614, 
+            "level": 1
+        }
+    }, 
+    {
+        "615": {
+            "line": "Claim Number: 2333444555500", 
+            "type": "BODY", 
+            "key": 615, 
+            "level": 2
+        }
+    }, 
+    {
+        "616": {
+            "line": "Provider: No Information Available", 
+            "type": "BODY", 
+            "key": 616, 
+            "level": 2
+        }
+    }, 
+    {
+        "617": {
+            "line": "Provider Billing Address:", 
+            "type": "BODY", 
+            "key": 617, 
+            "level": 2
+        }
+    }, 
+    {
+        "618": {
+            "line": "Service Start Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 618, 
+            "level": 2
+        }
+    }, 
+    {
+        "619": {
+            "line": "Service End Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 619, 
+            "level": 2
+        }
+    }, 
+    {
+        "620": {
+            "line": "Amount Charged: $1,022.50", 
+            "type": "BODY", 
+            "key": 620, 
+            "level": 2
+        }
+    }, 
+    {
+        "621": {
+            "line": "Medicare Approved: $782.33", 
+            "type": "BODY", 
+            "key": 621, 
+            "level": 2
+        }
+    }, 
+    {
+        "622": {
+            "line": "Provider Paid: $625.86", 
+            "type": "BODY", 
+            "key": 622, 
+            "level": 2
+        }
+    }, 
+    {
+        "623": {
+            "line": "You May be Billed: $156.47", 
+            "type": "BODY", 
+            "key": 623, 
+            "level": 2
+        }
+    }, 
+    {
+        "624": {
+            "line": "Claim Type: PartB", 
+            "type": "BODY", 
+            "key": 624, 
+            "level": 2
+        }
+    }, 
+    {
+        "625": {
+            "line": "Diagnosis Code 1: 70700", 
+            "type": "BODY", 
+            "key": 625, 
+            "level": 2
+        }
+    }, 
+    {
+        "626": {
+            "line": "Claim Lines for Claim Number", 
+            "type": "HEADER", 
+            "key": 626, 
+            "level": 2
+        }
+    }, 
+    {
+        "627": {
+            "line": "Line number:  1", 
+            "type": "BODY", 
+            "key": 627, 
+            "level": 3
+        }
+    }, 
+    {
+        "628": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 628, 
+            "level": 3
+        }
+    }, 
+    {
+        "629": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 629, 
+            "level": 3
+        }
+    }, 
+    {
+        "630": {
+            "line": "Procedure Code/Description:  A0428 - Ambulance Service, Basic Life Support, Non-Emergency Transport, (Bls)", 
+            "type": "BODY", 
+            "key": 630, 
+            "level": 3
+        }
+    }, 
+    {
+        "631": {
+            "line": "Modifier 1/Description:  RH", 
+            "type": "BODY", 
+            "key": 631, 
+            "level": 3
+        }
+    }, 
+    {
+        "632": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 632, 
+            "level": 3
+        }
+    }, 
+    {
+        "633": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 633, 
+            "level": 3
+        }
+    }, 
+    {
+        "634": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 634, 
+            "level": 3
+        }
+    }, 
+    {
+        "635": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 635, 
+            "level": 3
+        }
+    }, 
+    {
+        "636": {
+            "line": "Submitted Amount/Charges:  $275.00", 
+            "type": "BODY", 
+            "key": 636, 
+            "level": 3
+        }
+    }, 
+    {
+        "637": {
+            "line": "Allowed Amount:  $208.99", 
+            "type": "BODY", 
+            "key": 637, 
+            "level": 3
+        }
+    }, 
+    {
+        "638": {
+            "line": "Non-Covered:  $66.01", 
+            "type": "BODY", 
+            "key": 638, 
+            "level": 3
+        }
+    }, 
+    {
+        "639": {
+            "line": "Place of Service/Description:  41 - Ambulance - Land", 
+            "type": "BODY", 
+            "key": 639, 
+            "level": 3
+        }
+    }, 
+    {
+        "640": {
+            "line": "Type of Service/Description:  9 - Other Medical Services", 
+            "type": "BODY", 
+            "key": 640, 
+            "level": 3
+        }
+    }, 
+    {
+        "641": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 641, 
+            "level": 3
+        }
+    }, 
+    {
+        "642": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 642, 
+            "level": 3
+        }
+    }, 
+    {
+        "643": {
+            "line": "Line number:  2", 
+            "type": "BODY", 
+            "key": 643, 
+            "level": 3
+        }
+    }, 
+    {
+        "644": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 644, 
+            "level": 3
+        }
+    }, 
+    {
+        "645": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 645, 
+            "level": 3
+        }
+    }, 
+    {
+        "646": {
+            "line": "Procedure Code/Description:  A0428 - Ambulance Service, Basic Life Support, Non-Emergency Transport, (Bls)", 
+            "type": "BODY", 
+            "key": 646, 
+            "level": 3
+        }
+    }, 
+    {
+        "647": {
+            "line": "Modifier 1/Description:  HR - Family/Couple With Client Present", 
+            "type": "BODY", 
+            "key": 647, 
+            "level": 3
+        }
+    }, 
+    {
+        "648": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 648, 
+            "level": 3
+        }
+    }, 
+    {
+        "649": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 649, 
+            "level": 3
+        }
+    }, 
+    {
+        "650": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 650, 
+            "level": 3
+        }
+    }, 
+    {
+        "651": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 651, 
+            "level": 3
+        }
+    }, 
+    {
+        "652": {
+            "line": "Submitted Amount/Charges:  $275.00", 
+            "type": "BODY", 
+            "key": 652, 
+            "level": 3
+        }
+    }, 
+    {
+        "653": {
+            "line": "Allowed Amount:  $208.99", 
+            "type": "BODY", 
+            "key": 653, 
+            "level": 3
+        }
+    }, 
+    {
+        "654": {
+            "line": "Non-Covered:  $66.01", 
+            "type": "BODY", 
+            "key": 654, 
+            "level": 3
+        }
+    }, 
+    {
+        "655": {
+            "line": "Place of Service/Description:  41 - Ambulance - Land", 
+            "type": "BODY", 
+            "key": 655, 
+            "level": 3
+        }
+    }, 
+    {
+        "656": {
+            "line": "Type of Service/Description:  9 - Other Medical Services", 
+            "type": "BODY", 
+            "key": 656, 
+            "level": 3
+        }
+    }, 
+    {
+        "657": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 657, 
+            "level": 3
+        }
+    }, 
+    {
+        "658": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 658, 
+            "level": 3
+        }
+    }, 
+    {
+        "659": {
+            "line": "Line number:  3", 
+            "type": "BODY", 
+            "key": 659, 
+            "level": 3
+        }
+    }, 
+    {
+        "660": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 660, 
+            "level": 3
+        }
+    }, 
+    {
+        "661": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 661, 
+            "level": 3
+        }
+    }, 
+    {
+        "662": {
+            "line": "Procedure Code/Description:  A0425 - Ground Mileage, Per Statute Mile", 
+            "type": "BODY", 
+            "key": 662, 
+            "level": 3
+        }
+    }, 
+    {
+        "663": {
+            "line": "Modifier 1/Description:  RH", 
+            "type": "BODY", 
+            "key": 663, 
+            "level": 3
+        }
+    }, 
+    {
+        "664": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 664, 
+            "level": 3
+        }
+    }, 
+    {
+        "665": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 665, 
+            "level": 3
+        }
+    }, 
+    {
+        "666": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 666, 
+            "level": 3
+        }
+    }, 
+    {
+        "667": {
+            "line": "Quantity Billed/Units:  44", 
+            "type": "BODY", 
+            "key": 667, 
+            "level": 3
+        }
+    }, 
+    {
+        "668": {
+            "line": "Submitted Amount/Charges:  $472.50", 
+            "type": "BODY", 
+            "key": 668, 
+            "level": 3
+        }
+    }, 
+    {
+        "669": {
+            "line": "Allowed Amount:  $364.35", 
+            "type": "BODY", 
+            "key": 669, 
+            "level": 3
+        }
+    }, 
+    {
+        "670": {
+            "line": "Non-Covered:  $108.15", 
+            "type": "BODY", 
+            "key": 670, 
+            "level": 3
+        }
+    }, 
+    {
+        "671": {
+            "line": "Place of Service/Description:  41 - Ambulance - Land", 
+            "type": "BODY", 
+            "key": 671, 
+            "level": 3
+        }
+    }, 
+    {
+        "672": {
+            "line": "Type of Service/Description:  9 - Other Medical Services", 
+            "type": "BODY", 
+            "key": 672, 
+            "level": 3
+        }
+    }, 
+    {
+        "673": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 673, 
+            "level": 3
+        }
+    }, 
+    {
+        "674": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 674, 
+            "level": 3
+        }
+    }, 
+    {
+        "675": {
+            "line": "claimHeader", 
+            "type": "HEADER", 
+            "key": 675, 
+            "level": 1
+        }
+    }, 
+    {
+        "676": {
+            "line": "Claim Number: 2333444555200", 
+            "type": "BODY", 
+            "key": 676, 
+            "level": 2
+        }
+    }, 
+    {
+        "677": {
+            "line": "Provider: No Information Available", 
+            "type": "BODY", 
+            "key": 677, 
+            "level": 2
+        }
+    }, 
+    {
+        "678": {
+            "line": "Provider Billing Address:", 
+            "type": "BODY", 
+            "key": 678, 
+            "level": 2
+        }
+    }, 
+    {
+        "679": {
+            "line": "Service Start Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 679, 
+            "level": 2
+        }
+    }, 
+    {
+        "680": {
+            "line": "Service End Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 680, 
+            "level": 2
+        }
+    }, 
+    {
+        "681": {
+            "line": "Amount Charged: * Not Available *", 
+            "type": "BODY", 
+            "key": 681, 
+            "level": 2
+        }
+    }, 
+    {
+        "682": {
+            "line": "Medicare Approved: * Not Available *", 
+            "type": "BODY", 
+            "key": 682, 
+            "level": 2
+        }
+    }, 
+    {
+        "683": {
+            "line": "Provider Paid: * Not Available *", 
+            "type": "BODY", 
+            "key": 683, 
+            "level": 2
+        }
+    }, 
+    {
+        "684": {
+            "line": "You May be Billed: * Not Available *", 
+            "type": "BODY", 
+            "key": 684, 
+            "level": 2
+        }
+    }, 
+    {
+        "685": {
+            "line": "Claim Type: PartB", 
+            "type": "BODY", 
+            "key": 685, 
+            "level": 2
+        }
+    }, 
+    {
+        "686": {
+            "line": "Diagnosis Code 1: 2163", 
+            "type": "BODY", 
+            "key": 686, 
+            "level": 2
+        }
+    }, 
+    {
+        "687": {
+            "line": "Claim Lines for Claim Number", 
+            "type": "HEADER", 
+            "key": 687, 
+            "level": 2
+        }
+    }, 
+    {
+        "688": {
+            "line": "Line number:  1", 
+            "type": "BODY", 
+            "key": 688, 
+            "level": 3
+        }
+    }, 
+    {
+        "689": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 689, 
+            "level": 3
+        }
+    }, 
+    {
+        "690": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 690, 
+            "level": 3
+        }
+    }, 
+    {
+        "691": {
+            "line": "Procedure Code/Description:  99213 - Established Patient Office Or Other Outpatient Visit, Typically 15 Minutes", 
+            "type": "BODY", 
+            "key": 691, 
+            "level": 3
+        }
+    }, 
+    {
+        "692": {
+            "line": "Modifier 1/Description:", 
+            "type": "BODY", 
+            "key": 692, 
+            "level": 3
+        }
+    }, 
+    {
+        "693": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 693, 
+            "level": 3
+        }
+    }, 
+    {
+        "694": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 694, 
+            "level": 3
+        }
+    }, 
+    {
+        "695": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 695, 
+            "level": 3
+        }
+    }, 
+    {
+        "696": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 696, 
+            "level": 3
+        }
+    }, 
+    {
+        "697": {
+            "line": "Submitted Amount/Charges:  * Not Available *", 
+            "type": "BODY", 
+            "key": 697, 
+            "level": 3
+        }
+    }, 
+    {
+        "698": {
+            "line": "Allowed Amount:  * Not Available *", 
+            "type": "BODY", 
+            "key": 698, 
+            "level": 3
+        }
+    }, 
+    {
+        "699": {
+            "line": "Non-Covered:  * Not Available *", 
+            "type": "BODY", 
+            "key": 699, 
+            "level": 3
+        }
+    }, 
+    {
+        "700": {
+            "line": "Place of Service/Description:  22 - Outpatient Hospital", 
+            "type": "BODY", 
+            "key": 700, 
+            "level": 3
+        }
+    }, 
+    {
+        "701": {
+            "line": "Type of Service/Description:  1 - Medical Care", 
+            "type": "BODY", 
+            "key": 701, 
+            "level": 3
+        }
+    }, 
+    {
+        "702": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 702, 
+            "level": 3
+        }
+    }, 
+    {
+        "703": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 703, 
+            "level": 3
+        }
+    }, 
+    {
+        "704": {
+            "line": "claimHeader", 
+            "type": "HEADER", 
+            "key": 704, 
+            "level": 1
+        }
+    }, 
+    {
+        "705": {
+            "line": "Claim Number: 2333444555300", 
+            "type": "BODY", 
+            "key": 705, 
+            "level": 2
+        }
+    }, 
+    {
+        "706": {
+            "line": "Provider: No Information Available", 
+            "type": "BODY", 
+            "key": 706, 
+            "level": 2
+        }
+    }, 
+    {
+        "707": {
+            "line": "Provider Billing Address:", 
+            "type": "BODY", 
+            "key": 707, 
+            "level": 2
+        }
+    }, 
+    {
+        "708": {
+            "line": "Service Start Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 708, 
+            "level": 2
+        }
+    }, 
+    {
+        "709": {
+            "line": "Service End Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 709, 
+            "level": 2
+        }
+    }, 
+    {
+        "710": {
+            "line": "Amount Charged: * Not Available *", 
+            "type": "BODY", 
+            "key": 710, 
+            "level": 2
+        }
+    }, 
+    {
+        "711": {
+            "line": "Medicare Approved: * Not Available *", 
+            "type": "BODY", 
+            "key": 711, 
+            "level": 2
+        }
+    }, 
+    {
+        "712": {
+            "line": "Provider Paid: * Not Available *", 
+            "type": "BODY", 
+            "key": 712, 
+            "level": 2
+        }
+    }, 
+    {
+        "713": {
+            "line": "You May be Billed: * Not Available *", 
+            "type": "BODY", 
+            "key": 713, 
+            "level": 2
+        }
+    }, 
+    {
+        "714": {
+            "line": "Claim Type: PartB", 
+            "type": "BODY", 
+            "key": 714, 
+            "level": 2
+        }
+    }, 
+    {
+        "715": {
+            "line": "Diagnosis Code 1: 28521", 
+            "type": "BODY", 
+            "key": 715, 
+            "level": 2
+        }
+    }, 
+    {
+        "716": {
+            "line": "Diagnosis Code 2: 5854", 
+            "type": "BODY", 
+            "key": 716, 
+            "level": 2
+        }
+    }, 
+    {
+        "717": {
+            "line": "Claim Lines for Claim Number", 
+            "type": "HEADER", 
+            "key": 717, 
+            "level": 2
+        }
+    }, 
+    {
+        "718": {
+            "line": "Line number:  1", 
+            "type": "BODY", 
+            "key": 718, 
+            "level": 3
+        }
+    }, 
+    {
+        "719": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 719, 
+            "level": 3
+        }
+    }, 
+    {
+        "720": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 720, 
+            "level": 3
+        }
+    }, 
+    {
+        "721": {
+            "line": "Procedure Code/Description:  J2916 - Injection, Sodium Ferric Gluconate Complex In Sucrose Injection, 12.5 Mg", 
+            "type": "BODY", 
+            "key": 721, 
+            "level": 3
+        }
+    }, 
+    {
+        "722": {
+            "line": "Modifier 1/Description:", 
+            "type": "BODY", 
+            "key": 722, 
+            "level": 3
+        }
+    }, 
+    {
+        "723": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 723, 
+            "level": 3
+        }
+    }, 
+    {
+        "724": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 724, 
+            "level": 3
+        }
+    }, 
+    {
+        "725": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 725, 
+            "level": 3
+        }
+    }, 
+    {
+        "726": {
+            "line": "Quantity Billed/Units:  10", 
+            "type": "BODY", 
+            "key": 726, 
+            "level": 3
+        }
+    }, 
+    {
+        "727": {
+            "line": "Submitted Amount/Charges:  * Not Available *", 
+            "type": "BODY", 
+            "key": 727, 
+            "level": 3
+        }
+    }, 
+    {
+        "728": {
+            "line": "Allowed Amount:  * Not Available *", 
+            "type": "BODY", 
+            "key": 728, 
+            "level": 3
+        }
+    }, 
+    {
+        "729": {
+            "line": "Non-Covered:  * Not Available *", 
+            "type": "BODY", 
+            "key": 729, 
+            "level": 3
+        }
+    }, 
+    {
+        "730": {
+            "line": "Place of Service/Description:  11 - Office", 
+            "type": "BODY", 
+            "key": 730, 
+            "level": 3
+        }
+    }, 
+    {
+        "731": {
+            "line": "Type of Service/Description:  1 - Medical Care", 
+            "type": "BODY", 
+            "key": 731, 
+            "level": 3
+        }
+    }, 
+    {
+        "732": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 732, 
+            "level": 3
+        }
+    }, 
+    {
+        "733": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 733, 
+            "level": 3
+        }
+    }, 
+    {
+        "734": {
+            "line": "Line number:  2", 
+            "type": "BODY", 
+            "key": 734, 
+            "level": 3
+        }
+    }, 
+    {
+        "735": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 735, 
+            "level": 3
+        }
+    }, 
+    {
+        "736": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 736, 
+            "level": 3
+        }
+    }, 
+    {
+        "737": {
+            "line": "Procedure Code/Description:  36000 - Insertion Of Needle Or Catheter Into A Vein", 
+            "type": "BODY", 
+            "key": 737, 
+            "level": 3
+        }
+    }, 
+    {
+        "738": {
+            "line": "Modifier 1/Description:", 
+            "type": "BODY", 
+            "key": 738, 
+            "level": 3
+        }
+    }, 
+    {
+        "739": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 739, 
+            "level": 3
+        }
+    }, 
+    {
+        "740": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 740, 
+            "level": 3
+        }
+    }, 
+    {
+        "741": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 741, 
+            "level": 3
+        }
+    }, 
+    {
+        "742": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 742, 
+            "level": 3
+        }
+    }, 
+    {
+        "743": {
+            "line": "Submitted Amount/Charges:  * Not Available *", 
+            "type": "BODY", 
+            "key": 743, 
+            "level": 3
+        }
+    }, 
+    {
+        "744": {
+            "line": "Allowed Amount:  * Not Available *", 
+            "type": "BODY", 
+            "key": 744, 
+            "level": 3
+        }
+    }, 
+    {
+        "745": {
+            "line": "Non-Covered:  * Not Available *", 
+            "type": "BODY", 
+            "key": 745, 
+            "level": 3
+        }
+    }, 
+    {
+        "746": {
+            "line": "Place of Service/Description:  11 - Office", 
+            "type": "BODY", 
+            "key": 746, 
+            "level": 3
+        }
+    }, 
+    {
+        "747": {
+            "line": "Type of Service/Description:  2 - Surgery", 
+            "type": "BODY", 
+            "key": 747, 
+            "level": 3
+        }
+    }, 
+    {
+        "748": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 748, 
+            "level": 3
+        }
+    }, 
+    {
+        "749": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 749, 
+            "level": 3
+        }
+    }, 
+    {
+        "750": {
+            "line": "Line number:  3", 
+            "type": "BODY", 
+            "key": 750, 
+            "level": 3
+        }
+    }, 
+    {
+        "751": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 751, 
+            "level": 3
+        }
+    }, 
+    {
+        "752": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 752, 
+            "level": 3
+        }
+    }, 
+    {
+        "753": {
+            "line": "Procedure Code/Description:  90765 - Intravenous Infusion, For Therapy, Prophylaxis, Or Diagnosis (Specify Substance Or Drug); In", 
+            "type": "BODY", 
+            "key": 753, 
+            "level": 3
+        }
+    }, 
+    {
+        "754": {
+            "line": "Modifier 1/Description:", 
+            "type": "BODY", 
+            "key": 754, 
+            "level": 3
+        }
+    }, 
+    {
+        "755": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 755, 
+            "level": 3
+        }
+    }, 
+    {
+        "756": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 756, 
+            "level": 3
+        }
+    }, 
+    {
+        "757": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 757, 
+            "level": 3
+        }
+    }, 
+    {
+        "758": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 758, 
+            "level": 3
+        }
+    }, 
+    {
+        "759": {
+            "line": "Submitted Amount/Charges:  * Not Available *", 
+            "type": "BODY", 
+            "key": 759, 
+            "level": 3
+        }
+    }, 
+    {
+        "760": {
+            "line": "Allowed Amount:  * Not Available *", 
+            "type": "BODY", 
+            "key": 760, 
+            "level": 3
+        }
+    }, 
+    {
+        "761": {
+            "line": "Non-Covered:  * Not Available *", 
+            "type": "BODY", 
+            "key": 761, 
+            "level": 3
+        }
+    }, 
+    {
+        "762": {
+            "line": "Place of Service/Description:  11 - Office", 
+            "type": "BODY", 
+            "key": 762, 
+            "level": 3
+        }
+    }, 
+    {
+        "763": {
+            "line": "Type of Service/Description:  1 - Medical Care", 
+            "type": "BODY", 
+            "key": 763, 
+            "level": 3
+        }
+    }, 
+    {
+        "764": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 764, 
+            "level": 3
+        }
+    }, 
+    {
+        "765": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 765, 
+            "level": 3
+        }
+    }, 
+    {
+        "766": {
+            "line": "Line number:  4", 
+            "type": "BODY", 
+            "key": 766, 
+            "level": 3
+        }
+    }, 
+    {
+        "767": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 767, 
+            "level": 3
+        }
+    }, 
+    {
+        "768": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 768, 
+            "level": 3
+        }
+    }, 
+    {
+        "769": {
+            "line": "Procedure Code/Description:  90775 - Therapeutic, Prophylactic Or Diagnostic Injection (Specify Substance Or Drug); Each Addition", 
+            "type": "BODY", 
+            "key": 769, 
+            "level": 3
+        }
+    }, 
+    {
+        "770": {
+            "line": "Modifier 1/Description:", 
+            "type": "BODY", 
+            "key": 770, 
+            "level": 3
+        }
+    }, 
+    {
+        "771": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 771, 
+            "level": 3
+        }
+    }, 
+    {
+        "772": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 772, 
+            "level": 3
+        }
+    }, 
+    {
+        "773": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 773, 
+            "level": 3
+        }
+    }, 
+    {
+        "774": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 774, 
+            "level": 3
+        }
+    }, 
+    {
+        "775": {
+            "line": "Submitted Amount/Charges:  * Not Available *", 
+            "type": "BODY", 
+            "key": 775, 
+            "level": 3
+        }
+    }, 
+    {
+        "776": {
+            "line": "Allowed Amount:  * Not Available *", 
+            "type": "BODY", 
+            "key": 776, 
+            "level": 3
+        }
+    }, 
+    {
+        "777": {
+            "line": "Non-Covered:  * Not Available *", 
+            "type": "BODY", 
+            "key": 777, 
+            "level": 3
+        }
+    }, 
+    {
+        "778": {
+            "line": "Place of Service/Description:  11 - Office", 
+            "type": "BODY", 
+            "key": 778, 
+            "level": 3
+        }
+    }, 
+    {
+        "779": {
+            "line": "Type of Service/Description:  1 - Medical Care", 
+            "type": "BODY", 
+            "key": 779, 
+            "level": 3
+        }
+    }, 
+    {
+        "780": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 780, 
+            "level": 3
+        }
+    }, 
+    {
+        "781": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 781, 
+            "level": 3
+        }
+    }, 
+    {
+        "782": {
+            "line": "Line number:  5", 
+            "type": "BODY", 
+            "key": 782, 
+            "level": 3
+        }
+    }, 
+    {
+        "783": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 783, 
+            "level": 3
+        }
+    }, 
+    {
+        "784": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 784, 
+            "level": 3
+        }
+    }, 
+    {
+        "785": {
+            "line": "Procedure Code/Description:  99211 - Established Patient Office Or Other Outpatient Visit, Typically 5 Minutes", 
+            "type": "BODY", 
+            "key": 785, 
+            "level": 3
+        }
+    }, 
+    {
+        "786": {
+            "line": "Modifier 1/Description:  25 - Significant, Separately Identifiable Evaluation And Management Service By The Same Physician On", 
+            "type": "BODY", 
+            "key": 786, 
+            "level": 3
+        }
+    }, 
+    {
+        "787": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 787, 
+            "level": 3
+        }
+    }, 
+    {
+        "788": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 788, 
+            "level": 3
+        }
+    }, 
+    {
+        "789": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 789, 
+            "level": 3
+        }
+    }, 
+    {
+        "790": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 790, 
+            "level": 3
+        }
+    }, 
+    {
+        "791": {
+            "line": "Submitted Amount/Charges:  * Not Available *", 
+            "type": "BODY", 
+            "key": 791, 
+            "level": 3
+        }
+    }, 
+    {
+        "792": {
+            "line": "Allowed Amount:  * Not Available *", 
+            "type": "BODY", 
+            "key": 792, 
+            "level": 3
+        }
+    }, 
+    {
+        "793": {
+            "line": "Non-Covered:  * Not Available *", 
+            "type": "BODY", 
+            "key": 793, 
+            "level": 3
+        }
+    }, 
+    {
+        "794": {
+            "line": "Place of Service/Description:  11 - Office", 
+            "type": "BODY", 
+            "key": 794, 
+            "level": 3
+        }
+    }, 
+    {
+        "795": {
+            "line": "Type of Service/Description:  1 - Medical Care", 
+            "type": "BODY", 
+            "key": 795, 
+            "level": 3
+        }
+    }, 
+    {
+        "796": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 796, 
+            "level": 3
+        }
+    }, 
+    {
+        "797": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 797, 
+            "level": 3
+        }
+    }, 
+    {
+        "798": {
+            "line": "claimHeader", 
+            "type": "HEADER", 
+            "key": 798, 
+            "level": 1
+        }
+    }, 
+    {
+        "799": {
+            "line": "Claim Number: 2333444555400", 
+            "type": "BODY", 
+            "key": 799, 
+            "level": 2
+        }
+    }, 
+    {
+        "800": {
+            "line": "Provider: No Information Available", 
+            "type": "BODY", 
+            "key": 800, 
+            "level": 2
+        }
+    }, 
+    {
+        "801": {
+            "line": "Provider Billing Address:", 
+            "type": "BODY", 
+            "key": 801, 
+            "level": 2
+        }
+    }, 
+    {
+        "802": {
+            "line": "Service Start Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 802, 
+            "level": 2
+        }
+    }, 
+    {
+        "803": {
+            "line": "Service End Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 803, 
+            "level": 2
+        }
+    }, 
+    {
+        "804": {
+            "line": "Amount Charged: $38.00", 
+            "type": "BODY", 
+            "key": 804, 
+            "level": 2
+        }
+    }, 
+    {
+        "805": {
+            "line": "Medicare Approved: $9.38", 
+            "type": "BODY", 
+            "key": 805, 
+            "level": 2
+        }
+    }, 
+    {
+        "806": {
+            "line": "Provider Paid: $7.50", 
+            "type": "BODY", 
+            "key": 806, 
+            "level": 2
+        }
+    }, 
+    {
+        "807": {
+            "line": "You May be Billed: $1.88", 
+            "type": "BODY", 
+            "key": 807, 
+            "level": 2
+        }
+    }, 
+    {
+        "808": {
+            "line": "Claim Type: PartB", 
+            "type": "BODY", 
+            "key": 808, 
+            "level": 2
+        }
+    }, 
+    {
+        "809": {
+            "line": "Diagnosis Code 1: 9593", 
+            "type": "BODY", 
+            "key": 809, 
+            "level": 2
+        }
+    }, 
+    {
+        "810": {
+            "line": "Diagnosis Code 2: E8889", 
+            "type": "BODY", 
+            "key": 810, 
+            "level": 2
+        }
+    }, 
+    {
+        "811": {
+            "line": "Claim Lines for Claim Number", 
+            "type": "HEADER", 
+            "key": 811, 
+            "level": 2
+        }
+    }, 
+    {
+        "812": {
+            "line": "Line number:  1", 
+            "type": "BODY", 
+            "key": 812, 
+            "level": 3
+        }
+    }, 
+    {
+        "813": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 813, 
+            "level": 3
+        }
+    }, 
+    {
+        "814": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 814, 
+            "level": 3
+        }
+    }, 
+    {
+        "815": {
+            "line": "Procedure Code/Description:  73110 - X-Ray Of Wrist, Minimum Of 3 Views", 
+            "type": "BODY", 
+            "key": 815, 
+            "level": 3
+        }
+    }, 
+    {
+        "816": {
+            "line": "Modifier 1/Description:  26 - Professional Component: Certain Procedures Are A Combination Of A Physician Component And A Tec", 
+            "type": "BODY", 
+            "key": 816, 
+            "level": 3
+        }
+    }, 
+    {
+        "817": {
+            "line": "Modifier 2/Description:", 
+            "type": "BODY", 
+            "key": 817, 
+            "level": 3
+        }
+    }, 
+    {
+        "818": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 818, 
+            "level": 3
+        }
+    }, 
+    {
+        "819": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 819, 
+            "level": 3
+        }
+    }, 
+    {
+        "820": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 820, 
+            "level": 3
+        }
+    }, 
+    {
+        "821": {
+            "line": "Submitted Amount/Charges:  $38.00", 
+            "type": "BODY", 
+            "key": 821, 
+            "level": 3
+        }
+    }, 
+    {
+        "822": {
+            "line": "Allowed Amount:  $9.38", 
+            "type": "BODY", 
+            "key": 822, 
+            "level": 3
+        }
+    }, 
+    {
+        "823": {
+            "line": "Non-Covered:  $28.62", 
+            "type": "BODY", 
+            "key": 823, 
+            "level": 3
+        }
+    }, 
+    {
+        "824": {
+            "line": "Place of Service/Description:  22 - Outpatient Hospital", 
+            "type": "BODY", 
+            "key": 824, 
+            "level": 3
+        }
+    }, 
+    {
+        "825": {
+            "line": "Type of Service/Description:  4 - Diagnostic x-ray", 
+            "type": "BODY", 
+            "key": 825, 
+            "level": 3
+        }
+    }, 
+    {
+        "826": {
+            "line": "Rendering Provider No:  PARTBPROV", 
+            "type": "BODY", 
+            "key": 826, 
+            "level": 3
+        }
+    }, 
+    {
+        "827": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 827, 
+            "level": 3
+        }
+    }, 
+    {
+        "828": {
+            "line": "Claim Number: 11122233310000", 
+            "type": "BODY", 
+            "key": 828, 
+            "level": 3
+        }
+    }, 
+    {
+        "829": {
+            "line": "Provider: No Information Available", 
+            "type": "BODY", 
+            "key": 829, 
+            "level": 3
+        }
+    }, 
+    {
+        "830": {
+            "line": "Provider Billing Address:", 
+            "type": "BODY", 
+            "key": 830, 
+            "level": 3
+        }
+    }, 
+    {
+        "831": {
+            "line": "Service Start Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 831, 
+            "level": 3
+        }
+    }, 
+    {
+        "832": {
+            "line": "Service End Date: 01/05/2014", 
+            "type": "BODY", 
+            "key": 832, 
+            "level": 3
+        }
+    }, 
+    {
+        "833": {
+            "line": "Amount Charged: $135.00", 
+            "type": "BODY", 
+            "key": 833, 
+            "level": 3
+        }
+    }, 
+    {
+        "834": {
+            "line": "Medicare Approved: $90.45", 
+            "type": "BODY", 
+            "key": 834, 
+            "level": 3
+        }
+    }, 
+    {
+        "835": {
+            "line": "Provider Paid: $72.36", 
+            "type": "BODY", 
+            "key": 835, 
+            "level": 3
+        }
+    }, 
+    {
+        "836": {
+            "line": "You May be Billed: $18.09", 
+            "type": "BODY", 
+            "key": 836, 
+            "level": 3
+        }
+    }, 
+    {
+        "837": {
+            "line": "Claim Type: DME", 
+            "type": "BODY", 
+            "key": 837, 
+            "level": 3
+        }
+    }, 
+    {
+        "838": {
+            "line": "Diagnosis Code 1: 32723", 
+            "type": "BODY", 
+            "key": 838, 
+            "level": 3
+        }
+    }, 
+    {
+        "839": {
+            "line": "Diagnosis Code 2: 78051", 
+            "type": "BODY", 
+            "key": 839, 
+            "level": 3
+        }
+    }, 
+    {
+        "840": {
+            "line": "Claim Lines for Claim Number", 
+            "type": "HEADER", 
+            "key": 840, 
+            "level": 2
+        }
+    }, 
+    {
+        "841": {
+            "line": "Line number:  1", 
+            "type": "BODY", 
+            "key": 841, 
+            "level": 3
+        }
+    }, 
+    {
+        "842": {
+            "line": "Date of Service From:  01/05/2014", 
+            "type": "BODY", 
+            "key": 842, 
+            "level": 3
+        }
+    }, 
+    {
+        "843": {
+            "line": "Date of Service To:  01/05/2014", 
+            "type": "BODY", 
+            "key": 843, 
+            "level": 3
+        }
+    }, 
+    {
+        "844": {
+            "line": "Procedure Code/Description:  E0601 - Continuous Positive Airway Pressure (Cpap) Device", 
+            "type": "BODY", 
+            "key": 844, 
+            "level": 3
+        }
+    }, 
+    {
+        "845": {
+            "line": "Modifier 1/Description:  MS - Six Month Maintenance And Servicing Fee For Reasonable And Necessary Parts And Labor Which Are", 
+            "type": "BODY", 
+            "key": 845, 
+            "level": 3
+        }
+    }, 
+    {
+        "846": {
+            "line": "Modifier 2/Description:  KX - Requirements Specified In The Medical Policy Have Been Met", 
+            "type": "BODY", 
+            "key": 846, 
+            "level": 3
+        }
+    }, 
+    {
+        "847": {
+            "line": "Modifier 3/Description:", 
+            "type": "BODY", 
+            "key": 847, 
+            "level": 3
+        }
+    }, 
+    {
+        "848": {
+            "line": "Modifier 4/Description:", 
+            "type": "BODY", 
+            "key": 848, 
+            "level": 3
+        }
+    }, 
+    {
+        "849": {
+            "line": "Quantity Billed/Units:  1", 
+            "type": "BODY", 
+            "key": 849, 
+            "level": 3
+        }
+    }, 
+    {
+        "850": {
+            "line": "Submitted Amount/Charges:  $135.00", 
+            "type": "BODY", 
+            "key": 850, 
+            "level": 3
+        }
+    }, 
+    {
+        "851": {
+            "line": "Allowed Amount:  $90.45", 
+            "type": "BODY", 
+            "key": 851, 
+            "level": 3
+        }
+    }, 
+    {
+        "852": {
+            "line": "Non-Covered:  $44.55", 
+            "type": "BODY", 
+            "key": 852, 
+            "level": 3
+        }
+    }, 
+    {
+        "853": {
+            "line": "Place of Service/Description:  12 - Home", 
+            "type": "BODY", 
+            "key": 853, 
+            "level": 3
+        }
+    }, 
+    {
+        "854": {
+            "line": "Type of Service/Description:  R - Rental of DME", 
+            "type": "BODY", 
+            "key": 854, 
+            "level": 3
+        }
+    }, 
+    {
+        "855": {
+            "line": "Rendering Provider No:  DMEPROVIDR", 
+            "type": "BODY", 
+            "key": 855, 
+            "level": 3
+        }
+    }, 
+    {
+        "856": {
+            "line": "Rendering Provider NPI:", 
+            "type": "BODY", 
+            "key": 856, 
+            "level": 3
+        }
     }
-}
+]

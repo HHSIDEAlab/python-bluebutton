@@ -1,2 +1,5 @@
 *.pyc
 *.json
+.idea/*
+*.swp
+.idea/*.xml

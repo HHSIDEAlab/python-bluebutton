@@ -21,47 +21,51 @@ if __name__ == "__main__":
             level=int(sys.argv[4])
     except(IndexError):
         print "You must supply an an infile and an outfile."
-        print "Example: bbp.py [all|bp|wt|mds|green|segments|bluebutton|CMS] bluebutton_infile.txt bluebutton_outfile.json [level]"
+        print "Example: bbp.py [all|bp|wt|mds|green|segments|bluebutton|CMS|CMSFILE] bluebutton_infile.txt bluebutton_outfile.json [level]"
         exit(1)
 
     try:
         items = simple_parse(infile)
 
-        if outtype=="green":
+        if outtype == "green":
             green_parse(infile, outfile, level)
 
-        if outtype=="all":
+        if outtype == "all":
             print tojson(items)
 
-        if outtype=="bp":
+        if outtype == "bp":
             bpdictlist = build_bp_readings(items)
             print tojson(bpdictlist)
 
-        if outtype=="wt":
+        if outtype == "wt":
             wtdictlist = build_wt_readings(items)
             print tojson(wtdictlist)
 
-        if outtype=="mds":
+        if outtype == "mds":
             mdsdictlist = build_mds_readings(items)
             print tojson(mdsdictlist)
 
-        if outtype=="d":
+        if outtype == "d":
             demodict = build_simple_demographics_readings(items)
             print tojson(demodict)
 
-        if outtype=="segments":
+        if outtype == "segments":
             demodict = section_parse(infile)
             #print tojson(demodict)
             result = write_file(demodict,outfile)
 
 
-        if outtype=="bluebutton":
+        if outtype == "bluebutton":
             demodict = bb_file_parse(infile)
             result = write_file(demodict, outfile)
 
-        if outtype=="CMS":
+        if outtype == "CMS":
 #            demodict = cms_file_parse(infile)
             demodict = cms_file_parse2(infile)
+            result = write_file(demodict, outfile)
+
+        if outtype == "CMSFILE":
+            demodict = cms_file_read(infile)
             result = write_file(demodict, outfile)
 
     except():
