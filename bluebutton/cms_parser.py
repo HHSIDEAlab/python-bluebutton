@@ -54,7 +54,7 @@ def cms_file_read(inPath):
 
     with open(inPath, 'r') as f:
         # get the line from the input file
-        print "Processing:",
+        # print "Processing:",
         for i, l in enumerate(f):
             # reset the dictionary
             line_dict = {}
@@ -63,8 +63,8 @@ def cms_file_read(inPath):
             l = l.rstrip()
             # remove white space from end of line
 
-            if (i % 10) == 0:
-                print ".",
+            #if (i % 10) == 0:
+                # print ".",
                 # Show progress every 10 steps
 
             if len(l) < 1:
@@ -144,11 +144,11 @@ def cms_file_read(inPath):
 
     f.close()
 
-    print i, "records"
-    print ln_cntr, "written."
-    print blank_ln, "skipped"
+    #print i+1, "records"
+    #print ln_cntr, "written."
+    #print blank_ln, "skipped"
 
-    print f_lines
+    #print f_lines
 
     return f_lines
 
