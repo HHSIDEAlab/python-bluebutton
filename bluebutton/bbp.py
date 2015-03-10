@@ -66,7 +66,8 @@ if __name__ == "__main__":
 
         if outtype == "CMSFILE":
             demodict = cms_file_read(infile)
-            result = write_file(demodict, outfile)
+            outdict = parse_lines(demodict)
+            result = write_file(outdict, outfile)
 
     except():
         print "An unexpected error occurred. Here is the post-mortem:"

@@ -13,12 +13,13 @@ __author__ = 'Mark Scrimshire:@ekivemark'
 import json
 import re
 import os, sys
-from datetime import datetime, date, timedelta
 
 import collections
+from cms_parser_utilities import *
 
 
 from file_def_cms import SEG_DEF
+from cms_parser_utilities import *
 
 # divider = "--------------------------------"
 divider = "----------"
@@ -149,9 +150,96 @@ def cms_file_read(inPath):
     #print blank_ln, "skipped"
 
     #print f_lines
+    #print ""
+
 
     return f_lines
 
+def parse_lines(ln_list):
+    # Receive list created in cms_file_read
+    # Build the final Json dict
+    # Use SEG_DEF to control JSON construction
+
+    # set variables
+    DBUG = False
+
+    ln = {}
+    ln_ctrl = {}
+
+    k = ""
+    v = ""
+    lk_up = ""
+    current_segment = ""
+
+    match_ln = [None, None, None, None, None, None, None, None, None, None]
+
+    segment_dict = collections.OrderedDict()
+    out_dict = collections.OrderedDict()
+    # Set starting point in list
+    i = 0
+
+    # while i <= 30: #(len(ln_list)-1):
+    while i <= (len(ln_list) - 1):
+        # process each line in the list until end of list
+
+        ln = get_line_dict(ln_list,i)
+
+        line = ln["line"].split(":")
+        if len(line) > 1:
+            # Assign line[0] to k and format as headlessCamel
+            k = headlessCamel(line[0])
+            v = line[1].lstrip()
+            v = v.rstrip()
+
+            if DBUG:
+                print i, "ln:", ln, "k:", k, "v:", v
+
+        # lookup ln in SEG_DEF
+        lk_up = headlessCamel(ln["line"])
+        if find_segment(lk_up):
+
+            ln_ctrl = get_segment(lk_up)
+            if DBUG:
+                print i, "ln_ctrl-match:", ln_ctrl
+
+            # We found a match in SEG_DEF
+            # So we use SEG_DEF to tailor how we write the line and
+            # section since a SEG_DEF typically defines special processing
+
+
+            current_segment = ln_ctrl["name"]
+
+            print "================"
+            print "Match:", match_ln
+            print "ln-ctrl:", ln_ctrl
+            print "================"
+
+            i, sub_seg, seg_name = process_segment(i, ln_ctrl, match_ln, ln["level"], ln_list)
+
+            print "segment returned", seg_name, ":", sub_seg
+            #print "-------------"
+            #print "Returned with ctr-i:", i
+            #print "segment_dict:", segment_dict
+            #print "-------------"
+            out_dict[seg_name] = sub_seg
+
+            # if DBUG:
+            #    print "Out:", current_segment, " =", out_dict[current_segment]
+
+        else:
+            # No special instructions
+            # assume writing a string split on ":"
+
+            print "Other - i:", i, "ln:", ln
+            out_dict[current_segment] = {k: v}
+
+        # increment line counter
+        i += 1
+
+    if DBUG:
+        print "End of list "
+
+    return out_dict
 
 def cms_file_parse2(inPath):
     # Parse a CMS BlueButton file (inPath)
@@ -556,19 +644,6 @@ def cms_file_parse(inPath):
     return items
 
 
-def headlessCamel(In_put):
-    # Use this to format field names:
-    # Convert words to title format and remove spaces
-    # Remove underscores
-    # Make first character lower case
-    # result result
-
-    Camel = ''.join(x for x in In_put.title() if not x.isspace())
-    Camel = Camel.replace('_', '')
-    result = Camel[0].lower() + Camel[1:len(Camel)]
-
-    # print "headlessCamel:", result
-    return result
 
 def set_header_line(hl):
     # flip header_line value. received as hl (True or False)
@@ -576,95 +651,8 @@ def set_header_line(hl):
         return (not hl)
 
 
-def write_segment(itm, sgmnt, sgmnt_dict, ln_list, multi):
-    # Write the segment to items dict
-    # print "Writing Segment:", sgmnt
-    # print "Adding:", sgmnt_dict
-
-    # print "============================"
-    # print "Writing Seg:",sgmnt
-    # print "============================"
-    # print "Writing dict:"
-    # print sgmnt_dict
-    # print "============================"
-    if multi:
-        ln_list.append(sgmnt_dict)
-        print "Multi List:", ln_list
-        itm[sgmnt] = ln_list
-    else:
-        itm[sgmnt] = sgmnt_dict
-
-    return itm, sgmnt_dict, ln_list
 
 
-def get_segment(title):
-
-    result = {}
-    # cycle through the seg dictionary to match against title
-    for ky in SEG_DEF:
-        if title in ky["match"]:
-            result = ky
-            break
-
-    return result
-
-def find_segment(title):
-
-    result = False
-    for ky in SEG_DEF:
-        # print k
-        if title in ky["match"]:
-            # print "Match: %s : %s" % (title, ky['key'])
-            result = True
-            break
-
-    return result
-
-def parse_time(t):
-    # convert time to  json format
-    t = t.strip()
-    time_value = datetime.strptime(t, "%m/%d/%Y %I:%M %p")
-    # print time_value
-    return_value = time_value.strftime("%Y%m%d%H%M%S+0500")
-
-    # print return_value
-    return return_value
-
-def segment_prefill(seg):
-    # Receive the Segment information for a header line
-    # get the seg["pre"] and iterate through the dict
-    # assigning to segment_dict
-    # First we reset the segment_dict as an OrderedDict
-    segment_dict = collections.OrderedDict()
-
-    # print seg
-
-    current_segment = seg["name"]
-    if "pre" in seg:
-        pre = seg["pre"]
-        # print pre
-        for pi, pv in pre.iteritems():
-            # print pi,":" ,pv
-            segment_dict[pi] = pv
-
-    return current_segment, segment_dict
-
-def set_source(current_source, key, value):
-    # Set the source of the data
-
-    if key.upper() == "SOURCE":
-        result = ""
-        # print "Found Source: [%s:%s]" % (key,value)
-        if value.upper() == "SELF-ENTERED":
-            result = "patient"
-        elif value.upper() == "MYMEDICARE.GOV":
-            result = "MyMedicare.gov"
-        else:
-            result = value.upper()
-        # print "[%s]" % result
-        return result
-    else:
-        return current_source
 
 def multi_item(seg):
     # check for "multi" in seg dict

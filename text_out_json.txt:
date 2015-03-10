@@ -1,0 +1,641 @@
+{
+    "header": {
+        "originator": "MyMedicare.gov", 
+        "languageCode": "code=\"en-US\"", 
+        "versionNumber": {
+            "value": "3"
+        }, 
+        "source": "MyMedicare.gov", 
+        "title": "MyMedicare.gov Personal Health Information", 
+        "effectiveTime": {
+            "value": "20150204091800+0500"
+        }, 
+        "confidentialityCode": {
+            "code": "N", 
+            "codeSystem": "2.16.840.1.113883.5.25"
+        }, 
+        "comments": "Produced by the Blue Button (v2.0)"
+    }, 
+    "patient": {
+        "source": "MyMedicare.gov", 
+        "name": "JOHN DOE", 
+        "dateOfBirth": "19100101", 
+        "address": {
+            "addressType": "", 
+            "addressLine1": "123 ANY ROAD", 
+            "addressLine2": "", 
+            "city": "ANYTOWN", 
+            "state": "IN", 
+            "zip": "46250"
+        }, 
+        "phoneNumber": [
+            {
+                "phoneNumber": "215-248-0684"
+            }, 
+            {
+                "source": ""
+            }
+        ], 
+        "partAEffectiveDate": "20140201", 
+        "partBEffectiveDate": "20140201"
+    }, 
+    "emergencyContact": [], 
+    "medicalConditions": [
+        {
+            "source": "patient", 
+            "conditionName": "Allergies", 
+            "medicalConditionStartDate": "20130129", 
+            "medicalConditionEndDate": ""
+        }, 
+        {
+            "conditionName": "Arthritis", 
+            "medicalConditionStartDate": "19600801", 
+            "medicalConditionEndDate": "19801231"
+        }, 
+        {
+            "conditionName": "Broken Wrist", 
+            "medicalConditionStartDate": "19100206", 
+            "medicalConditionEndDate": "20130206"
+        }, 
+        {
+            "conditionName": "Other", 
+            "medicalConditionStartDate": "20110201", 
+            "medicalConditionEndDate": ""
+        }
+    ], 
+    "Allergies": [
+        {
+            "source": "patient", 
+            "allergyName": "Antibotic", 
+            "type": "Drugs", 
+            "reaction": "", 
+            "severity": "", 
+            "diagnosed": "", 
+            "treatment": "", 
+            "firstEpisodeDate": "", 
+            "lastEpisodeDate": "", 
+            "lastTreatmentDate": "", 
+            "comments": ""
+        }, 
+        {
+            "allergyName": "Corn", 
+            "type": "Food", 
+            "reaction": "Blisters", 
+            "severity": "Mild", 
+            "diagnosed": "Yes", 
+            "treatment": "Other", 
+            "firstEpisodeDate": "", 
+            "lastEpisodeDate": "", 
+            "lastTreatmentDate": "", 
+            "comments": ""
+        }, 
+        {
+            "allergyName": "Milk", 
+            "type": "Food", 
+            "reaction": "Anaphylaxis", 
+            "severity": "Severe", 
+            "diagnosed": "Yes", 
+            "treatment": "Epinephrine (Epi-Pen)", 
+            "firstEpisodeDate": "19850321", 
+            "lastEpisodeDate": "20120331", 
+            "lastTreatmentDate": "20120331", 
+            "comments": ""
+        }
+    ], 
+    "ImplantableDevices": [
+        {
+            "source": "patient", 
+            "deviceName": "COronary stent", 
+            "dateImplanted": "20051127"
+        }, 
+        {
+            "deviceName": "Knee replacement", 
+            "dateImplanted": "20140202"
+        }, 
+        {
+            "deviceName": "Pace maker", 
+            "dateImplanted": "20120228"
+        }, 
+        {
+            "deviceName": "foot", 
+            "dateImplanted": "19840909"
+        }, 
+        {
+            "deviceName": "hearing aid", 
+            "dateImplanted": "20130101"
+        }
+    ], 
+    "Immunizations": [], 
+    "Labs": [], 
+    "vitals": [
+        {
+            "source": "patient", 
+            "vitalStatisticType": "Glucose", 
+            "date": "20080207", 
+            "time": "12", 
+            "reading/Value": "322", 
+            "comments": ""
+        }, 
+        {
+            "vitalStatisticType": "Glucose", 
+            "date": "20090403", 
+            "time": "12", 
+            "reading/Value": "24", 
+            "comments": "fwrqwrgreg"
+        }, 
+        {
+            "vitalStatisticType": "Glucose", 
+            "date": "20090514", 
+            "time": "12", 
+            "reading/Value": "134", 
+            "comments": "rwrtrt"
+        }, 
+        {
+            "vitalStatisticType": "Otro - other", 
+            "date": "19390101", 
+            "time": "12", 
+            "reading/Value": "other", 
+            "comments": ""
+        }, 
+        {
+            "vitalStatisticType": "Pulse", 
+            "date": "20130406", 
+            "time": "12", 
+            "reading/Value": "333", 
+            "comments": ""
+        }, 
+        {
+            "vitalStatisticType": "Pulse", 
+            "date": "20110302", 
+            "time": "12", 
+            "reading/Value": "80", 
+            "comments": "wwqrgtrt"
+        }, 
+        {
+            "vitalStatisticType": "Temperature", 
+            "date": "20090605", 
+            "time": "8", 
+            "reading/Value": "100", 
+            "comments": "fwqerqwr"
+        }
+    ], 
+    "familyHistory": [
+        {
+            "source": "patient", 
+            "familyMember": "Daughter", 
+            "type": "Maternal", 
+            "dob": "1/1/1994", 
+            "dod": "", 
+            "age": "31"
+        }, 
+        {
+            "type": "Allergy", 
+            "description": "Dyes"
+        }, 
+        {
+            "type": "Condition", 
+            "description": "Diabetes, Type 2"
+        }, 
+        {
+            "description": "Skin Cancer", 
+            "familyMember": "Brother", 
+            "type": "", 
+            "dob": "4/4/2012", 
+            "dod": "", 
+            "age": ""
+        }, 
+        {
+            "type": "Allergy", 
+            "description": "Chemotherapy"
+        }
+    ], 
+    "medications": [
+        {
+            "source": "patient", 
+            "drugName": "Abacavir TAB 300MG", 
+            "supply": "60 Every 1 Month", 
+            "origDrugEntry": "Abacavir"
+        }, 
+        {
+            "drugName": "Abilify Maintena INJ 300MG", 
+            "supply": "1 X Vial Every 1 Month", 
+            "origDrugEntry": "Abilify Maintena"
+        }, 
+        {
+            "drugName": "Amlodipine Besylate TAB 10MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Amlodipine Besylate"
+        }, 
+        {
+            "drugName": "Amlodipine Besylate TAB 2.5MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Amlodipine Besylate"
+        }, 
+        {
+            "drugName": "Amlodipine Besylate TAB 5MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Amlodipine Besylate"
+        }, 
+        {
+            "drugName": "Amlodipine Besylate/Atorvastatin Calcium TAB 10-10MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Amlodipine Besylate/Atorvastatin Calcium"
+        }, 
+        {
+            "drugName": "Amlodipine Besylate/Atorvastatin Calcium TAB 10-20MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Amlodipine Besylate/Atorvastatin Calcium"
+        }, 
+        {
+            "drugName": "Amlodipine Besylate/Atorvastatin Calcium TAB 10-40MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Amlodipine Besylate/Atorvastatin Calcium"
+        }, 
+        {
+            "drugName": "Amlodipine Besylate/Atorvastatin Calcium TAB 10-80MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Amlodipine Besylate/Atorvastatin Calcium"
+        }, 
+        {
+            "drugName": "Amlodipine Besylate/Atorvastatin Calcium TAB 5-10MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Caduet"
+        }, 
+        {
+            "drugName": "Amlodipine Besylate/Atorvastatin Calcium TAB 5-80MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Amlodipine Besylate/Atorvastatin Calcium"
+        }, 
+        {
+            "drugName": "Androgel Pump GEL 1.62%", 
+            "supply": "2 X 75GM Pump Bottle (sold in a package of 1 pump bottle) Every 1 Month", 
+            "origDrugEntry": "Androgel Pump"
+        }, 
+        {
+            "drugName": "Drospirenone/Ethinyl Estradiol TAB 3-0.03MG", 
+            "supply": "28 Every 1 Month", 
+            "origDrugEntry": "Yasmin 28"
+        }, 
+        {
+            "drugName": "Gabapentin CAP 100MG", 
+            "supply": "90 Every 1 Month", 
+            "origDrugEntry": "Gabapentin"
+        }, 
+        {
+            "drugName": "Gabapentin SOL 250/5ML", 
+            "supply": "1 X 470ML Bottle Every 1 Month", 
+            "origDrugEntry": "Gabapentin"
+        }, 
+        {
+            "drugName": "Jakafi TAB 10MG", 
+            "supply": "60 Every 1 Month", 
+            "origDrugEntry": "Jakafi"
+        }, 
+        {
+            "drugName": "Losartan Potassium/Hydrochlorothiazide TAB 100-25", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Losartan Potassium/Hydrochlorothiazide"
+        }, 
+        {
+            "drugName": "Montelukast Sodium TAB 10MG", 
+            "supply": "90 Every 3 Month", 
+            "origDrugEntry": "Montelukast Sodium"
+        }, 
+        {
+            "drugName": "Omeprazole CAP 20MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Omeprazole"
+        }, 
+        {
+            "drugName": "Rabavert INJ", 
+            "supply": "2 X Vial (sold in a package of 2) Every 12 Month", 
+            "origDrugEntry": "Rabavert"
+        }, 
+        {
+            "drugName": "Tabloid TAB 40MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Tabloid"
+        }, 
+        {
+            "drugName": "Vagifem TAB 10MCG", 
+            "supply": "8 Every 1 Month", 
+            "origDrugEntry": "Vagifem"
+        }, 
+        {
+            "drugName": "Zafirlukast TAB 20MG", 
+            "supply": "60 Every 1 Month", 
+            "origDrugEntry": "Zafirlukast"
+        }, 
+        {
+            "drugName": "Zaleplon CAP 10MG", 
+            "supply": "30 Every 1 Month", 
+            "origDrugEntry": "Zaleplon"
+        }
+    ], 
+    "preventiveServices": [
+        {
+            "source": "MyMedicare.gov", 
+            "description": "ABDOMINAL AORTIC ANEURYSM", 
+            "nextEligibleDate": "20140201", 
+            "lastDateOfService": ""
+        }, 
+        {
+            "description": "CARDIOVASCULAR", 
+            "nextEligibleDate": "20140201", 
+            "lastDateOfService": ""
+        }, 
+        {
+            "description": "PPV", 
+            "nextEligibleDate": "20140201", 
+            "lastDateOfService": ""
+        }, 
+        {
+            "description": "PROSTATE", 
+            "nextEligibleDate": "20140201", 
+            "lastDateOfService": "20120326"
+        }, 
+        {
+            "description": "PSA", 
+            "nextEligibleDate": "20140201", 
+            "lastDateOfService": "20120326"
+        }, 
+        {
+            "description": "ANNUAL WELLNESS VISIT", 
+            "nextEligibleDate": "20150201", 
+            "lastDateOfService": ""
+        }, 
+        {
+            "description": "ALCOHOL MISUSE SCREENING", 
+            "nextEligibleDate": "", 
+            "lastDateOfService": ""
+        }, 
+        {
+            "description": "CARDIOVASCULAR DISEASE (BEHAVIORAL THERAPY)", 
+            "nextEligibleDate": "", 
+            "lastDateOfService": ""
+        }, 
+        {
+            "description": "COLORECTAL", 
+            "nextEligibleDate": "", 
+            "lastDateOfService": "20110421"
+        }, 
+        {
+            "description": "DEPRESSION SCREENING", 
+            "nextEligibleDate": "", 
+            "lastDateOfService": ""
+        }, 
+        {
+            "description": "DIABETES", 
+            "nextEligibleDate": "", 
+            "lastDateOfService": "20120521"
+        }, 
+        {
+            "description": "HIGH INTENSITY BEHAVIORAL COUNSELING", 
+            "nextEligibleDate": "", 
+            "lastDateOfService": ""
+        }, 
+        {
+            "description": "OBESITY COUNSELING", 
+            "nextEligibleDate": "", 
+            "lastDateOfService": ""
+        }, 
+        {
+            "description": "PHYSICAL", 
+            "nextEligibleDate": "", 
+            "lastDateOfService": ""
+        }
+    ], 
+    "providers": [
+        {
+            "source": "patient", 
+            "providerName": "ANGELO SCOTTI", 
+            "providerAddress": "180 WHITE RD LITTLE SILVER, NJ 07739", 
+            "type": "Physician & Other Healthcare Professional", 
+            "specialty": "", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "DOUGLAS KNOX", 
+            "providerAddress": "1104 E 23RD ST LAWRENCE, KS 66046", 
+            "type": "Physician & Other Healthcare Professional", 
+            "specialty": "", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "SIAMAK RASSADI", 
+            "providerAddress": "1331 N 7TH ST PHOENIX, AZ 85006", 
+            "type": "Physician & Other Healthcare Professional", 
+            "specialty": "Cardiac Electrophysiology,Cardiovascular Disease (Cardiology)", 
+            "medicareProvider": "May Accept Medicare"
+        }, 
+        {
+            "providerName": "PETER LEAVITT", 
+            "providerAddress": "2965 NECONNERS AVE BEND, OR 97701", 
+            "type": "Physician & Other Healthcare Professional", 
+            "specialty": "", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "JOHN KENNEDY", 
+            "providerAddress": "8888 KEYSTONE XING INDIANAPOLIS, IN 46240", 
+            "type": "Physician & Other Healthcare Professional", 
+            "specialty": "", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "REBECCA KELLY", 
+            "providerAddress": "7250 CLEARVISTA DR INDIANAPOLIS, IN 46256", 
+            "type": "Physician & Other Healthcare Professional", 
+            "specialty": "Addiction Medicine", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "RILEY HOSPITAL - PEDS DIALYSIS", 
+            "providerAddress": "705 RILEY HOSPITAL DRIVE INDIANAPOLIS, IN 46202", 
+            "type": "Dialysis Facility", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "FMC - SHADELAND STATION", 
+            "providerAddress": "7155 SHADELAND STATION STE 130 INDIANAPOLIS, IN 46256", 
+            "type": "Dialysis Facility", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "IU HEALTH - HOME DIALYSIS", 
+            "providerAddress": "8803 N. MERIDIAN ST., STE 150 INDIANAPOLIS, IN 46260", 
+            "type": "Dialysis Facility", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "MESA VISTA OF BOULDER", 
+            "providerAddress": "2121 MESA DRIVE BOULDER, CO 80304", 
+            "type": "Nursing Home", 
+            "specialty": "", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "FAIRBANKS", 
+            "providerAddress": "8102 CLEARVISTA PARKWAY INDIANAPOLIS, IN 46256", 
+            "type": "Hospital", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "ALLIANCE HOME HEALTH SERVICES INC", 
+            "providerAddress": "9615 N COLLEGE AVE INDIANAPOLIS, IN 46280", 
+            "type": "Home Health", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "THE VIRGINIAN", 
+            "providerAddress": "9229 ARLINGTON BLVD FAIRFAX, VA 22031", 
+            "type": "Nursing Home", 
+            "specialty": "", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "KINDRED TRANSITIONAL CARE & REHAB-ALLISON POINTE", 
+            "providerAddress": "5226 E 82ND ST INDIANAPOLIS, IN 46250", 
+            "type": "Nursing Home", 
+            "specialty": "", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "INDIANA HEART HOSPITAL THE", 
+            "providerAddress": "8075 N SHADELAND AVE INDIANAPOLIS, IN 46250", 
+            "type": "Hospital", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "COMMUNITY HOSPITAL NORTH", 
+            "providerAddress": "7150 CLEARVISTA DR INDIANAPOLIS, IN 46256", 
+            "type": "Hospital", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "FORUM AT THE CROSSING", 
+            "providerAddress": "8505 WOODFIELD CROSSING BLVD INDIANAPOLIS, IN 46240", 
+            "type": "Nursing Home", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "BEAUMONT HOSPITAL, TROY", 
+            "providerAddress": "44201 DEQUINDRE ROAD TROY, MI 48085", 
+            "type": "Hospital", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "DAVITA - EAGLE HIGHLANDS", 
+            "providerAddress": "6925 SHORE TERRACE INDIANAPOLIS, IN 46254", 
+            "type": "Dialysis Facility", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "FMC - CARMEL", 
+            "providerAddress": "12400 NORTH MERIDIAN ST., STE 200 CARMEL, IN 46032", 
+            "type": "Dialysis Facility", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "DSI - NW INDIANAPOLIS RENAL CENTER", 
+            "providerAddress": "6488 CORPORATE DRIVE INDIANAPOLIS, IN 46268", 
+            "type": "Dialysis Facility", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "GEORGE WASHINGTON UNIV HOSPITAL", 
+            "providerAddress": "900 23RD ST NW WASHINGTON, DC 20037", 
+            "type": "Hospital", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "DAVITA - CARMEL HEALTH AND LIVING", 
+            "providerAddress": "118 MEDICAL DRIVE, SUITE 114 CARMEL, IN 46032", 
+            "type": "Dialysis Facility", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "FMC-INDIANAPOLIS MIDTOWN", 
+            "providerAddress": "3007 DR ANDREW J BROWN AVENUE INDIANAPOLIS, IN 46205", 
+            "type": "Dialysis Facility", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "MILLER'S SENIOR LIVING COMMUNITY", 
+            "providerAddress": "8400 CLEARVISTA PL INDIANAPOLIS, IN 46256", 
+            "type": "Nursing Home", 
+            "specialty": "", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "TEST QT", 
+            "providerAddress": "COEBURN, VA 24230", 
+            "type": "Home Health", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "ADVANCED HOME CARE, INC", 
+            "providerAddress": "165 PLAZA ROAD, SUITE 20 WISE, VA 24293", 
+            "type": "Home Health", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "TEST NHC QT", 
+            "providerAddress": "0 24230", 
+            "type": "Nursing Home", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }, 
+        {
+            "providerName": "HERITAGE HALL WISE", 
+            "providerAddress": "9434 COEBURN MOUNTAIN ROAD WISE, VA 24293", 
+            "type": "Nursing Home", 
+            "specialty": "", 
+            "medicareProvider": "Yes"
+        }, 
+        {
+            "providerName": "QT JAN 15 TEST", 
+            "providerAddress": "121 HOME STREET COEBURN, VA 24230", 
+            "type": "Hospital", 
+            "specialty": "", 
+            "medicareProvider": "Not Available"
+        }
+    ], 
+    "pharmacies": [
+        {
+            "source": "patient", 
+            "pharmacyName": "Castleton Integrative Health 8208 Allisonville Rd Indianapolis, IN 46250", 
+            "pharmacyPhone": "317-849-1222"
+        }
+    ], 
+    "insurance": [], 
+    "category": {
+        "source": "MyMedicare.gov", 
+        "mspType": "", 
+        "policyNumber": "30002", 
+        "insurerName": "UNITEDHEALTH GROUP", 
+        "insurerAddress": "601 OFFICE CENTER DRIVE FORT WASHINGTON, PA 19034", 
+        "effectiveDate": "19841001", 
+        "terminationDate": ""
+    }, 
+    "claims": {
+        "renderingProviderNpi": ""
+    }
+}
