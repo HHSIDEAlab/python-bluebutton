@@ -17,9 +17,10 @@ import os, sys
 import collections
 from cms_parser_utilities import *
 
-
 from file_def_cms import SEG_DEF
 from cms_parser_utilities import *
+
+DBUG = True
 
 # divider = "--------------------------------"
 divider = "----------"
@@ -161,83 +162,140 @@ def parse_lines(ln_list):
     # Use SEG_DEF to control JSON construction
 
     # set variables
-    DBUG = False
 
     ln = {}
     ln_ctrl = {}
 
-    k = ""
-    v = ""
-    lk_up = ""
-    current_segment = ""
+    hdr_lk_up = ""
+    seg_match_exact = True
+    # Pass to get_segment for an exact match
 
     match_ln = [None, None, None, None, None, None, None, None, None, None]
 
     segment_dict = collections.OrderedDict()
     out_dict = collections.OrderedDict()
     # Set starting point in list
+
+    if DBUG:
+        print "Initializing Working Storage Arrays...",
+
+    block_limit = 9
+    block = collections.OrderedDict()
+    n = 0
+    while n <= block_limit:
+        block[n] = collections.OrderedDict()
+        n += 1
+
+    if DBUG:
+        print "Done."
+
     i = 0
 
-    # while i <= 30: #(len(ln_list)-1):
+    #while i <= 44: #(len(ln_list)-1):
     while i <= (len(ln_list) - 1):
         # process each line in the list until end of list
 
-        ln = get_line_dict(ln_list,i)
+        ln = get_line_dict(ln_list, i)
 
-        line = ln["line"].split(":")
-        if len(line) > 1:
-            # Assign line[0] to k and format as headlessCamel
-            k = headlessCamel(line[0])
-            v = line[1].lstrip()
-            v = v.rstrip()
+        wrk_lvl = ln["level"]
 
-            if DBUG:
-                print i, "ln:", ln, "k:", k, "v:", v
+        match_ln = update_match(wrk_lvl,
+                                headlessCamel(ln["line"]),
+                                match_ln)
+
+        match_hdr = combined_match(wrk_lvl, match_ln)
+
+        hdr_lk_up = headlessCamel(ln["line"])
+
+        if DBUG:
+            do_DBUG("Line(i):", i, "ln:", ln,
+                    "hdr_lk_up:", hdr_lk_up)
 
         # lookup ln in SEG_DEF
-        lk_up = headlessCamel(ln["line"])
-        if find_segment(lk_up):
 
-            ln_ctrl = get_segment(lk_up)
-            if DBUG:
-                print i, "ln_ctrl-match:", ln_ctrl
+        if find_segment(hdr_lk_up, seg_match_exact):
 
+            ln_ctrl = get_segment(hdr_lk_up, seg_match_exact)
+
+            wrk_lvl = adjusted_level(ln["level"], match_ln)
             # We found a match in SEG_DEF
             # So we use SEG_DEF to tailor how we write the line and
             # section since a SEG_DEF typically defines special processing
 
+            if DBUG:
+                do_DBUG("CALLING PROCESS_HEADER===========================",
+                        "i:", i,
+                        "Match_ln:", match_ln,
+                        "ln-ctrl:", to_json(ln_ctrl),
+                        "ln_lvl:", ln["level"],
+                        "wrk_lvl:", wrk_lvl)
 
-            current_segment = ln_ctrl["name"]
 
-            print "================"
-            print "Match:", match_ln
-            print "ln-ctrl:", ln_ctrl
-            print "================"
+            i, sub_seg, seg_name = process_header(i, ln_ctrl,
+                                                  wrk_lvl,
+                                                  ln_list)
 
-            i, sub_seg, seg_name = process_segment(i, ln_ctrl, match_ln, ln["level"], ln_list)
+            # Now load the info returned from process_header in out_dict
+            out_dict[seg_name] = sub_seg[seg_name]
 
-            print "segment returned", seg_name, ":", sub_seg
-            #print "-------------"
-            #print "Returned with ctr-i:", i
-            #print "segment_dict:", segment_dict
-            #print "-------------"
-            out_dict[seg_name] = sub_seg
+            if DBUG:
+                do_DBUG("=============== RETURNED FROM PROCESS_HEADER",
+                        "seg_name:", seg_name,
+                        "sub_seg:", to_json(sub_seg))
 
-            # if DBUG:
-            #    print "Out:", current_segment, " =", out_dict[current_segment]
+            i, block_seg, block_name = process_subseg(i + 1,
+                                                 ln_ctrl,
+                                                 match_ln,
+                                                 wrk_lvl,
+                                                 ln_list,
+                                                 sub_seg,
+                                                 seg_name)
 
-        else:
-            # No special instructions
-            # assume writing a string split on ":"
+            if DBUG:
+                do_DBUG("---------------- RETURNED FROM PROCESS_BLOCK",
+                        "ctr: i:", i, "block_name:",block_name,
+                        "block_seg:", to_json(block_seg))
 
-            print "Other - i:", i, "ln:", ln
-            out_dict[current_segment] = {k: v}
+            out_dict[block_name] = block_seg
+
+            if DBUG:
+                do_DBUG("out_dict["+ block_name + "]:", to_json(out_dict))
+
+
+            # if (i + 1) <= (len(ln_list) - 1):
+                # We are not passed the end of the list
+                # so increment the i counter in the call to
+                # process_segment
+
+            #    i, sub_seg, seg_name = process_segment(i + 1, ln_ctrl,
+            #                                           match_ln,
+            #                                           ln["level"],
+            #                                           ln_list)
+
+            if DBUG:
+                do_DBUG("============================",
+                        "seg_name:", seg_name,
+                        "segment returned:", sub_seg,
+                        "Returned with counter-i:", i,
+                        "----------------------------",
+                        "out_dict[" + seg_name + "]",
+                        to_json(out_dict[seg_name]),
+                        "block_name:", block_name,
+                        "block_seg:", block_seg)
+
+
+        if DBUG:
+            do_DBUG("====================END of LOOP",
+                    "line number(i):", i,
+                    "out_dict", to_json(out_dict),
+                    "===============================")
 
         # increment line counter
         i += 1
 
     if DBUG:
-        print "End of list "
+        do_DBUG("End of list:", i,
+                "out_dict", to_json(out_dict))
 
     return out_dict
 
@@ -380,8 +438,7 @@ def cms_file_parse2(inPath):
                 line_type = "Body"
 
             else:
-                # TODO: Convert date fields to ISO8601 format
-                # TODO: Test for date field using "date" in Key
+
 
                 line_type = "Body"
 
@@ -649,9 +706,6 @@ def set_header_line(hl):
     # flip header_line value. received as hl (True or False)
 
         return (not hl)
-
-
-
 
 
 def multi_item(seg):
