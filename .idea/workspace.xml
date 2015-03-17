@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d0eb5c7-8b2e-4184-9d16-d3b589a2ad3a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bluebutton/usa_states.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.text_out_json.txt.swp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/text_out_json.txt:" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/cms_parser.py" afterPath="$PROJECT_DIR$/bluebutton/cms_parser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" afterPath="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/file_def_cms.py" afterPath="$PROJECT_DIR$/bluebutton/file_def_cms.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -58,13 +54,13 @@
       <file leaf-file-name="cms_parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="3360">
-              <caret line="707" column="23" selection-start-line="707" selection-start-column="23" selection-end-line="707" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3360">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="e#172#183#0" expanded="true" />
-                <element signature="e#830#4456#0" expanded="false" />
-                <element signature="e#9165#18716#0" expanded="false" />
-                <element signature="e#18750#24540#0" expanded="false" />
+                <element signature="e#831#4457#0" expanded="false" />
+                <element signature="e#9166#18717#0" expanded="false" />
+                <element signature="e#18751#24541#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -73,20 +69,25 @@
       <file leaf-file-name="cms_parser_utilities.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49749583" vertical-offset="3002" max-vertical-offset="14265">
-              <caret line="251" column="55" selection-start-line="251" selection-start-column="55" selection-end-line="251" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.33333334" vertical-offset="2561" max-vertical-offset="17550">
+              <caret line="217" column="0" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
               <folding>
                 <element signature="e#122#168#0" expanded="true" />
                 <element signature="e#370#1378#0" expanded="false" />
-                <element signature="e#12598#26277#0" expanded="false" />
-                <element signature="e#26356#38630#0" expanded="false" />
-                <element signature="e#38664#39101#0" expanded="false" />
-                <element signature="e#39145#39703#0" expanded="false" />
-                <element signature="e#39749#40263#0" expanded="false" />
-                <element signature="e#40305#41140#0" expanded="false" />
-                <element signature="e#41185#41752#0" expanded="false" />
-                <element signature="e#45399#45713#0" expanded="false" />
+                <element signature="e#17463#31142#0" expanded="false" />
+                <element signature="e#31221#43495#0" expanded="false" />
+                <element signature="e#55256#58778#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="file_def_cms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bluebutton/file_def_cms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="2190">
+              <caret line="80" column="21" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -123,8 +124,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/bluebutton/bbp.py" />
         <option value="$PROJECT_DIR$/bluebutton/usa_states.py" />
-        <option value="$PROJECT_DIR$/bluebutton/file_def_cms.py" />
         <option value="$PROJECT_DIR$/bluebutton/cms_parser.py" />
+        <option value="$PROJECT_DIR$/bluebutton/file_def_cms.py" />
         <option value="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" />
       </list>
     </option>
@@ -133,7 +134,7 @@
     <option name="x" value="2074" />
     <option name="y" value="180" />
     <option name="width" value="1080" />
-    <option name="height" value="745" />
+    <option name="height" value="831" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -158,7 +159,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -193,6 +193,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -349,7 +350,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2074" y="180" width="1080" height="745" extended-state="0" />
+    <frame x="2074" y="180" width="1080" height="831" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -364,13 +365,13 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -416,13 +417,74 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="3360">
+          <caret line="707" column="23" selection-start-line="707" selection-start-column="23" selection-end-line="707" selection-end-column="23" />
+          <folding>
+            <element signature="e#172#183#0" expanded="true" />
+            <element signature="e#831#4457#0" expanded="false" />
+            <element signature="e#9166#18717#0" expanded="false" />
+            <element signature="e#18751#24541#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="27135">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#122#168#0" expanded="true" />
+            <element signature="e#370#1378#0" expanded="false" />
+            <element signature="e#17463#31142#0" expanded="false" />
+            <element signature="e#31221#43495#0" expanded="false" />
+            <element signature="e#55256#58778#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bluebutton/usa_states.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1005" max-vertical-offset="1095">
+          <caret line="67" column="1" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlueButtonText-2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="31845">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bluebutton/bbp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="975" max-vertical-offset="1185">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bluebutton/parse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="9015">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
+          <folding>
+            <element signature="e#58#69#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2880">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#830#4456#0" expanded="false" />
-            <element signature="e#9165#18716#0" expanded="false" />
-            <element signature="e#18750#24540#0" expanded="false" />
+            <element signature="e#831#4457#0" expanded="false" />
+            <element signature="e#9166#18717#0" expanded="false" />
+            <element signature="e#18751#24541#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -434,14 +496,9 @@
           <folding>
             <element signature="e#122#168#0" expanded="true" />
             <element signature="e#370#1378#0" expanded="false" />
-            <element signature="e#12598#26277#0" expanded="false" />
-            <element signature="e#26356#38630#0" expanded="false" />
-            <element signature="e#38664#39101#0" expanded="false" />
-            <element signature="e#39145#39703#0" expanded="false" />
-            <element signature="e#39749#40263#0" expanded="false" />
-            <element signature="e#40305#41140#0" expanded="false" />
-            <element signature="e#41185#41752#0" expanded="false" />
-            <element signature="e#45399#45713#0" expanded="false" />
+            <element signature="e#17463#31142#0" expanded="false" />
+            <element signature="e#31221#43495#0" expanded="false" />
+            <element signature="e#55256#58778#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -486,9 +543,9 @@
           <caret line="214" column="20" selection-start-line="214" selection-start-column="20" selection-end-line="214" selection-end-column="20" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#830#4456#0" expanded="false" />
-            <element signature="e#9165#18716#0" expanded="false" />
-            <element signature="e#18750#24540#0" expanded="false" />
+            <element signature="e#831#4457#0" expanded="false" />
+            <element signature="e#9166#18717#0" expanded="false" />
+            <element signature="e#18751#24541#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -500,14 +557,9 @@
           <folding>
             <element signature="e#122#168#0" expanded="true" />
             <element signature="e#370#1378#0" expanded="false" />
-            <element signature="e#12598#26277#0" expanded="false" />
-            <element signature="e#26356#38630#0" expanded="false" />
-            <element signature="e#38664#39101#0" expanded="false" />
-            <element signature="e#39145#39703#0" expanded="false" />
-            <element signature="e#39749#40263#0" expanded="false" />
-            <element signature="e#40305#41140#0" expanded="false" />
-            <element signature="e#41185#41752#0" expanded="false" />
-            <element signature="e#45399#45713#0" expanded="false" />
+            <element signature="e#17463#31142#0" expanded="false" />
+            <element signature="e#31221#43495#0" expanded="false" />
+            <element signature="e#55256#58778#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -544,9 +596,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#830#4456#0" expanded="false" />
-            <element signature="e#9165#18716#0" expanded="false" />
-            <element signature="e#18750#24540#0" expanded="false" />
+            <element signature="e#831#4457#0" expanded="false" />
+            <element signature="e#9166#18717#0" expanded="false" />
+            <element signature="e#18751#24541#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -591,9 +643,9 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#830#4456#0" expanded="false" />
-            <element signature="e#9165#18716#0" expanded="false" />
-            <element signature="e#18750#24540#0" expanded="false" />
+            <element signature="e#831#4457#0" expanded="false" />
+            <element signature="e#9166#18717#0" expanded="false" />
+            <element signature="e#18751#24541#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -611,13 +663,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="31845">
           <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1091703" vertical-offset="0" max-vertical-offset="687">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -655,42 +700,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bluebutton/file_def_cms.py">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16759777" vertical-offset="150" max-vertical-offset="2190">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.12479201" vertical-offset="0" max-vertical-offset="601">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="286" max-vertical-offset="3360">
-          <caret line="707" column="23" selection-start-line="707" selection-start-column="23" selection-end-line="707" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3360">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#830#4456#0" expanded="false" />
-            <element signature="e#9165#18716#0" expanded="false" />
-            <element signature="e#18750#24540#0" expanded="false" />
+            <element signature="e#831#4457#0" expanded="false" />
+            <element signature="e#9166#18717#0" expanded="false" />
+            <element signature="e#18751#24541#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bluebutton/file_def_cms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="2190">
+          <caret line="80" column="21" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49749583" vertical-offset="3002" max-vertical-offset="14265">
-          <caret line="251" column="55" selection-start-line="251" selection-start-column="55" selection-end-line="251" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="2561" max-vertical-offset="17550">
+          <caret line="217" column="0" selection-start-line="217" selection-start-column="0" selection-end-line="217" selection-end-column="0" />
           <folding>
             <element signature="e#122#168#0" expanded="true" />
             <element signature="e#370#1378#0" expanded="false" />
-            <element signature="e#12598#26277#0" expanded="false" />
-            <element signature="e#26356#38630#0" expanded="false" />
-            <element signature="e#38664#39101#0" expanded="false" />
-            <element signature="e#39145#39703#0" expanded="false" />
-            <element signature="e#39749#40263#0" expanded="false" />
-            <element signature="e#40305#41140#0" expanded="false" />
-            <element signature="e#41185#41752#0" expanded="false" />
-            <element signature="e#45399#45713#0" expanded="false" />
+            <element signature="e#17463#31142#0" expanded="false" />
+            <element signature="e#31221#43495#0" expanded="false" />
+            <element signature="e#55256#58778#0" expanded="false" />
           </folding>
         </state>
       </provider>

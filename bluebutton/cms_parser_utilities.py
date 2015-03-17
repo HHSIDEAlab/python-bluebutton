@@ -76,13 +76,17 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
     seg_type = check_type(seg[seg_name])
     end_segment = False
     wrk_ln = strt_ln
+
     wrk_seg_def = {}
+
     wrk_ln_lvl = strt_lvl
     wrk_ln_head = False
     kvs = {"k": "", "v": "", "source": ""}
     wrk_segment = seg_name
     multi = key_is("multi", ln_control, "TRUE")
 
+    # Update match_ln with headers name from SEG_DEF (ie. ln_control)
+    match_ln = update_match(strt_lvl, seg_name, match_ln)
 
     save_to = seg[seg_name]
     print "pre-load the data passed in to ", seg_type, "  <<<<<<<<<<<<<<<<"
@@ -135,7 +139,8 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                     "wrk_lvl:", wrk_lvl,
                     "match_ln:", match_ln,
                     "match_hdr:", match_hdr,
-                    "is_line_seg_def:", is_line_seg_def)
+                    "is_line_seg_def:", is_line_seg_def,
+                    "wrk_seg_def:", wrk_seg_def)
 
         if is_line_seg_def:
             # We found an entry in SEG_DEF using match_hdr
@@ -149,6 +154,15 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
             # we also need to check the lvl assigned to the line from
             # SEG_DEF
             wrk_ln_lvl = wrk_seg_def["level"]
+            multi = key_is("multi", wrk_seg_def, "TRUE")
+
+            if DBUG:
+                do_DBUG("is_line_seg_def:", is_line_seg_def,
+                        "wrk-seg_def:", to_json(wrk_seg_def),
+                        "match_ln:", match_ln,
+                        "wrk_ln:", wrk_ln,
+                        "strt_ln:", strt_ln,
+                        "current_line type:", current_line["type"])
 
             if (wrk_ln != strt_ln) and (is_head(current_line)):
                 # we found a new header
@@ -178,10 +192,12 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                                 "processing:", to_json(current_line),
                                 "with wrk_seg_def:", to_json(wrk_seg_def))
 
-            if DBUG:
-                do_DBUG("wrk_lvl:", wrk_lvl, "Strt_lvl:", strt_lvl,
-                        "wrk_ln:", wrk_ln)
+            # if DBUG:
+            #    do_DBUG("wrk_lvl:", wrk_lvl, "Strt_lvl:", strt_lvl,
+            #            "wrk_ln:", wrk_ln)
 
+        else:
+            wrk_seg_def = ln_control
         # Get key and value
         kvs = assign_key_value(current_line["line"], kvs)
 
@@ -199,16 +215,15 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
         if not end_segment:
             # We need to process the line
 
-            if key_is_in("pre", wrk_seg_def):
-                # assign "pre" values from SEG_DEF
-                # to work_add_dict
-                wrk_segment, process_dict = segment_prefill(wrk_seg_def)
+            # assign "pre" values from SEG_DEF
+            # to work_add_dict
+            wrk_segment, process_dict = segment_prefill(wrk_seg_def, process_dict)
 
-                if DBUG:
-                    do_DBUG("Just ran segment_prefill",
-                            "wrk_segment:", wrk_segment,
-                            "process_dict:", to_json(process_dict),
-                            "process_list:", process_list)
+            if DBUG:
+                do_DBUG("Just ran segment_prefill",
+                        "wrk_segment:", wrk_segment,
+                        "process_dict:", to_json(process_dict),
+                        "process_list:", process_list)
 
             # Do we need to override the key using field or name
             # from SEG_DEF?
@@ -258,9 +273,14 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
             if multi:
                 print "******************************"
                 print "MULTI:", multi
-                if key_is("type", ln_control, "LIST"):
-                    if key_is("sub_type", ln_control, "DICT"):
-                        if kvs["k"] in current_line:
+                if key_is("type", wrk_seg_def, "LIST"):
+                    if key_is("sub_type", wrk_seg_def, "DICT"):
+                        print "LIST and sub_type: DICT"
+                        print "save_to:", save_to
+                        print "process_dict:", process_dict
+                        print "process_list:", process_list
+                        print "kvs:", kvs
+                        if kvs["k"] in process_dict:
                             # write the source first
                             process_dict = write_source(kvs, process_dict)
                             # Append to the list
@@ -269,27 +289,90 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                             # add the new item
                             process_dict = collections.OrderedDict()
                             process_dict[kvs["k"]] = kvs["v"]
-                elif key_is("type", ln_control, "DICT"):
-                    if key_is("sub_type", ln_control, "DICT"):
+                        else:
+                            process_dict[kvs["k"]] = kvs["v"]
+                    else:
+                        if key_is_in("sub_type", wrk_seg_def):
+                            print "wrk_seg_def sub_type:", \
+                                wrk_seg_def["sub_type"]
 
+                        process_dict[kvs["k"]] = [kvs["v"]]
+                        print "process_dict:", process_dict
+                        save_to = write_save_to(save_to, process_dict)
+
+                elif key_is("type", wrk_seg_def, "DICT"):
+                    print "wrk-seg_def:", wrk_seg_def
+                    if key_is("sub_type", wrk_seg_def, "DICT"):
+                        print "DICT and sub_type: DICT"
                         if DBUG:
                             do_DBUG("WHAT GETS WRITTEN HERE?",
                             "ln_control:", to_json(ln_control),
+                            "wrk_seg_def:", to_json(wrk_seg_def),
                             "current_line:", to_json(current_line),
                             "process_dict:", to_json(process_dict),
                             "process_list:", process_list)
+                    else:
+                        print "No sub_type"
+                        if key_is_in("sub_type", wrk_seg_def):
+                            print "type: DICT and sub_type:", \
+                                wrk_seg_def["sub_type"]
+                        else:
+                            print "writing to process_dict:", process_dict
+                            if key_is_in_subdict(kvs["k"], process_dict):
+                                # write the source first
+                                print "roll a new process_dict"
+                                process_dict = write_source(kvs, process_dict)
+                                # Append to the list
+                                process_list.append(process_dict)
+                                # Now clear down the dict and
+                                # add the new item
+                                process_dict = collections.OrderedDict()
+                                process_dict[kvs["k"]] = kvs["v"]
 
+                            print "didn't find:", kvs["k"]
+
+                            if key_is_in("dict_name",wrk_seg_def):
+                                print "got dict_name"
+                                if not key_is_in(wrk_seg_def["dict_name"], process_dict):
+                                    print "no dict_name"
+                                    process_dict[kvs["k"]] = kvs["v"]
+                                else:
+                                    print "updating process_dict:", process_dict
+                                    print "with kvs:", kvs
+                                    process_dict[wrk_seg_def["dict_name"]] =kvs["v"]
+                            else:
+                                print "didn't get dict_name"
+
+                else:
+                    if key_is_in("type", wrk_seg_def):
+                        print "wrk-seg_def:", wrk_seg_def["type"]
 
             else: # not multi
-                if key_is("type", ln_control, "DICT"):
+                if key_is("type", wrk_seg_def, "DICT"):
                     print "Multi:", multi, " and type: DICT"
                     if kvs["k"].upper() == "COMMENTS" and \
                             key_is_in("comments", save_to):
                             pass
                     else:
-                        save_to[kvs["k"]] = kvs["v"]
+                        if not is_line_seg_def:
+                            # We have no special processing rules for
+                            # this line
+                            print "is_line_seg_def:", is_line_seg_def
+                            save_to[kvs["k"]] = kvs["v"]
 
-                if key_is("type", ln_control, "LIST"):
+                        elif key_is_in("dict_name", wrk_seg_def):
+                            print "processing:", wrk_seg_def["dict_name"], kvs
+                            print "save_to:", save_to
+                            if key_is_in(wrk_seg_def["dict_name"], save_to):
+                                save_to[wrk_seg_def["dict_name"]].update({kvs["k"]:
+                                                                          kvs["v"]})
+                            else:
+                                save_to[wrk_seg_def["dict_name"]] = \
+                                    {kvs["k"]: kvs["v"]}
+                        else:
+                            save_to[kvs["k"]] = kvs["v"]
+
+                if key_is("type", wrk_seg_def, "LIST"):
                     print "Multi:", multi, " and type: LIST"
                     print "save_to:", to_json(save_to)
                     save_to = update_save_to(save_to, kvs, "k")
@@ -300,6 +383,7 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                             "WHAT GETS WRITTEN HERE?",
                             "MULTI:", multi,
                             "ln_control:", to_json(ln_control),
+                            "wrk_seg_def:", to_json(wrk_seg_def),
                             "current_line:", to_json(current_line),
                             "process_dict:", to_json(process_dict),
                             "process_list:", process_list,
@@ -321,9 +405,17 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
 
 
     if key_is("type", ln_control, "LIST"):
-        seg[seg_name] = process_list
+        print "-------------------------"
+        if len(process_dict) > 0:
+            print "adding dict to list"
+            print ""
+            process_list.append(process_dict)
+        print "seg:", seg
+        print "adding from process_list"
+        seg[seg_name].append(process_list)
         pass
     elif key_is("type", ln_control, "DICT"):
+        print "adding from process_dict"
         seg[seg_name] = process_dict
         pass
     if DBUG:
@@ -336,6 +428,7 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                 "returning dict(current_line):", to_json(seg),
                 "from process_dict:", to_json(process_dict),
                 "from process_list:", process_list,
+
                 "<<==<<==<<==<<==<<==<<==<<==<<==<<",)
 
     return end_ln, save_to, current_segment
@@ -1047,7 +1140,7 @@ def headlessCamel(In_put):
 def update_save_to(target, src, key):
     # Test the target and update with source
 
-    DBUG = True
+    DBUG = False
 
     target_type = check_type(target)
     save_to = target
@@ -1060,7 +1153,7 @@ def update_save_to(target, src, key):
                 "with target_type:", target_type)
 
     if target_type == "DICT":
-        print save_to[key]
+        #print save_to[key]
         if check_type(save_to[key]) == "LIST":
             save_to[key] = src[key]
         else:
@@ -1235,6 +1328,34 @@ def write_comment(wrk_add_dict, kvs):
     return wrk_add_dict
 
 
+def write_save_to(save_to, pd):
+    # iterate through dict and add to save_to
+
+    """
+
+    :param save_to:
+    :param pd:
+    :return:
+    """
+    DBUG = False
+
+    print "pd:", pd
+
+    i = 0
+    for item in pd.items():
+        key = item[0]
+        #print "key:", key
+        val = item[1]
+        #print "item:", item[1]
+        save_to[key] = item[1]
+
+    if DBUG:
+        do_DBUG("pd:", pd,
+                "save_to:", to_json(save_to))
+
+    return save_to
+
+
 def write_segment(itm, sgmnt, sgmnt_dict, ln_list, multi):
     # Write the segment to items dict
 
@@ -1266,7 +1387,7 @@ def write_source(kvs, dt):
     return dt
 
 
-def segment_prefill(seg):
+def segment_prefill(wrk_seg_def, segment_dict):
     # Receive the Segment information for a header line
     # get the seg["pre"] and iterate through the dict
     # assigning to segment_dict
@@ -1274,16 +1395,25 @@ def segment_prefill(seg):
 
     DBUG = False
 
-    segment_dict = collections.OrderedDict()
+    if len(segment_dict)>0:
+
+        print "segment_dict:", segment_dict, "NOT EMPTY"
+
+        pass
+    else:
+        segment_dict = collections.OrderedDict()
 
     if DBUG:
-        do_DBUG("seg", to_json(seg))
+        do_DBUG("seg", to_json(wrk_seg_def))
 
-    current_segment = seg["name"]
-    if "pre" in seg:
-        pre = seg["pre"]
-        for pi, pv in pre.iteritems():
-            segment_dict[pi] = pv
+    current_segment = wrk_seg_def["name"]
+
+    if key_is_in("pre", wrk_seg_def):
+
+        if "pre" in wrk_seg_def:
+            pre = wrk_seg_def["pre"]
+            for pi, pv in pre.iteritems():
+                segment_dict[pi] = pv
 
     if DBUG:
         do_DBUG("Current_Segment:", current_segment,
@@ -1752,7 +1882,9 @@ def setup_header(ln_ctrl,wrk_ln_dict ):
         elif ln_ctrl["type"].lower() == "dict":
             wrk_add_dict[segment_name] = collections.OrderedDict()
             if key_is_in("pre", ln_ctrl):
-                returned_segment, wrk_add_dict[segment_name] = segment_prefill(ln_ctrl)
+                returned_segment, \
+                wrk_add_dict[segment_name] = segment_prefill(ln_ctrl,
+                    {})
         else:
             wrk_add_dict[segment_name] = wrk_ln_dict["line"]
 

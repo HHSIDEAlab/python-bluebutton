@@ -20,7 +20,7 @@ from cms_parser_utilities import *
 from file_def_cms import SEG_DEF
 from cms_parser_utilities import *
 
-DBUG = True
+DBUG = False
 
 # divider = "--------------------------------"
 divider = "----------"
