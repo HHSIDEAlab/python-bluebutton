@@ -197,7 +197,9 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
             #            "wrk_ln:", wrk_ln)
 
         else:
+            # NOT is-line-seg_def
             wrk_seg_def = ln_control
+
         # Get key and value
         kvs = assign_key_value(current_line["line"], kvs)
 
@@ -281,15 +283,19 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                         print "process_list:", process_list
                         print "kvs:", kvs
                         if kvs["k"] in process_dict:
+                            print "k:", kvs["k"], " in ", process_dict
                             # write the source first
                             process_dict = write_source(kvs, process_dict)
+                            print "process_dict:", process_dict
                             # Append to the list
                             process_list.append(process_dict)
+                            print "process_list:", to_json(process_list)
                             # Now clear down the dict and
                             # add the new item
                             process_dict = collections.OrderedDict()
-                            process_dict[kvs["k"]] = kvs["v"]
+                            # process_dict[kvs["k"]] = kvs["v"]
                         else:
+                            print "kvs[k] not in process_dict", kvs, process_dict
                             process_dict[kvs["k"]] = kvs["v"]
                     else:
                         if key_is_in("sub_type", wrk_seg_def):
@@ -413,6 +419,7 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
         print "seg:", seg
         print "adding from process_list"
         seg[seg_name].append(process_list)
+        print seg[seg_name]
         pass
     elif key_is("type", ln_control, "DICT"):
         print "adding from process_dict"
@@ -430,9 +437,15 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                 "from process_list:", process_list,
 
                 "<<==<<==<<==<<==<<==<<==<<==<<==<<",)
+    # print "How long is seg:", len(seg[seg_name])
+    if len(save_to) == 1:
+        print "nothing in save_to"
+
+        save_to = seg
+        print "seg:", seg
+
 
     return end_ln, save_to, current_segment
-
 
 
 def process_block(strt_ln, ln_control, match_ln, strt_lvl,
