@@ -20,14 +20,10 @@ from cms_parser_utilities import *
 from file_def_cms import SEG_DEF
 from cms_parser_utilities import *
 
-DBUG = False
+DBUG = True
 
 # divider = "--------------------------------"
 divider = "----------"
-
-
-# TODO: define all field translations in seg[]
-# TODO: Assign level to each field. Start with base 0
 
 
 fld_tx = [{"input":"Emergency Contact","output":"emergency_contact"},
@@ -156,6 +152,7 @@ def cms_file_read(inPath):
 
     return f_lines
 
+
 def parse_lines(ln_list):
     # Receive list created in cms_file_read
     # Build the final Json dict
@@ -254,9 +251,23 @@ def parse_lines(ln_list):
             if DBUG:
                 do_DBUG("---------------- RETURNED FROM PROCESS_BLOCK",
                         "ctr: i:", i, "block_name:",block_name,
-                        "block_seg:", to_json(block_seg))
+                        "block_seg:", to_json(block_seg),
+                        )
 
-            out_dict[block_name] = block_seg
+            if check_type(block_seg) != "DICT":
+                if DBUG:
+                    do_DBUG("((((((((((((((((((",
+                            "check_type:",
+                            check_type(block_seg),
+                            "["+block_name+"]:",
+                            block_seg[0],
+                            "))))))))))))))))))")
+
+            if check_type(block_seg) == "LIST":
+                out_dict[block_name] = block_seg[0]
+            else:
+                out_dict[block_name] = block_seg
+
 
             if DBUG:
                 do_DBUG("out_dict["+ block_name + "]:", to_json(out_dict))
@@ -542,6 +553,7 @@ def cms_file_parse2(inPath):
 
     return items
 
+
 def cms_file_parse(inPath):
     # Parse a CMS BlueButton file (inPath)
     # Using a redefined Parsing process
@@ -701,7 +713,6 @@ def cms_file_parse(inPath):
     return items
 
 
-
 def set_header_line(hl):
     # flip header_line value. received as hl (True or False)
 
@@ -720,10 +731,12 @@ def multi_item(seg):
         # print "Multi:", multi
     return multi
 
+
 def build_key(mk, bi):
     # update make_key using content of build_info
     lvl = bi["level"]
     mk[lvl] = bi["name"]
+
 
 def get_header_block_level(header_block):
 

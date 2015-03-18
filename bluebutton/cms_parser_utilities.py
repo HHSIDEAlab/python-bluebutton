@@ -17,7 +17,7 @@ import six
 from file_def_cms import SEG_DEF
 from usa_states import STATES
 
-DBUG = True
+DBUG = False
 
 
 def process_header(strt_ln, ln_control, strt_lvl, ln_list):
@@ -441,7 +441,7 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
     if len(save_to) == 1:
         print "nothing in save_to"
 
-        save_to = seg
+        save_to = seg[seg_name]
         print "seg:", seg
 
 
