@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d0eb5c7-8b2e-4184-9d16-d3b589a2ad3a" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/README.rst" afterPath="$PROJECT_DIR$/README.MD" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/cms_parser.py" afterPath="$PROJECT_DIR$/bluebutton/cms_parser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" afterPath="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="python-bluebutton.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +31,8 @@
       <file leaf-file-name="bbp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bluebutton/bbp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="975" max-vertical-offset="1185">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1185">
+              <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -50,14 +50,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cms_parser.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cms_parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6131387" vertical-offset="1710" max-vertical-offset="9510">
-              <caret line="260" column="50" selection-start-line="260" selection-start-column="50" selection-end-line="260" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9510">
+              <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
               <folding>
                 <element signature="e#172#183#0" expanded="true" />
-                <element signature="e#727#4353#0" expanded="false" />
+                <element signature="e#728#4354#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -66,15 +66,25 @@
       <file leaf-file-name="cms_parser_utilities.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17745">
-              <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="230" max-vertical-offset="18030">
+              <caret line="89" column="68" selection-start-line="89" selection-start-column="68" selection-end-line="89" selection-end-column="68" />
               <folding>
                 <element signature="e#122#168#0" expanded="true" />
                 <element signature="e#371#1379#0" expanded="false" />
-                <element signature="e#17990#31669#0" expanded="false" />
-                <element signature="e#31748#44022#0" expanded="false" />
-                <element signature="e#55783#59305#0" expanded="false" />
+                <element signature="e#18866#32545#0" expanded="false" />
+                <element signature="e#32624#44898#0" expanded="false" />
+                <element signature="e#56662#60184#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.MD" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.MD">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.24087591" vertical-offset="0" max-vertical-offset="1080">
+              <caret line="11" column="63" selection-start-line="11" selection-start-column="63" selection-end-line="11" selection-end-column="63" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -122,8 +132,9 @@
         <option value="$PROJECT_DIR$/bluebutton/bbp.py" />
         <option value="$PROJECT_DIR$/bluebutton/usa_states.py" />
         <option value="$PROJECT_DIR$/bluebutton/file_def_cms.py" />
-        <option value="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" />
         <option value="$PROJECT_DIR$/bluebutton/cms_parser.py" />
+        <option value="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" />
+        <option value="$PROJECT_DIR$/README.MD" />
       </list>
     </option>
   </component>
@@ -252,6 +263,23 @@
       <option name="USE_PATTERN" value="false" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="docs" factoryName="Docutils task">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="python-bluebutton" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="" />
+      <option name="docutils_open_in_browser" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -418,7 +446,7 @@
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#727#4353#0" expanded="false" />
+            <element signature="e#728#4354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -430,9 +458,9 @@
           <folding>
             <element signature="e#122#168#0" expanded="true" />
             <element signature="e#371#1379#0" expanded="false" />
-            <element signature="e#17990#31669#0" expanded="false" />
-            <element signature="e#31748#44022#0" expanded="false" />
-            <element signature="e#55783#59305#0" expanded="false" />
+            <element signature="e#18866#32545#0" expanded="false" />
+            <element signature="e#32624#44898#0" expanded="false" />
+            <element signature="e#56662#60184#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -485,7 +513,7 @@
           <caret line="707" column="23" selection-start-line="707" selection-start-column="23" selection-end-line="707" selection-end-column="23" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#727#4353#0" expanded="false" />
+            <element signature="e#728#4354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -497,9 +525,9 @@
           <folding>
             <element signature="e#122#168#0" expanded="true" />
             <element signature="e#371#1379#0" expanded="false" />
-            <element signature="e#17990#31669#0" expanded="false" />
-            <element signature="e#31748#44022#0" expanded="false" />
-            <element signature="e#55783#59305#0" expanded="false" />
+            <element signature="e#18866#32545#0" expanded="false" />
+            <element signature="e#32624#44898#0" expanded="false" />
+            <element signature="e#56662#60184#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -544,7 +572,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#727#4353#0" expanded="false" />
+            <element signature="e#728#4354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -556,9 +584,9 @@
           <folding>
             <element signature="e#122#168#0" expanded="true" />
             <element signature="e#371#1379#0" expanded="false" />
-            <element signature="e#17990#31669#0" expanded="false" />
-            <element signature="e#31748#44022#0" expanded="false" />
-            <element signature="e#55783#59305#0" expanded="false" />
+            <element signature="e#18866#32545#0" expanded="false" />
+            <element signature="e#32624#44898#0" expanded="false" />
+            <element signature="e#56662#60184#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -603,7 +631,7 @@
           <caret line="214" column="20" selection-start-line="214" selection-start-column="20" selection-end-line="214" selection-end-column="20" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#727#4353#0" expanded="false" />
+            <element signature="e#728#4354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -615,9 +643,9 @@
           <folding>
             <element signature="e#122#168#0" expanded="true" />
             <element signature="e#371#1379#0" expanded="false" />
-            <element signature="e#17990#31669#0" expanded="false" />
-            <element signature="e#31748#44022#0" expanded="false" />
-            <element signature="e#55783#59305#0" expanded="false" />
+            <element signature="e#18866#32545#0" expanded="false" />
+            <element signature="e#32624#44898#0" expanded="false" />
+            <element signature="e#56662#60184#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -654,7 +682,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#727#4353#0" expanded="false" />
+            <element signature="e#728#4354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -699,7 +727,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#727#4353#0" expanded="false" />
+            <element signature="e#728#4354#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -724,14 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="31845">
           <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bluebutton/bbp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="500" max-vertical-offset="1185">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -769,28 +789,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
+    <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="17745">
-          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9510">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
           <folding>
-            <element signature="e#122#168#0" expanded="true" />
-            <element signature="e#371#1379#0" expanded="false" />
-            <element signature="e#17990#31669#0" expanded="false" />
-            <element signature="e#31748#44022#0" expanded="false" />
-            <element signature="e#55783#59305#0" expanded="false" />
+            <element signature="e#172#183#0" expanded="true" />
+            <element signature="e#728#4354#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser.py">
+    <entry file="file://$PROJECT_DIR$/bluebutton/bbp.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6131387" vertical-offset="1710" max-vertical-offset="9510">
-          <caret line="260" column="50" selection-start-line="260" selection-start-column="50" selection-end-line="260" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1185">
+          <caret line="26" column="8" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="230" max-vertical-offset="18030">
+          <caret line="89" column="68" selection-start-line="89" selection-start-column="68" selection-end-line="89" selection-end-column="68" />
           <folding>
-            <element signature="e#172#183#0" expanded="true" />
-            <element signature="e#727#4353#0" expanded="false" />
+            <element signature="e#122#168#0" expanded="true" />
+            <element signature="e#371#1379#0" expanded="false" />
+            <element signature="e#18866#32545#0" expanded="false" />
+            <element signature="e#32624#44898#0" expanded="false" />
+            <element signature="e#56662#60184#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.MD">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24087591" vertical-offset="0" max-vertical-offset="1080">
+          <caret line="11" column="63" selection-start-line="11" selection-start-column="63" selection-end-line="11" selection-end-column="63" />
+          <folding />
         </state>
       </provider>
     </entry>

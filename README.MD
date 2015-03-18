@@ -1,12 +1,15 @@
 Bluebutton File Format Parser
 (c.) Alan Viars - Videntity Systems Inc. - 2011
+(c.) Mark Scrimshire - CMS - 2015
+Version 0.2.1 (CMS BlueButton JSON Generator)
 
-Version 0.1.3
-
-This library is dual licensed.  It is realeased under the GPL licnese 
+This library is dual licensed.  It is released under the GPL licnese 
 agreement and under a commercial license by Videntity systems Inc.
 
+Added CMS BlueButton Parser to convert Medicare BlueButton v2.0 to 
+CMS BlueButton 3.0 JSON Format
 
+Status: experimental - still bugs in CMS JSON format generator. 
 
 Installation
 =============

@@ -20,7 +20,7 @@ from cms_parser_utilities import *
 from file_def_cms import SEG_DEF
 from cms_parser_utilities import *
 
-DBUG = True
+DBUG = False
 
 # divider = "--------------------------------"
 divider = "----------"
@@ -254,14 +254,14 @@ def parse_lines(ln_list):
                         "block_seg:", to_json(block_seg),
                         )
 
-            if check_type(block_seg) != "DICT":
-                if DBUG:
-                    do_DBUG("((((((((((((((((((",
-                            "check_type:",
-                            check_type(block_seg),
-                            "["+block_name+"]:",
-                            block_seg[0],
-                            "))))))))))))))))))")
+            #if check_type(block_seg) != "DICT":
+            #    if DBUG:
+            #        do_DBUG("((((((((((((((((((",
+            #                "check_type:",
+            #                check_type(block_seg),
+            #                "["+block_name+"]:",
+            #                block_seg[0],
+            #                "))))))))))))))))))")
 
             if check_type(block_seg) == "LIST":
                 out_dict[block_name] = block_seg[0]

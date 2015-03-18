@@ -72,6 +72,23 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
     # seg = dict returned from process_header
     # seg_name = dict key in seg returned from process_header
 
+    # TODO: Fix Funky errors [Family History] - some entries not written
+    # TODO: Medications - last entry does not get source info
+    # TODO: Preventive Services - Some items not added
+    # TODO: Providers - last entry does not get source info
+    # TODO: Providers - Fields not in order
+    # TODO: Pharmacies - Last record missing Pharmacy Name
+    # TODO: Pharmacies - last entry does not get source info
+    # TODO: category dict written after insurance section
+    # TODO: Employer Subsidy Header not written
+    # TODO: Primary Insurance Header not written
+    # TODO: Other Insurance Header not written
+    # TODO: Claim Details need to be embedded inside Claim Header
+    # TODO: Multiple Claims Headers and Details not handled
+    # TODO Claims - First Header and Last Claim Detail written
+
+    # TODO: clean up write section - break out to more sub-functions
+
     current_segment = seg_name
     seg_type = check_type(seg[seg_name])
     end_segment = False
@@ -1195,6 +1212,7 @@ def get_segment(title, exact=False):
     # get the SEG_DEF record using title in Match
 
     DBUG = False
+
     result = {}
 
     # cycle through the seg dictionary to match against title
@@ -1220,6 +1238,7 @@ def get_segment(title, exact=False):
 def find_segment(title, exact=False):
 
     DBUG = False
+
     result = False
 
     # cycle through the seg dictionary to match against title
@@ -1372,7 +1391,7 @@ def write_save_to(save_to, pd):
 def write_segment(itm, sgmnt, sgmnt_dict, ln_list, multi):
     # Write the segment to items dict
 
-    DBUG = True
+    DBUG = False
 
     if DBUG:
         do_DBUG("Item:", itm, "Writing Segment:", sgmnt,
