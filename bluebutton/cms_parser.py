@@ -20,7 +20,7 @@ from cms_parser_utilities import *
 from file_def_cms import SEG_DEF
 from cms_parser_utilities import *
 
-DBUG = False
+DBUG = True
 
 # divider = "--------------------------------"
 divider = "----------"
@@ -264,8 +264,14 @@ def parse_lines(ln_list):
             #                "))))))))))))))))))")
 
             if check_type(block_seg) == "LIST":
+                if DBUG:
+                    do_DBUG("LIST returned",
+                            block_seg)
                 out_dict[block_name] = block_seg[0]
             else:
+                if DBUG:
+                    do_DBUG("Not List",
+                            block_seg)
                 out_dict[block_name] = block_seg
 
 

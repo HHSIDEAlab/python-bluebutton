@@ -53,6 +53,7 @@ def process_header(strt_ln, ln_control, strt_lvl, ln_list):
 
     return strt_ln, wrk_add_dict, segment
 
+
 def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                   ln_list, seg, seg_name):
     # Input:
@@ -72,20 +73,27 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
     # seg = dict returned from process_header
     # seg_name = dict key in seg returned from process_header
 
+    # FIXED: email address not written in patient section
+    # FIXED: Write phones as dict in patient section
+    # FIXED: medicalConditions - 2nd items is skipped
+    # FIXED: Double comment lines written in allergies sections
+    # FIXED: Allergies section is empty
+    # FIXED: Medications - last entry does not get source info
+
     # TODO: Fix Funky errors [Family History] - some entries not written
-    # TODO: Medications - last entry does not get source info
-    # TODO: Preventive Services - Some items not added
-    # TODO: Providers - last entry does not get source info
-    # TODO: Providers - Fields not in order
-    # TODO: Pharmacies - Last record missing Pharmacy Name
-    # TODO: Pharmacies - last entry does not get source info
+    # FIXED: Preventive Services - Some items not added
+    # FIXED: Providers - last entry does not get source info
+    # FIXED: Providers - Fields not in order
+    # FIXED: Pharmacies - Last record missing Pharmacy Name
+    # FIXED: Pharmacies - last entry does not get source info
     # TODO: category dict written after insurance section
     # TODO: Employer Subsidy Header not written
     # TODO: Primary Insurance Header not written
     # TODO: Other Insurance Header not written
     # TODO: Claim Details need to be embedded inside Claim Header
     # TODO: Multiple Claims Headers and Details not handled
-    # TODO Claims - First Header and Last Claim Detail written
+    # TODO: Claims - First Header and Last Claim Detail written
+    # TODO: Fix Time fields (minutes dropped after colon)
 
     # TODO: clean up write section - break out to more sub-functions
 
@@ -98,7 +106,7 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
 
     wrk_ln_lvl = strt_lvl
     wrk_ln_head = False
-    kvs = {"k": "", "v": "", "source": ""}
+    kvs = {"k": "", "v": "", "source": "", "comments": []}
     wrk_segment = seg_name
     multi = key_is("multi", ln_control, "TRUE")
 
@@ -218,7 +226,9 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
             wrk_seg_def = ln_control
 
         # Get key and value
-        kvs = assign_key_value(current_line["line"], kvs)
+        kvs = assign_key_value(current_line["line"],
+                               wrk_seg_def,
+                               kvs)
 
         if DBUG:
             do_DBUG("wrk_lvl:",wrk_lvl, "match_hdr:", match_hdr,
@@ -278,9 +288,10 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                 # if so, add to the list
                 process_dict = write_comment(process_dict, kvs)
 
-                print "save_to:", save_to
+                print "comments - save_to:", save_to
 
                 save_to = update_save_to(save_to, process_dict, kvs["k"])
+                print "After Comments Save to:", save_to, "process_dict:", process_dict
 
                 if DBUG:
                     do_DBUG("is_line_seg_def:", is_line_seg_def,
@@ -301,7 +312,7 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                         print "kvs:", kvs
                         if kvs["k"] in process_dict:
                             print "k:", kvs["k"], " in ", process_dict
-                            # write the source first
+                            # write the source  and comments first
                             process_dict = write_source(kvs, process_dict)
                             print "process_dict:", process_dict
                             # Append to the list
@@ -310,7 +321,10 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                             # Now clear down the dict and
                             # add the new item
                             process_dict = collections.OrderedDict()
-                            # process_dict[kvs["k"]] = kvs["v"]
+                            if not kvs["k"].upper() == "COMMENTS":
+                                print "skipping comments"
+                                process_dict[kvs["k"]] = kvs["v"]
+                            print "process_dict (after write):", process_dict
                         else:
                             print "kvs[k] not in process_dict", kvs, process_dict
                             process_dict[kvs["k"]] = kvs["v"]
@@ -326,21 +340,37 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                 elif key_is("type", wrk_seg_def, "DICT"):
                     print "wrk-seg_def:", wrk_seg_def
                     if key_is("sub_type", wrk_seg_def, "DICT"):
-                        print "DICT and sub_type: DICT"
-                        if DBUG:
+                        print "DICT and sub_type: DICT:", kvs
+                        if DBUG or True:
                             do_DBUG("WHAT GETS WRITTEN HERE?",
                             "ln_control:", to_json(ln_control),
                             "wrk_seg_def:", to_json(wrk_seg_def),
                             "current_line:", to_json(current_line),
                             "process_dict:", to_json(process_dict),
                             "process_list:", process_list)
+
+                        # Write what
+                        process_dict[wrk_seg_def["name"]] = kvs["v"]
+                        print "just wrote process_dict:", process_dict
+
                     else:
                         print "No sub_type"
                         if key_is_in("sub_type", wrk_seg_def):
                             print "type: DICT and sub_type:", \
                                 wrk_seg_def["sub_type"]
                         else:
-                            print "writing to process_dict:", process_dict
+                            print "writing to process_dict:", process_dict   # homePhone workPhone
+
+                            # type: dict
+                            # dict_name: phone
+                            # field : home
+                            # k: homePhone v = ""
+                            # needs to get written as
+                            # phone {"home": "", "work": "", "mobile": ""}
+                            # process_dict[wrk_seg_def["dict_name"]] = {wrk_seg_def["field"]: kvs["v"]
+                            # follow on elements need to check:
+                            # wrk_seg_def["dict_name"] or kvs["k"]
+
                             if key_is_in_subdict(kvs["k"], process_dict):
                                 # write the source first
                                 print "roll a new process_dict"
@@ -352,19 +382,33 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                                 process_dict = collections.OrderedDict()
                                 process_dict[kvs["k"]] = kvs["v"]
 
-                            print "didn't find:", kvs["k"]
+                            print "didn't find:", kvs["k"]                       # homePhone workPhone
+                            print "is_line_seg_def:", is_line_seg_def
 
-                            if key_is_in("dict_name",wrk_seg_def):
-                                print "got dict_name"
+                            if is_line_seg_def and key_is_in("dict_name",wrk_seg_def):
+                                print "got dict_name:", wrk_seg_def["dict_name"] # homePhone workPhone
                                 if not key_is_in(wrk_seg_def["dict_name"], process_dict):
-                                    print "no dict_name"
-                                    process_dict[kvs["k"]] = kvs["v"]
+                                    print "no dict_name"                         # homePhone workPhone
+
+                                    process_dict[wrk_seg_def["dict_name"]] = {wrk_seg_def["name"]: kvs["v"]}
+                                    # process_dict[kvs["k"]] = kvs["v"]
                                 else:
+                                    print "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
                                     print "updating process_dict:", process_dict
+                                    print "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
+
                                     print "with kvs:", kvs
-                                    process_dict[wrk_seg_def["dict_name"]] =kvs["v"]
+                                    # process_dict[wrk_seg_def["dict_name"]] =kvs["v"]
+                                    if check_type(process_dict[wrk_seg_def["dict_name"]]) == "DICT":
+                                        process_dict[wrk_seg_def["dict_name"]].update({wrk_seg_def["name"]: kvs["v"]})
+                                    else:
+                                        process_dict[wrk_seg_def["dict_name"]] =kvs["v"]
                             else:
-                                print "didn't get dict_name"
+                                print "didn't get dict_name:", kvs
+                                #process_dict[kvs["k"]] = kvs["v"]
+                                save_to[kvs["k"]] = kvs["v"]
+                                process_dict.update({kvs["k"]:kvs["v"]})
+                                print "process_dict updated to:", process_dict
 
                 else:
                     if key_is_in("type", wrk_seg_def):
@@ -380,7 +424,7 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                         if not is_line_seg_def:
                             # We have no special processing rules for
                             # this line
-                            print "is_line_seg_def:", is_line_seg_def
+                            print "is_line_seg_def:", is_line_seg_def, "kvs:", kvs
                             save_to[kvs["k"]] = kvs["v"]
 
                         elif key_is_in("dict_name", wrk_seg_def):
@@ -432,6 +476,9 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
         if len(process_dict) > 0:
             print "adding dict to list"
             print ""
+            if not key_is_in("source", process_dict):
+                print "adding source", kvs["source"]
+                process_dict["source"] = kvs["source"]
             process_list.append(process_dict)
         print "seg:", seg
         print "adding from process_list"
@@ -613,7 +660,7 @@ def process_block(strt_ln, ln_control, match_ln, strt_lvl,
                     if DBUG:
                         do_DBUG("wrk_lvl:", wrk_lvl, "strt_lvl:", strt_lvl,
                                 "wrk_ln_head:", wrk_ln_head,
-                                "processing:", to-json(wrk_ln_dict),
+                                "processing:", to_json(wrk_ln_dict),
                                 "with wrk_seg_def:", to_json(wrk_seg_def))
 
             if DBUG:
@@ -641,8 +688,9 @@ def process_block(strt_ln, ln_control, match_ln, strt_lvl,
             # pass in match_ln, match_hdr, and wrk_lvl to allow
             # Override to be checked
 
-            kvs = assign_key_value(wrk_ln_dict["line"], kvs)
-
+            kvs = assign_key_value(wrk_ln_dict["line"],
+                                   wrk_seg_def,
+                                   kvs)
 
             # Now we check if we are dealing with an address block
             if ("ADDRESSLINE1" in kvs["k"].upper()) or \
@@ -1014,7 +1062,9 @@ def process_segment(strt_ln, ln_control, match_ln, start_lvl, ln_list):
 
             else:
 
-                kvs = assign_key_value(current_line["line"], kvs)
+                kvs = assign_key_value(current_line["line"],
+                                       ln_control,
+                                       kvs)
                 #print "K:", kvs["k"]," V:", kvs["v"], "Source:",
                 # kvs["source"],"]"
 
@@ -1147,544 +1197,73 @@ def process_segment(strt_ln, ln_control, match_ln, start_lvl, ln_list):
     return end_ln, segment, current_segment
 
 
-def headlessCamel(In_put):
-    # Use this to format field names:
-    # Convert words to title format and remove spaces
-    # Remove underscores
-    # Make first character lower case
-    # result result
+###############################################################
+###############################################################
+###############################################################
+###############################################################
+
+
+def adjusted_level(lvl, match_ln):
+    # lookup the level based on the max of source line lvl
+    # and SEG_DEF matched level
 
     DBUG = False
 
-    Camel = ''.join(x for x in In_put.title() if not x.isspace())
-    Camel = Camel.replace('_', '')
-
-    result = Camel[0].lower() + Camel[1:len(Camel)]
+    result = lvl
+    if find_segment(combined_match(lvl,match_ln)):
+        seg_info = get_segment(combined_match(lvl, match_ln))
+        if key_is_in("level", seg_info):
+            result = max(lvl, seg_info["level"])
 
     if DBUG:
-        do_DBUG("In_put:", In_put, "headlessCamel:", result)
+        do_DBUG("Level(lvl):", lvl, "Result:", result,
+                "Using match_ln:", to_json(match_ln))
 
     return result
 
 
-def update_save_to(target, src, key):
-    # Test the target and update with source
+def assign_key_value(full_line, wrk_seg_def, kvs):
+    # evaluate the line to get key and value
 
-    DBUG = False
-
-    target_type = check_type(target)
-    save_to = target
-
-    if DBUG:
-        do_DBUG("save_to:", save_to,
-                "using source:", src,
-                "key:", key,
-                "and target:", target,
-                "with target_type:", target_type)
-
-    if target_type == "DICT":
-        #print save_to[key]
-        if check_type(save_to[key]) == "LIST":
-            save_to[key] = src[key]
-        else:
-            save_to[key] = src[key]
-
-    elif target_type == "LIST":
-        save_to = src[key]
-    elif target_type == "TUPLE":
-        save_to[key] = {key:src[key]}
-    elif target_type == "STRING":
-        string_to_write = src[key]
-        save_to = src[key]
-    else:
-        save_to[key] = src[key]
-
-    if DBUG:
-        do_DBUG("returning save_to:", save_to,
-                "using source:", src,
-                "and target:", target,
-                "with target_type:", target_type)
-
-    return save_to
-
-
-def get_segment(title, exact=False):
-    # get the SEG_DEF record using title in Match
-
-    DBUG = False
-
-    result = {}
-
-    # cycle through the seg dictionary to match against title
-    for ky in SEG_DEF:
-        if exact == False:
-            if title in ky["match"]:
-                result = ky
-                break
-        else:
-            if ky["match"] == title:
-                result = ky
-                break
-
-    if DBUG:
-        do_DBUG("title:", title,
-                "match exact:", exact,
-                "ky in SEG_DEF:", ky,
-                "result:", result)
-
-    return result
-
-
-def find_segment(title, exact=False):
-
-    DBUG = False
-
-    result = False
-
-    # cycle through the seg dictionary to match against title
-    for ky in SEG_DEF:
-        if exact == False:
-            if title in ky["match"]:
-                result = True
-                break
-        else:
-            if ky["match"] == title:
-                result = True
-                break
-
-    if DBUG:
-        do_DBUG("title:", title,
-                "match exact:", exact,
-                "ky in SEG_DEF:", ky,
-                "result:", result)
-
-    return result
-
-
-def combined_match(lvl, match_ln):
-    # Get a "." joined match string to use to search SEG_DEF
-    # lvl = number to iterate up to
-    # match_ln = list to iterate through
-    # return the combined String as combined_header
-    # eg. patient.partAEffectiveDate
-
-    DBUG = False
-
-    ctr = 0
-    combined_header = ""
-    # print match_ln
-
-    if DBUG:
-        do_DBUG("lvl:", lvl, "match_ln:", match_ln,
-                "combined_header:", combined_header)
-
-
-    while ctr <= lvl:
-        if ctr == 0:
-            combined_header = match_ln[ctr]
-        else:
-            if match_ln[ctr] == None:
-                pass
-            else:
-                combined_header = combined_header + "." + match_ln[ctr]
-
-        ctr += 1
-
-    if DBUG:
-        do_DBUG("lvl:", lvl, "match_ln:", match_ln,
-                "combined_header:", combined_header)
-
-    return combined_header
-
-
-def update_match(lvl, txt, match_ln):
-    # Update the match_ln list
-    # lvl = number position in match_ln
-    # txt = line to check (received in headlessCamel format)
-    # match_ln = list
-
-    DBUG = False
-
-    line = txt.split(":")
-    if len(line) >1:
-        keym = line[0]
+    # print full_line
+    line_source = full_line.split(":")
+    if len(line_source) > 1:
+        kvs["k"] = headlessCamel(line_source[0])
+        kvs["v"] = line_source[1].lstrip()
+        kvs["v"] = kvs["v"].rstrip()
 
     else:
-        keym = txt
+        kvs["k"] = "comments"
+        kvs["v"] = full_line
 
-    # get the line or the line up to the ":"
-    # set the lvl position in the match_ln list
-    match_ln[lvl] = keym
+    if "SOURCE" in kvs["k"].upper():
+        kvs["k"] = headlessCamel(kvs["k"])
+        kvs = set_source(kvs)
 
-    if DBUG:
-        do_DBUG("update_match(lvl, txt, match_ln)", lvl, txt, match_ln,
-                "keym:", keym, "match_ln["+str(lvl)+"]:", match_ln[lvl])
+        # print "SET source:", kvs["source"]
 
-    return match_ln
+    if (kvs["k"][2] == "/"):
+        # print "got the date line in the header"
+        kvs["v"] = {"value": parse_time(full_line)}
+        kvs["k"] = "effectiveTime"
+        # segment[current_segment]={k: v}
 
+    if "DATE" in kvs["k"].upper():
+        kvs["v"] = parse_date(kvs["v"])
 
-def write_comment(wrk_add_dict, kvs):
-    # if value is assigned to comments we need to check
-    # if comments already present
-    # if so, add to the list
+    if "DOB" == kvs["k"].upper():
+        kvs["v"] = parse_date(kvs["v"])
 
-    DBUG = False
+    if "DOD" == kvs["k"].upper():
+        kvs["v"] = parse_date(kvs["v"])
 
-    if DBUG:
-        do_DBUG("IN WRITE COMMENTS", "wrk_add_dict:",
-                to_json(wrk_add_dict), "kvs:", to_json(kvs))
-
-    if not key_is_in(kvs["k"],wrk_add_dict):
-        # print kvs["k"]," NOT in wrk_add_dict"
-        # so initialize the comments list
-
-        wrk_add_dict[kvs["k"]] = []
-
-    # Now add the comment
-    else:
-        if isinstance(wrk_add_dict[kvs["k"]], basestring):
-            tmp_comment = wrk_add_dict[kvs["k"]]
-            print "tmp_comment:",tmp_comment
-            # get the comment
-            wrk_add_dict[kvs["k"]] = []
-            # initialize the list
-            wrk_add_dict[kvs["k"]].append(tmp_comment)
-
-    wrk_add_dict[kvs["k"]].append(kvs["v"])
-
-    if DBUG:
-        do_DBUG("k:", kvs["k"], "v:", kvs["v"],
-                "wrk_add_dict["+kvs["k"]+"]:",
-                wrk_add_dict[kvs["k"]])
-
-    return wrk_add_dict
-
-
-def write_save_to(save_to, pd):
-    # iterate through dict and add to save_to
-
-    """
-
-    :param save_to:
-    :param pd:
-    :return:
-    """
-    DBUG = False
-
-    print "pd:", pd
-
-    i = 0
-    for item in pd.items():
-        key = item[0]
-        #print "key:", key
-        val = item[1]
-        #print "item:", item[1]
-        save_to[key] = item[1]
-
-    if DBUG:
-        do_DBUG("pd:", pd,
-                "save_to:", to_json(save_to))
-
-    return save_to
-
-
-def write_segment(itm, sgmnt, sgmnt_dict, ln_list, multi):
-    # Write the segment to items dict
-
-    DBUG = False
-
-    if DBUG:
-        do_DBUG("Item:", itm, "Writing Segment:", sgmnt,
-                "Writing dict:", sgmnt_dict,
-                "Multi:", multi,
-                "ln_list:", ln_list)
-    if multi:
-        ln_list.append(sgmnt_dict)
-        # print "Multi List:", ln_list
-        itm[sgmnt] = ln_list
-    else:
-        itm[sgmnt] = sgmnt_dict
-
-    return itm, sgmnt_dict, ln_list
-
-
-def write_source(kvs, dt):
-    # Write source to dt
-
-    DBUG = False
-
-    if kvs["source"] != "":
-        dt["source"] = kvs["source"]
-
-    return dt
-
-
-def segment_prefill(wrk_seg_def, segment_dict):
-    # Receive the Segment information for a header line
-    # get the seg["pre"] and iterate through the dict
-    # assigning to segment_dict
-    # First we reset the segment_dict as an OrderedDict
-
-    DBUG = False
-
-    if len(segment_dict)>0:
-
-        print "segment_dict:", segment_dict, "NOT EMPTY"
-
-        pass
-    else:
-        segment_dict = collections.OrderedDict()
-
-    if DBUG:
-        do_DBUG("seg", to_json(wrk_seg_def))
-
-    current_segment = wrk_seg_def["name"]
-
-    if key_is_in("pre", wrk_seg_def):
-
-        if "pre" in wrk_seg_def:
-            pre = wrk_seg_def["pre"]
-            for pi, pv in pre.iteritems():
-                segment_dict[pi] = pv
-
-    if DBUG:
-        do_DBUG("Current_Segment:", current_segment,
-                "segment_dict", segment_dict)
-
-    return current_segment, segment_dict
-
-
-def parse_time(t):
-    # convert time to  json format
-
-    t = t.strip()
-    time_value = datetime.strptime(t, "%m/%d/%Y %I:%M %p")
-    # print time_value
-    result = time_value.strftime("%Y%m%d%H%M%S+0500")
-
-    # print result
-    return result
-
-
-def parse_date(d):
-    # convert date to json format
-
-    result = ""
-
-    d = d.strip()
-    if len(d) > 0:
-        # print d
-        date_value = datetime.strptime(d, "%m/%d/%Y")
-        result = date_value.strftime("%Y%m%d")
-
-    #print result
-
-    return result
-
-
-def set_source(kvs):
-    # Set the source of the data
-
-    result = kvs["source"]
-    if kvs["k"].upper() == "SOURCE":
-        # print "Found Source: [%s:%s]" % (key,value)
-        if kvs["v"].upper() == "SELF-ENTERED":
-            result = "patient"
-            kvs["v"] = result
-
-        elif kvs["v"].upper() == "MYMEDICARE.GOV":
-            result = "MyMedicare.gov"
-            kvs["v"] = result
-
-        else:
-            result = kvs["v"].upper()
-        # print "[%s]" % result
-        kvs["source"] = result
+    #if key_is_in("dict_name", wrk_seg_def):
+    #    if key_is_in("type", wrk_seg_def):
+    #        if wrk_seg_def["type"].upper() == "DICT":
+    #            kvs["v"] = {kvs["k"]:kvs["v"]}
+    #            kvs["k"] = wrk_seg_def["dict_name"]
 
     return kvs
-
-
-def key_is_in(ky,dt):
-    # Check if key is in dict
-
-    DBUG = False
-
-    result = False
-    if ky in dt:
-        result = True
-
-    if DBUG:
-        do_DBUG("ky:", ky,
-                "dict:", to_json(dt),
-                "result:", result)
-
-    return result
-
-
-def key_is(ky,dt,val):
-    # if KY is in DT and has VAL
-
-    DBUG = False
-
-    result = False
-
-    if ky in dt:
-        if dt[ky].upper() == val.upper():
-            result = True
-
-    if DBUG:
-        do_DBUG("ky:", ky,
-                "dict:", to_json(dt),
-                "val:", val,
-                "result:", result)
-
-    return result
-
-
-def key_is_in_subdict(ky, dt):
-    # Check if key is in dict
-
-    DBUG = False
-
-    result = False
-
-    # print "Size of dict-dt:", len(dt)
-
-    for ctr in dt:
-        # print "dt["+str(ctr)+"]", dt[ctr]
-        if ky in dt[ctr]:
-            key = dt[ctr]
-            # print "key:", ky, " in ", dt[ctr]
-            result = True
-            break
-
-    if not result:
-        for key in dt.keys():
-            # print "key:", key
-            if ky in key:
-                # print "key:", key
-                result = True
-                break
-
-            elif isinstance(key, dict):
-                for subkey, subval in key.items():
-                    # print "subkey:", subkey, "subval:", subval
-                    if ky in subkey:
-
-                        result = True
-                        break
-
-        # end of for subkey
-    # end of for key
-    if DBUG:
-        do_DBUG("ky:", ky,
-                "key:", key,
-                "dict:", to_json(dt),
-                "result:", result)
-
-    return result
-
-
-def is_multi(ln_dict):
-    # Check value of "Multi" in ln_dict
-
-    DBUG = False
-
-    result = False
-
-    if key_is_in("multi", ln_dict):
-        multi = ln_dict["multi"].upper()
-        if multi == "TRUE":
-            result = True
-    else:
-        result = False
-
-    if DBUG:
-        do_DBUG("result:", result,
-                "ln_dict:", to_json(ln_dict))
-
-    return result
-
-
-def get_line_dict(ln, i):
-    # Get the inner line dict from ln
-
-    found_line = ln[i]
-    extract_line = found_line[i]
-
-    return extract_line
-
-
-def dict_in_list(ln_control):
-    # if SEG_DEF type = list and sub_type = "dict"
-    # return true
-
-    DBUG = False
-
-    result = False
-    if ln_control["type"].upper() == "LIST":
-        if ln_control["sub_type"].upper() == "DICT":
-            result = True
-
-    if DBUG:
-        do_DBUG("ln_control:", to_json(ln_control),
-                "result:", result)
-
-    return result
-
-
-def is_body(ln):
-    # Is line type = "BODY"
-
-    DBUG = False
-
-    result = False
-    if key_is_in("type", ln):
-        if ln["type"].upper() == "BODY":
-            result = True
-
-    if DBUG:
-        do_DBUG("is_body:", result)
-
-    return result
-
-
-def is_head(ln):
-    # Is line type = "HEADER" in ln
-
-    DBUG = False
-
-    result = False
-
-    if key_is_in("type", ln):
-
-        if DBUG:
-            do_DBUG("Matching HEAD in:",ln["type"])
-
-        if "HEAD" in ln["type"].upper():
-            # match on "HEAD", "HEADING" or "HEADER"
-            result = True
-
-    if DBUG:
-        do_DBUG("is_header:", result)
-
-    return result
-
-
-def split_k_v(l):
-    # split out line in to k and v split on ":"
-
-    line_source = l.split(":")
-
-    if len(line_source) > 1:
-        k = headlessCamel(line_source[0])
-        v = line_source[1].lstrip()
-        v = v.rstrip()
-    else:
-        k = "comments"
-        v = l
-
-    return k,v
 
 
 def build_address(ln_list, wk_ln):
@@ -1786,13 +1365,136 @@ def build_address(ln_list, wk_ln):
     return address_block, wk_ln - 1
 
 
-def get_level(ln):
-    # Get level value from SEG_DEF Line
+def check_type(check_this):
+    # Check_this and return type
 
-    result = None
+    result = "UNKNOWN"
 
-    if key_is_in("level", ln):
-        result = ln["level"]
+    if isinstance(check_this, dict):
+        result = "DICT"
+    elif isinstance(check_this, list):
+        result = "LIST"
+    elif isinstance(check_this, tuple):
+        result = "TUPLE"
+    elif isinstance(check_this, basestring):
+        result = "STRING"
+    elif isinstance(check_this, bool):
+        result = "BOOL"
+    elif isinstance(check_this, int):
+        result = "INT"
+    elif isinstance(check_this, float):
+        result = "FLOAT"
+
+    return result
+
+
+def combined_match(lvl, match_ln):
+    # Get a "." joined match string to use to search SEG_DEF
+    # lvl = number to iterate up to
+    # match_ln = list to iterate through
+    # return the combined String as combined_header
+    # eg. patient.partAEffectiveDate
+
+    DBUG = False
+
+    ctr = 0
+    combined_header = ""
+    # print match_ln
+
+    if DBUG:
+        do_DBUG("lvl:", lvl, "match_ln:", match_ln,
+                "combined_header:", combined_header)
+
+
+    while ctr <= lvl:
+        if ctr == 0:
+            combined_header = match_ln[ctr]
+        else:
+            if match_ln[ctr] == None:
+                pass
+            else:
+                combined_header = combined_header + "." + match_ln[ctr]
+
+        ctr += 1
+
+    if DBUG:
+        do_DBUG("lvl:", lvl, "match_ln:", match_ln,
+                "combined_header:", combined_header)
+
+    return combined_header
+
+
+def dict_in_list(ln_control):
+    # if SEG_DEF type = list and sub_type = "dict"
+    # return true
+
+    DBUG = False
+
+    result = False
+    if ln_control["type"].upper() == "LIST":
+        if ln_control["sub_type"].upper() == "DICT":
+            result = True
+
+    if DBUG:
+        do_DBUG("ln_control:", to_json(ln_control),
+                "result:", result)
+
+    return result
+
+
+def do_DBUG(*args, **kwargs):
+    # basic debug printing function
+    # if string ends in : then print without newline
+    # so next value prints on the same line
+
+    # inspect.stack()[1][3] = Function that called do_DBUG
+    # inspect.stack()[1][2] = line number in calling function
+
+    # print inspect.stack()
+    print "####################################"
+    print "In function:", inspect.stack()[1][3], "[", \
+        inspect.stack()[1][2] , "]"
+    # print args
+
+    # print six.string_types
+    for i in args:
+        if isinstance(i, six.string_types):
+            if len(i) > 1:
+                if i[-1] == ":":
+                    print i,
+                else:
+                    print i
+            else:
+                print i
+        else:
+            print i
+    print "####################################"
+
+    return
+
+
+def find_segment(title, exact=False):
+
+    DBUG = False
+
+    result = False
+
+    # cycle through the seg dictionary to match against title
+    for ky in SEG_DEF:
+        if exact == False:
+            if title in ky["match"]:
+                result = True
+                break
+        else:
+            if ky["match"] == title:
+                result = True
+                break
+
+    if DBUG:
+        do_DBUG("title:", title,
+                "match exact:", exact,
+                "ky in SEG_DEF:", ky,
+                "result:", result)
 
     return result
 
@@ -1816,84 +1518,321 @@ def get_dict_name(wrk_seg_def):
     return dict_name
 
 
-def adjusted_level(lvl, match_ln):
-    # lookup the level based on the max of source line lvl
-    # and SEG_DEF matched level
+def get_level(ln):
+    # Get level value from SEG_DEF Line
+
+    result = None
+
+    if key_is_in("level", ln):
+        result = ln["level"]
+
+    return result
+
+
+def get_line_dict(ln, i):
+    # Get the inner line dict from ln
+
+    found_line = ln[i]
+    extract_line = found_line[i]
+
+    return extract_line
+
+
+def get_segment(title, exact=False):
+    # get the SEG_DEF record using title in Match
 
     DBUG = False
 
-    result = lvl
-    if find_segment(combined_match(lvl,match_ln)):
-        seg_info = get_segment(combined_match(lvl, match_ln))
-        if key_is_in("level", seg_info):
-            result = max(lvl, seg_info["level"])
+    result = {}
+
+    # cycle through the seg dictionary to match against title
+    for ky in SEG_DEF:
+        if exact == False:
+            if title in ky["match"]:
+                result = ky
+                break
+        else:
+            if ky["match"] == title:
+                result = ky
+                break
 
     if DBUG:
-        do_DBUG("Level(lvl):", lvl, "Result:", result,
-                "Using match_ln:", to_json(match_ln))
+        do_DBUG("title:", title,
+                "match exact:", exact,
+                "ky in SEG_DEF:", ky,
+                "result:", result)
 
     return result
 
 
-def assign_key_value(full_line, kvs):
-    # evaluate the line to get key and value
+def headlessCamel(In_put):
+    # Use this to format field names:
+    # Convert words to title format and remove spaces
+    # Remove underscores
+    # Make first character lower case
+    # result result
 
-    # print full_line
-    line_source = full_line.split(":")
-    if len(line_source) > 1:
-        kvs["k"] = headlessCamel(line_source[0])
-        kvs["v"] = line_source[1].lstrip()
-        kvs["v"] = kvs["v"].rstrip()
+    DBUG = False
 
+    Camel = ''.join(x for x in In_put.title() if not x.isspace())
+    Camel = Camel.replace('_', '')
+
+    result = Camel[0].lower() + Camel[1:len(Camel)]
+
+    if DBUG:
+        do_DBUG("In_put:", In_put, "headlessCamel:", result)
+
+    return result
+
+
+def is_body(ln):
+    # Is line type = "BODY"
+
+    DBUG = False
+
+    result = False
+    if key_is_in("type", ln):
+        if ln["type"].upper() == "BODY":
+            result = True
+
+    if DBUG:
+        do_DBUG("is_body:", result)
+
+    return result
+
+
+def is_head(ln):
+    # Is line type = "HEADER" in ln
+
+    DBUG = False
+
+    result = False
+
+    if key_is_in("type", ln):
+
+        if DBUG:
+            do_DBUG("Matching HEAD in:",ln["type"])
+
+        if "HEAD" in ln["type"].upper():
+            # match on "HEAD", "HEADING" or "HEADER"
+            result = True
+
+    if DBUG:
+        do_DBUG("is_header:", result)
+
+    return result
+
+
+def is_multi(ln_dict):
+    # Check value of "Multi" in ln_dict
+
+    DBUG = False
+
+    result = False
+
+    if key_is_in("multi", ln_dict):
+        multi = ln_dict["multi"].upper()
+        if multi == "TRUE":
+            result = True
     else:
-        kvs["k"] = "comments"
-        kvs["v"] = full_line
+        result = False
 
-    if "SOURCE" in kvs["k"].upper():
-        kvs["k"] = headlessCamel(kvs["k"])
-        kvs = set_source(kvs)
+    if DBUG:
+        do_DBUG("result:", result,
+                "ln_dict:", to_json(ln_dict))
 
-        # print "SET source:", kvs["source"]
+    return result
 
-    if (kvs["k"][2] == "/"):
-        # print "got the date line in the header"
-        kvs["v"] = {"value": parse_time(full_line)}
-        kvs["k"] = "effectiveTime"
-        # segment[current_segment]={k: v}
 
-    if "DATE" in kvs["k"].upper():
-        kvs["v"] = parse_date(kvs["v"])
+def key_is(ky,dt,val):
+    # if KY is in DT and has VAL
 
-    if "DOB" == kvs["k"].upper():
-        kvs["v"] = parse_date(kvs["v"])
+    DBUG = False
 
-    if "DOD" == kvs["k"].upper():
-        kvs["v"] = parse_date(kvs["v"])
+    result = False
+
+    if ky in dt:
+        if dt[ky].upper() == val.upper():
+            result = True
+
+    if DBUG:
+        do_DBUG("ky:", ky,
+                "dict:", to_json(dt),
+                "val:", val,
+                "result:", result)
+
+    return result
+
+
+def key_is_in(ky,dt):
+    # Check if key is in dict
+
+    DBUG = False
+
+    result = False
+    if ky in dt:
+        result = True
+
+    if DBUG:
+        do_DBUG("ky:", ky,
+                "dict:", to_json(dt),
+                "result:", result)
+
+    return result
+
+
+def key_is_in_subdict(ky, dt):
+    # Check if key is in dict
+
+    DBUG = False
+
+    result = False
+
+    # print "Size of dict-dt:", len(dt)
+
+    for ctr in dt:
+        # print "dt["+str(ctr)+"]", dt[ctr]
+        if ky in dt[ctr]:
+            key = dt[ctr]
+            # print "key:", ky, " in ", dt[ctr]
+            result = True
+            break
+
+    if not result:
+        for key in dt.keys():
+            # print "key:", key
+            if ky in key:
+                # print "key:", key
+                result = True
+                break
+
+            elif isinstance(key, dict):
+                for subkey, subval in key.items():
+                    # print "subkey:", subkey, "subval:", subval
+                    if ky in subkey:
+
+                        result = True
+                        break
+
+        # end of for subkey
+    # end of for key
+    if DBUG:
+        do_DBUG("ky:", ky,
+                "key:", key,
+                "dict:", to_json(dt),
+                "result:", result)
+
+    return result
+
+
+def overide_fieldname(lvl, match_ln, current_fld):
+    # Lookup line  in SEG_DEF using match_ln[lvl]
+    # look for "name" or "field"
+    # if no match return current_fld
+    # else return name or field
+    # if name and field defined use field
+
+    result = current_fld
+
+    title = combined_match(lvl, match_ln)
+    if find_segment(title):
+        tmp_seg_def = get_segment(title)
+        if key_is_in("field", tmp_seg_def):
+            result = tmp_seg_def["field"]
+        elif key_is_in("name", tmp_seg_def):
+            result = tmp_seg_def["name"]
+
+        if DBUG:
+            do_DBUG("lvl:", lvl,"Match_ln", to_json(match_ln),
+                    "title:", title, "tmp_seg_def", to_json(tmp_seg_def),
+                    "Result:", result)
+
+    return result
+
+
+def parse_date(d):
+    # convert date to json format
+
+    result = ""
+
+    d = d.strip()
+    if len(d) > 0:
+        # print d
+        date_value = datetime.strptime(d, "%m/%d/%Y")
+        result = date_value.strftime("%Y%m%d")
+
+    #print result
+
+    return result
+
+
+def parse_time(t):
+    # convert time to  json format
+
+    t = t.strip()
+    time_value = datetime.strptime(t, "%m/%d/%Y %I:%M %p")
+    # print time_value
+    result = time_value.strftime("%Y%m%d%H%M%S+0500")
+
+    # print result
+    return result
+
+
+def segment_prefill(wrk_seg_def, segment_dict):
+    # Receive the Segment information for a header line
+    # get the seg["pre"] and iterate through the dict
+    # assigning to segment_dict
+    # First we reset the segment_dict as an OrderedDict
+
+    DBUG = False
+
+    if len(segment_dict)>0:
+
+        print "Prefill- segment_dict:", segment_dict, "NOT EMPTY"
+
+        pass
+    else:
+        segment_dict = collections.OrderedDict()
+
+    if DBUG:
+        do_DBUG("seg", to_json(wrk_seg_def))
+
+    current_segment = wrk_seg_def["name"]
+
+    if key_is_in("pre", wrk_seg_def):
+
+        if "pre" in wrk_seg_def:
+            pre = wrk_seg_def["pre"]
+            for pi, pv in pre.iteritems():
+                segment_dict[pi] = pv
+
+    if DBUG:
+        do_DBUG("Current_Segment:", current_segment,
+                "segment_dict", segment_dict)
+
+    return current_segment, segment_dict
+
+
+def set_source(kvs):
+    # Set the source of the data
+
+    result = kvs["source"]
+    if kvs["k"].upper() == "SOURCE":
+        # print "Found Source: [%s:%s]" % (key,value)
+        if kvs["v"].upper() == "SELF-ENTERED":
+            result = "patient"
+            kvs["v"] = result
+
+        elif kvs["v"].upper() == "MYMEDICARE.GOV":
+            result = "MyMedicare.gov"
+            kvs["v"] = result
+
+        else:
+            result = kvs["v"].upper()
+        # print "[%s]" % result
+        kvs["source"] = result
 
     return kvs
-
-
-def check_type(check_this):
-    # Check_this and return type
-
-    result = "UNKNOWN"
-
-    if isinstance(check_this, dict):
-        result = "DICT"
-    elif isinstance(check_this, list):
-        result = "LIST"
-    elif isinstance(check_this, tuple):
-        result = "TUPLE"
-    elif isinstance(check_this, basestring):
-        result = "STRING"
-    elif isinstance(check_this, bool):
-        result = "BOOL"
-    elif isinstance(check_this, int):
-        result = "INT"
-    elif isinstance(check_this, float):
-        result = "FLOAT"
-
-    return result
 
 
 def setup_header(ln_ctrl,wrk_ln_dict ):
@@ -1931,6 +1870,22 @@ def setup_header(ln_ctrl,wrk_ln_dict ):
     return wrk_add_dict
 
 
+def split_k_v(l):
+    # split out line in to k and v split on ":"
+
+    line_source = l.split(":")
+
+    if len(line_source) > 1:
+        k = headlessCamel(line_source[0])
+        v = line_source[1].lstrip()
+        v = v.rstrip()
+    else:
+        k = "comments"
+        v = l
+
+    return k,v
+
+
 def to_json(items):
     """
     to_json
@@ -1940,59 +1895,172 @@ def to_json(items):
     return itemsjson
 
 
-def overide_fieldname(lvl, match_ln, current_fld):
-    # Lookup line  in SEG_DEF using match_ln[lvl]
-    # look for "name" or "field"
-    # if no match return current_fld
-    # else return name or field
-    # if name and field defined use field
+def update_match(lvl, txt, match_ln):
+    # Update the match_ln list
+    # lvl = number position in match_ln
+    # txt = line to check (received in headlessCamel format)
+    # match_ln = list
 
-    result = current_fld
+    DBUG = False
 
-    title = combined_match(lvl, match_ln)
-    if find_segment(title):
-        tmp_seg_def = get_segment(title)
-        if key_is_in("field", tmp_seg_def):
-            result = tmp_seg_def["field"]
-        elif key_is_in("name", tmp_seg_def):
-            result = tmp_seg_def["name"]
+    line = txt.split(":")
+    if len(line) >1:
+        keym = line[0]
 
-        if DBUG:
-            do_DBUG("lvl:", lvl,"Match_ln", to_json(match_ln),
-                    "title:", title, "tmp_seg_def", to_json(tmp_seg_def),
-                    "Result:", result)
+    else:
+        keym = txt
 
-    return result
+    # get the line or the line up to the ":"
+    # set the lvl position in the match_ln list
+    match_ln[lvl] = keym
+
+    if DBUG:
+        do_DBUG("update_match(lvl, txt, match_ln)", lvl, txt, match_ln,
+                "keym:", keym, "match_ln["+str(lvl)+"]:", match_ln[lvl])
+
+    return match_ln
 
 
-def do_DBUG(*args, **kwargs):
-    # basic debug printing function
-    # if string ends in : then print without newline
-    # so next value prints on the same line
+def update_save_to(target, src, key):
+    # Test the target and update with source
 
-    # inspect.stack()[1][3] = Function that called do_DBUG
-    # inspect.stack()[1][2] = line number in calling function
+    DBUG = False
 
-    # print inspect.stack()
-    print "####################################"
-    print "In function:", inspect.stack()[1][3], "[", \
-        inspect.stack()[1][2] , "]"
-    # print args
+    target_type = check_type(target)
+    save_to = target
 
-    # print six.string_types
-    for i in args:
-        if isinstance(i, six.string_types):
-            if len(i) > 1:
-                if i[-1] == ":":
-                    print i,
-                else:
-                    print i
-            else:
-                print i
+    if DBUG:
+        do_DBUG("save_to:", save_to,
+                "using source:", src,
+                "key:", key,
+                "and target:", target,
+                "with target_type:", target_type)
+
+    if target_type == "DICT":
+        #print save_to[key]
+        if check_type(save_to[key]) == "LIST":
+            save_to[key] = src[key]
         else:
-            print i
-    print "####################################"
+            save_to[key] = src[key]
 
-    return
+    elif target_type == "LIST":
+        save_to = src[key]
+    elif target_type == "TUPLE":
+        save_to[key] = {key:src[key]}
+    elif target_type == "STRING":
+        string_to_write = src[key]
+        save_to = src[key]
+    else:
+        save_to[key] = src[key]
+
+    if DBUG:
+        do_DBUG("returning save_to:", save_to,
+                "using source:", src,
+                "and target:", target,
+                "with target_type:", target_type)
+
+    return save_to
+
+
+def write_comment(wrk_add_dict, kvs):
+    # if value is assigned to comments we need to check
+    # if comments already present
+    # if so, add to the list
+
+    DBUG = True
+
+    if DBUG:
+        do_DBUG("IN WRITE COMMENTS", "wrk_add_dict:",
+                to_json(wrk_add_dict), "kvs:", to_json(kvs))
+
+    if not key_is_in(kvs["k"],wrk_add_dict):
+        # print kvs["k"]," NOT in wrk_add_dict"
+        # so initialize the comments list
+
+        wrk_add_dict[kvs["k"]] = []
+
+    else:
+        if isinstance(wrk_add_dict[kvs["k"]], basestring):
+            tmp_comment = wrk_add_dict[kvs["k"]]
+            print "tmp_comment:",tmp_comment
+            # get the comment
+            wrk_add_dict[kvs["k"]] = []
+            # initialize the list
+            wrk_add_dict[kvs["k"]].append(tmp_comment)
+
+    # Now add the comment
+    wrk_add_dict[kvs["k"]].append(kvs["v"])
+
+    # kvs["comments"].append(kvs["v"])
+
+    if DBUG:
+        do_DBUG("k:", kvs["k"], "v:", kvs["v"],
+                "wrk_add_dict["+kvs["k"]+"]:",
+                wrk_add_dict[kvs["k"]],
+                "wrk_add_dict:", to_json(wrk_add_dict))
+
+    return wrk_add_dict
+
+
+def write_save_to(save_to, pd):
+    # iterate through dict and add to save_to
+
+    """
+
+    :param save_to:
+    :param pd:
+    :return:
+    """
+    DBUG = False
+
+    print "pd:", pd
+
+    i = 0
+    for item in pd.items():
+        key = item[0]
+        #print "key:", key
+        val = item[1]
+        #print "item:", item[1]
+        save_to[key] = item[1]
+
+    if DBUG:
+        do_DBUG("pd:", pd,
+                "save_to:", to_json(save_to))
+
+    return save_to
+
+
+def write_segment(itm, sgmnt, sgmnt_dict, ln_list, multi):
+    # Write the segment to items dict
+
+    DBUG = False
+
+    if DBUG:
+        do_DBUG("Item:", itm, "Writing Segment:", sgmnt,
+                "Writing dict:", sgmnt_dict,
+                "Multi:", multi,
+                "ln_list:", ln_list)
+    if multi:
+        ln_list.append(sgmnt_dict)
+        # print "Multi List:", ln_list
+        itm[sgmnt] = ln_list
+    else:
+        itm[sgmnt] = sgmnt_dict
+
+    return itm, sgmnt_dict, ln_list
+
+
+def write_source(kvs, dt):
+    # Write source and comments to dt
+
+    DBUG = False
+
+    if DBUG:
+        do_DBUG("kvs:", kvs)
+    if kvs["source"] != "":
+        dt["source"] = kvs["source"]
+
+    return dt
+
 
 

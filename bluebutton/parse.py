@@ -325,10 +325,6 @@ def bb_file_parse(inPath):
                         k = "effectiveTime"
                         close_segment = True
 
-                # Deal with date formats here
-                # Typically change to yyyymmdd format
-                # TODO: Format date lines. Add format k:v to fld_tx
-
                 # Build a string to use to find lower level seg entries
                 drill_down=current_segment+"."+k
                 update_name = translate_field(drill_down)
