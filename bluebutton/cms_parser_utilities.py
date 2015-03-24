@@ -90,12 +90,11 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
     # TODO: Employer Subsidy Header not written
     # TODO: Primary Insurance Header not written
     # TODO: Other Insurance Header not written
+    
     # TODO: Claim Details need to be embedded inside Claim Header
     # TODO: Multiple Claims Headers and Details not handled
     # TODO: Claims - First Header and Last Claim Detail written
-    # TODO: Fix Time fields (minutes dropped after colon)
-
-    # TODO: clean up write section - break out to more sub-functions
+    # FIXED: Fix Time fields (minutes dropped after colon)
 
     current_segment = seg_name
     seg_type = check_type(seg[seg_name])
@@ -1230,6 +1229,9 @@ def assign_key_value(full_line, wrk_seg_def, kvs):
     if len(line_source) > 1:
         kvs["k"] = headlessCamel(line_source[0])
         kvs["v"] = line_source[1].lstrip()
+        # lines with more than 1 : get truncated.
+        # so lets make sure we ge the whole line
+        kvs = get_rest_of_line(kvs, line_source)
         kvs["v"] = kvs["v"].rstrip()
 
     else:
@@ -1538,6 +1540,33 @@ def get_line_dict(ln, i):
     return extract_line
 
 
+def get_rest_of_line(kvs, line_source):
+    # Lines with multiple colons get truncated
+    # so we need to rebuild the full value entry
+    # line_source was split on ":" so we need to ad those back
+
+    DBUG = False
+
+    line_value = line_source[1]
+    piece = 2
+
+    if len(line_source) > 2:
+
+        while piece < len(line_source):
+            # skip the first item it will be the field name
+
+            line_value = line_value + ":" + line_source[piece]
+            piece += 1
+
+    if DBUG:
+        do_DBUG("piece:", piece, "line_value:", line_value,
+                "Line_Source:", line_source)
+
+    kvs["v"] = line_value.lstrip()
+
+    return kvs
+
+
 def get_segment(title, exact=False):
     # get the SEG_DEF record using title in Match
 
@@ -1753,6 +1782,10 @@ def overide_fieldname(lvl, match_ln, current_fld):
 def parse_date(d):
     # convert date to json format
 
+    DBUG = False
+
+    if DBUG:
+        do_DBUG("Date to parse:", d)
     result = ""
 
     d = d.strip()
@@ -1761,7 +1794,8 @@ def parse_date(d):
         date_value = datetime.strptime(d, "%m/%d/%Y")
         result = date_value.strftime("%Y%m%d")
 
-    #print result
+    if DBUG:
+        do_DBUG("Result:", result)
 
     return result
 
@@ -1769,12 +1803,18 @@ def parse_date(d):
 def parse_time(t):
     # convert time to  json format
 
+    DBUG = False
+
+    if DBUG:
+        do_DBUG("Time to parse:", t)
     t = t.strip()
     time_value = datetime.strptime(t, "%m/%d/%Y %I:%M %p")
     # print time_value
     result = time_value.strftime("%Y%m%d%H%M%S+0500")
 
-    # print result
+    if DBUG:
+        do_DBUG("Result:", result)
+
     return result
 
 
