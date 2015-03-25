@@ -20,7 +20,7 @@ from cms_parser_utilities import *
 from file_def_cms import SEG_DEF
 from cms_parser_utilities import *
 
-DBUG = False
+DBUG = True
 
 # divider = "--------------------------------"
 divider = "----------"
@@ -92,7 +92,7 @@ def cms_file_read(inPath):
                         current_segment = tl
                         get_title = False
                         if "Claim Lines for Claim Number" in l:
-                            set_level = 2
+                            set_level = 1
                         else:
                             set_level = 0
                 else:
@@ -267,7 +267,8 @@ def parse_lines(ln_list):
                 if DBUG:
                     do_DBUG("LIST returned",
                             block_seg)
-                out_dict[block_name] = block_seg[0]
+                if not block_seg == []:
+                    out_dict[block_name] = block_seg[0]
             else:
                 if DBUG:
                     do_DBUG("Not List",
