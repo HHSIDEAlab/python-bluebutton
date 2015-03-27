@@ -14,13 +14,11 @@ import json
 import re
 import os, sys
 
-import collections
 from cms_parser_utilities import *
+from cms_custom import *
 
-from file_def_cms import SEG_DEF
-from cms_parser_utilities import *
 
-DBUG = True
+DBUG = False
 
 # divider = "--------------------------------"
 divider = "----------"
@@ -88,11 +86,12 @@ def cms_file_read(inPath):
                         # Remove : from Title - for Claims LineNumber:
                         titleline = l.split(":")
                         tl = titleline[0].rstrip()
-                        set_header =line_type
+                        set_header = line_type
                         current_segment = tl
                         get_title = False
                         if "Claim Lines for Claim Number" in l:
                             set_level = 1
+                            # set_header = "BODY"
                         else:
                             set_level = 0
                 else:
@@ -101,12 +100,16 @@ def cms_file_read(inPath):
                     # Only claim summary title segments are blank
                     # save current_segment
                     previous_segment = current_segment
-                    current_segment = "claimHeader"
+                    current_segment = "claim Header"
                     # print "set title to", current_segment
                     # print i,"We never got a title line...", current_segment
                     set_level = 1
                     header_line = False
-                    set_header = "HEADER"
+                    if current_segment == "claim Header":
+                        # set_header = "BODY"
+                        set_header = "HEADER"
+                    else:
+                        set_header = "HEADER"
                     line_type = "BODY"
 
                 line_dict = {"key": ln_cntr,
@@ -217,7 +220,7 @@ def parse_lines(ln_list):
             wrk_lvl = adjusted_level(ln["level"], match_ln)
             # We found a match in SEG_DEF
             # So we use SEG_DEF to tailor how we write the line and
-            # section since a SEG_DEF typically defines special processing
+            # section since a SEG_DEF defines special processing
 
             if DBUG:
                 do_DBUG("CALLING PROCESS_HEADER===========================",
@@ -235,18 +238,31 @@ def parse_lines(ln_list):
             # Now load the info returned from process_header in out_dict
             out_dict[seg_name] = sub_seg[seg_name]
 
-            if DBUG:
+            if DBUG or True:
                 do_DBUG("=============== RETURNED FROM PROCESS_HEADER",
+                        "line:", i,
+                        "ln_control:", ln_ctrl,
                         "seg_name:", seg_name,
+                        "custom processing:", key_value("custom", ln_ctrl),
                         "sub_seg:", to_json(sub_seg))
 
-            i, block_seg, block_name = process_subseg(i + 1,
-                                                 ln_ctrl,
-                                                 match_ln,
-                                                 wrk_lvl,
-                                                 ln_list,
-                                                 sub_seg,
-                                                 seg_name)
+            if key_value("custom", ln_ctrl) == "":
+                # No custom processing required
+                i, block_seg, block_name = process_subseg(i + 1,
+                                                     ln_ctrl,
+                                                     match_ln,
+                                                     wrk_lvl,
+                                                     ln_list,
+                                                     sub_seg,
+                                                     seg_name)
+            else: #custom processing required (ln_ctrl["custom"] is set)
+                i, block_seg, block_name = custom_family_history( i + 1,
+                                                                 ln_ctrl,
+                                                                 match_ln,
+                                                                 wrk_lvl,
+                                                                 ln_list,
+                                                                 sub_seg,
+                                                                 seg_name)
 
             if DBUG:
                 do_DBUG("---------------- RETURNED FROM PROCESS_BLOCK",

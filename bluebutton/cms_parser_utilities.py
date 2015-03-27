@@ -80,7 +80,7 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
     # FIXED: Allergies section is empty
     # FIXED: Medications - last entry does not get source info
 
-    # TODO: Fix Funky errors [Family History] - some entries not written
+    # FIXED: Fix Funky errors [Family History] - some entries not written
     # FIXED: Preventive Services - Some items not added
     # FIXED: Providers - last entry does not get source info
     # FIXED: Providers - Fields not in order
@@ -94,6 +94,8 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
     # FIXED: Other Insurance Header not written
     
     # TODO: Claim Details need to be embedded inside Claim Header
+    # TODO: Write Claim details as list of dicts with new dict on repeat of
+    #       line number
     # FIXED: Multiple Claims Headers and Details not handled
     # FIXED: Claims - First Header and Last Claim Detail written
     # FIXED: Fix Time fields (minutes dropped after colon)
@@ -307,7 +309,11 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                 # before writing pre-fill
                 # check for source and write it to process_dict
                 process_dict = write_source(kvs, process_dict)
-                process_list.append(process_dict)
+                if key_is_in("details", process_dict):
+                    print "COUNT OF LIST ITEMS:", len(process_list)
+                    process_list[max(len(process_list) - 1, 0)]["details"] = process_dict
+                else:
+                    process_list.append(process_dict)
                 # Now clear down the dict and
                 # add the new item
                 process_dict = collections.OrderedDict()
@@ -382,9 +388,15 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
                             print "k:", kvs["k"], " in ", process_dict
                             # write the source  and comments first
                             process_dict = write_source(kvs, process_dict)
-                            print "process_dict:", process_dict
+
+                            if key_is_in("details", process_dict):
+                                print "COUNT OF LIST ITEMS:", len(process_list)
+                                process_list[max(len(process_list) - 1, 0)]["details"] = process_dict
+                            else:
+                                process_list.append(process_dict)
+                            #print "process_dict:", process_dict
                             # Append to the list
-                            process_list.append(process_dict)
+                            #process_list.append(process_dict)
                             print "process_list:", to_json(process_list)
                             # Now clear down the dict and
                             # add the new item
@@ -485,7 +497,9 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
 
                 else:
                     if key_is_in("type", wrk_seg_def):
-                        print "wrk-seg_def:", wrk_seg_def["type"]
+                        if DBUG:
+                            do_DBUG("wrk-seg_def - Type is:", wrk_seg_def["type"],
+                                    "KVS:", kvs)
 
             else: # not multi
                 if key_is("type", wrk_seg_def, "DICT"):
@@ -1117,7 +1131,7 @@ def process_segment(strt_ln, ln_control, match_ln, start_lvl, ln_list):
         elif adj_level == (start_lvl + 1):
             # We are processing the lines in the segment
             print adj_level, "==", start_lvl + 1
-            #print "Do Line:", current_line["key"]
+            # print "Do Line:", current_line["key"]
 
             # we need to check SEG_DEF for instructions
             match_ln = update_match(start_lvl + 1,
@@ -1126,7 +1140,7 @@ def process_segment(strt_ln, ln_control, match_ln, start_lvl, ln_list):
             # print "combined match:", combined_match(start_lvl + 1,
             # match_ln)
 
-            #if find_segment(combined_match(start_lvl + 1, match_ln)):
+            # if find_segment(combined_match(start_lvl + 1, match_ln)):
             #    sub_seg = get_segment(combined_match(start_lvl + 1,
             #                                         match_ln))
             #    print "entering sub process segment"
@@ -1170,7 +1184,7 @@ def process_segment(strt_ln, ln_control, match_ln, start_lvl, ln_list):
                 kvs = assign_key_value(current_line,
                                        ln_control,
                                        kvs)
-                #print "K:", kvs["k"]," V:", kvs["v"], "Source:",
+                # print "K:", kvs["k"]," V:", kvs["v"], "Source:",
                 # kvs["source"],"]"
 
                 if ("ADDRESSLINE1" in kvs["k"].upper()) or \
@@ -1185,7 +1199,7 @@ def process_segment(strt_ln, ln_control, match_ln, start_lvl, ln_list):
                     # Build an Address Block
                     # By reading the next lines
                     # until we find "ZIP"
-                    #return Address dict and work_ln reached
+                    # return Address dict and work_ln reached
 
                 print "+++++++++++++++++++++++++++"
                 print "About to update dict/Lists"
@@ -1261,7 +1275,6 @@ def process_segment(strt_ln, ln_control, match_ln, start_lvl, ln_list):
     # If match on SEG_DEF and level is > current level
     # Drill down to another sub-segment
 
-
     # else: we have found the start of the next segment
     # So set return values and exit
 
@@ -1271,7 +1284,7 @@ def process_segment(strt_ln, ln_control, match_ln, start_lvl, ln_list):
 
     # finish writing segments
     if list_processing:
-        #segment[current_segment] = sub_segment
+        # segment[current_segment] = sub_segment
         # print "segment_list before exit:", segment_list
         # print "segment before exit:", segment
         if len(segment_list) < 1:
@@ -1371,7 +1384,7 @@ def assign_key_value(line_dict, wrk_seg_def, kvs):
     if "DOD" == kvs["k"].upper():
         kvs["v"] = parse_date(kvs["v"])
 
-    #if key_is_in("dict_name", wrk_seg_def):
+    # if key_is_in("dict_name", wrk_seg_def):
     #    if key_is_in("type", wrk_seg_def):
     #        if wrk_seg_def["type"].upper() == "DICT":
     #            kvs["v"] = {kvs["k"]:kvs["v"]}
@@ -1744,6 +1757,18 @@ def is_body(ln):
     return result
 
 
+def is_eol(ln, lst):
+    # Are we at the end of the list
+    # len(list) - 1
+
+    result = False
+
+    if ln >= len(lst) - 1:
+        # line is >= items in list
+        result = True
+
+    return result
+
 def is_head(ln):
     # Is line type = "HEADER" in ln
 
@@ -1868,6 +1893,26 @@ def key_is_in_subdict(ky, dt):
     return result
 
 
+def key_value(ky, dt):
+    # check if key is in dict and
+    # return the value of key or "" if not found
+    # done to avoid key errors
+
+    result = ""
+
+    DBUG = False
+
+
+    if ky in dt:
+        result = dt[ky]
+
+    if DBUG:
+        do_DBUG("ky:", ky,
+                "dict:", to_json(dt),
+                "result:", result)
+
+    return result
+
 def overide_fieldname(lvl, match_ln, current_fld):
     # Lookup line  in SEG_DEF using match_ln[lvl]
     # look for "name" or "field"
@@ -1938,7 +1983,7 @@ def segment_prefill(wrk_seg_def, segment_dict):
     # assigning to segment_dict
     # First we reset the segment_dict as an OrderedDict
 
-    DBUG = True
+    DBUG = False
 
     if len(segment_dict)>0:
 
