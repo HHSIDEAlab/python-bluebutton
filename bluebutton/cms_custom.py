@@ -19,10 +19,11 @@ from file_def_cms import SEG_DEF
 from usa_states import STATES
 from cms_parser_utilities import *
 
-DBUG = False
-
 def custom_family_history(strt_ln, ln_control, match_ln, strt_lvl,
                          ln_list, seg, seg_name):
+    # Custom processing for Family History section
+    # Needed due to multiple uses of "Type" at same level in segment
+
     # Input:
     # strt_ln = current line number in the dict
     # ln_control = entry from SEG_DEF for the start_ln
@@ -39,6 +40,8 @@ def custom_family_history(strt_ln, ln_control, match_ln, strt_lvl,
     # },
     # seg = dict returned from process_header
     # seg_name = dict key in seg returned from process_header
+
+    DBUG = False
 
     current_segment = seg_name
     seg_type = check_type(seg[seg_name])
@@ -65,7 +68,7 @@ def custom_family_history(strt_ln, ln_control, match_ln, strt_lvl,
 
     # get current line
     current_line = get_line_dict(ln_list, wrk_ln)
-    wrk_ln_lvl =current_line["level"]
+    wrk_ln_lvl = current_line["level"]
 
     # Update match_ln with headers name from SEG_DEF (ie. ln_control)
     match_ln = update_match(strt_lvl, seg_name, match_ln)
@@ -95,11 +98,14 @@ def custom_family_history(strt_ln, ln_control, match_ln, strt_lvl,
             end_segment = True
 
         # not at end of file or segment
-
         # Lookup SEG DEF Record
-        wrk_ln_lvl =current_line["level"]
-        match_ln = update_match(wrk_ln_lvl, headlessCamel(current_line["line"]), match_ln)
-        match_hdr = combined_match(wrk_ln_lvl, match_ln)
+
+        wrk_ln_lvl = current_line["level"]
+        match_ln = update_match(wrk_ln_lvl,
+                                headlessCamel(current_line["line"]),
+                                match_ln)
+        match_hdr = combined_match(wrk_ln_lvl,
+                                   match_ln)
         # Find segment using combined header
 
         is_line_seg_def = find_segment(match_hdr, True)
@@ -116,6 +122,7 @@ def custom_family_history(strt_ln, ln_control, match_ln, strt_lvl,
         # process items unless we hit the 2nd k == "type"
         if kvs["k"].upper() == "TYPE" and type_count == 0:
             type_count += 1
+
         elif kvs["k"].upper() == "TYPE" and type_count == 1:
             # loop through lines until we get to next family member
             # or end of segment
@@ -134,7 +141,6 @@ def custom_family_history(strt_ln, ln_control, match_ln, strt_lvl,
             process_list.append(process_dict)
             # then clear down process_dict
             process_dict = collections.OrderedDict({kvs["k"]: kvs["v"]})
-
 
         # add line to dict
 
@@ -176,25 +182,24 @@ def custom_family_history(strt_ln, ln_control, match_ln, strt_lvl,
     #############################################################
     end_ln = wrk_ln
 
-
     if key_is("type", ln_control, "LIST"):
         # print "-------------------------"
         if len(process_dict) > 0:
-            print "adding dict to list"
-            print ""
+            # print "adding dict to list"
+            # print ""
             if not key_is_in("source", process_dict):
-                print "adding source", kvs["source"]
+                # print "adding source", kvs["source"]
                 process_dict["source"] = kvs["source"]
             process_list.append(process_dict)
-        print "seg:", seg
-        print "adding from process_list"
+        # print "seg:", seg
+        # print "adding from process_list"
         if check_type(seg[seg_name]) == "LIST":
             seg[seg_name].append(process_list)
 
-        print seg[seg_name]
+        # print seg[seg_name]
         pass
     elif key_is("type", ln_control, "DICT"):
-        print "adding from process_dict"
+        # print "adding from process_dict"
         seg[seg_name] = process_dict
         pass
     if DBUG:
@@ -212,11 +217,10 @@ def custom_family_history(strt_ln, ln_control, match_ln, strt_lvl,
                 "<<==<<==<<==<<==<<==<<==<<==<<==<<",)
     # print "How long is seg:", len(seg[seg_name])
     if len(save_to) == 1:
-        print "nothing in save_to"
+        # print "nothing in save_to"
 
         save_to = seg[seg_name]
-        print "seg:", seg
-
+        # print "seg:", seg
 
     return end_ln, save_to, current_segment
 
@@ -225,12 +229,13 @@ def write_conditions(wrk_ln, kvs, wrk_seg_def, ln_list):
     # loop through lines until:
     # line type=header
 
-    DBUG = True
+    DBUG = False
 
     current_line = get_line_dict(ln_list, wrk_ln)
     sub_kvs = {}
     for k, v in kvs.iteritems():
         sub_kvs[k] = v
+
     sub_kvs = assign_key_value(current_line, wrk_seg_def, sub_kvs)
 
     loop_more = True
@@ -294,3 +299,4 @@ def write_conditions(wrk_ln, kvs, wrk_seg_def, ln_list):
     wrk_ln -= 1
 
     return wrk_ln, kvs
+

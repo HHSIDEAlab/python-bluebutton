@@ -18,17 +18,9 @@ from cms_parser_utilities import *
 from cms_custom import *
 
 
-DBUG = False
+# DBUG = False
 
-# divider = "--------------------------------"
 divider = "----------"
-
-
-fld_tx = [{"input":"Emergency Contact","output":"emergency_contact"},
-    {"input":"emergency_contact.Contact Name","output":"name"},
-    {"input":"emergency_contact.Address Line 1","output":"line_1"},
-    {"input":"emergency_contact.Address Line 2","output":"line_2"},
-    ]
 
 def cms_file_read(inPath):
     # Read file and save in OrderedDict
@@ -47,7 +39,6 @@ def cms_file_read(inPath):
 
     line_dict = {}
 
-
     with open(inPath, 'r') as f:
         # get the line from the input file
         # print "Processing:",
@@ -59,7 +50,7 @@ def cms_file_read(inPath):
             l = l.rstrip()
             # remove white space from end of line
 
-            #if (i % 10) == 0:
+            # if (i % 10) == 0:
                 # print ".",
                 # Show progress every 10 steps
 
@@ -102,7 +93,8 @@ def cms_file_read(inPath):
                     previous_segment = current_segment
                     current_segment = "claim Header"
                     # print "set title to", current_segment
-                    # print i,"We never got a title line...", current_segment
+                    # print i,"We never got a title line...",
+                    # current_segment
                     set_level = 1
                     header_line = False
                     if current_segment == "claim Header":
@@ -127,31 +119,27 @@ def cms_file_read(inPath):
                     blank_ln += 1
                     continue
 
-
             else:
                 line_type = "BODY"
                 set_header = line_type
-
 
                 line_dict = {"key": ln_cntr,
                              "level": set_level + 1,
                              "line": l,
                              "type": set_header}
 
-            f_lines.append({ ln_cntr : line_dict})
+            f_lines.append({ln_cntr: line_dict})
 
             ln_cntr += 1
 
-
     f.close()
 
-    #print i+1, "records"
-    #print ln_cntr, "written."
-    #print blank_ln, "skipped"
+    # print i+1, "records"
+    # print ln_cntr, "written."
+    # print blank_ln, "skipped"
 
-    #print f_lines
-    #print ""
-
+    # print f_lines
+    # print ""
 
     return f_lines
 
@@ -162,6 +150,8 @@ def parse_lines(ln_list):
     # Use SEG_DEF to control JSON construction
 
     # set variables
+
+    DBUG = False
 
     ln = {}
     ln_ctrl = {}
@@ -191,7 +181,7 @@ def parse_lines(ln_list):
 
     i = 0
 
-    #while i <= 44: #(len(ln_list)-1):
+    # while i <= 44: #(len(ln_list)-1):
     while i <= (len(ln_list) - 1):
         # process each line in the list until end of list
 
@@ -230,7 +220,6 @@ def parse_lines(ln_list):
                         "ln_lvl:", ln["level"],
                         "wrk_lvl:", wrk_lvl)
 
-
             i, sub_seg, seg_name = process_header(i, ln_ctrl,
                                                   wrk_lvl,
                                                   ln_list)
@@ -238,7 +227,7 @@ def parse_lines(ln_list):
             # Now load the info returned from process_header in out_dict
             out_dict[seg_name] = sub_seg[seg_name]
 
-            if DBUG or True:
+            if DBUG: # or True:
                 do_DBUG("=============== RETURNED FROM PROCESS_HEADER",
                         "line:", i,
                         "ln_control:", ln_ctrl,
@@ -255,8 +244,10 @@ def parse_lines(ln_list):
                                                      ln_list,
                                                      sub_seg,
                                                      seg_name)
-            else: #custom processing required (ln_ctrl["custom"] is set)
-                i, block_seg, block_name = custom_family_history( i + 1,
+
+            elif key_value("custom", ln_ctrl) == "family_history":
+                #custom processing required (ln_ctrl["custom"] is set)
+                i, block_seg, block_name = custom_family_history(i + 1,
                                                                  ln_ctrl,
                                                                  match_ln,
                                                                  wrk_lvl,
@@ -264,13 +255,23 @@ def parse_lines(ln_list):
                                                                  sub_seg,
                                                                  seg_name)
 
+            elif key_value("custom", ln_ctrl) == "claim_summary":
+                #custom processing required (ln_ctrl["custom"] is set)
+                i, block_seg, block_name = process_subseg(i + 1,
+                                                          ln_ctrl,
+                                                          match_ln,
+                                                          wrk_lvl,
+                                                          ln_list,
+                                                          sub_seg,
+                                                          seg_name)
+
             if DBUG:
                 do_DBUG("---------------- RETURNED FROM PROCESS_BLOCK",
                         "ctr: i:", i, "block_name:",block_name,
                         "block_seg:", to_json(block_seg),
                         )
 
-            #if check_type(block_seg) != "DICT":
+            # if check_type(block_seg) != "DICT":
             #    if DBUG:
             #        do_DBUG("((((((((((((((((((",
             #                "check_type:",
@@ -295,7 +296,6 @@ def parse_lines(ln_list):
             if DBUG:
                 do_DBUG("out_dict["+ block_name + "]:", to_json(out_dict))
 
-
             # if (i + 1) <= (len(ln_list) - 1):
                 # We are not passed the end of the list
                 # so increment the i counter in the call to
@@ -316,7 +316,6 @@ def parse_lines(ln_list):
                         to_json(out_dict[seg_name]),
                         "block_name:", block_name,
                         "block_seg:", block_seg)
-
 
         if DBUG:
             do_DBUG("====================END of LOOP",
@@ -341,7 +340,7 @@ def cms_file_parse2(inPath):
     # Set default variables on entry
     k = ""
     v = ""
-    items=collections.OrderedDict()
+    items = collections.OrderedDict()
 
     first_header = True
     header_line = True
@@ -389,7 +388,7 @@ def cms_file_parse2(inPath):
                     # Write segment here
                     ####################
                     # print i, "Cur_Seg:", current_segment, ":", multi
-                    #if multi:
+                    # if multi:
                     #    print line_list
                     # write source: segment_source to segment_dict
                     segment_dict["source"] = segment_source
@@ -411,7 +410,7 @@ def cms_file_parse2(inPath):
                 # print "we found title:",l
                 # print i, "[About to set Seg:", l, "]"
                 # Save the current_segment before we overwrite it
-                if not (divider in l):
+                if not divider in l:
                     if len(l.strip()) > 0:
                         # print "title length:", len(l.strip())
 
@@ -421,12 +420,14 @@ def cms_file_parse2(inPath):
 
                         previous_segment = current_segment
                         header_block = get_segment(headlessCamel(tl))
-                        # print headlessCamel(l), "translated:", header_block
+                        # print headlessCamel(l), "translated:",
+                        # header_block
 
                         if len(header_block) > 1:
                             current_segment = header_block["name"]
                         else:
                             current_segment = headlessCamel(tl)
+
                         if find_segment(headlessCamel(tl)):
                             # print "Segment list: %s FOUND" % l
                             # Get a dict for this segment
@@ -463,8 +464,6 @@ def cms_file_parse2(inPath):
 
                 # Write the last segment and reset
 
-
-
             elif line_type == "Header" and (divider in l):
                 # this should be the closing divider line
                 # print "Closing Divider"
@@ -472,7 +471,6 @@ def cms_file_parse2(inPath):
                 line_type = "Body"
 
             else:
-
 
                 line_type = "Body"
 
@@ -491,17 +489,18 @@ def cms_file_parse2(inPath):
                         v = {"value": parse_time(l)}
                         k = "effectiveTime"
                         # print i, ":", l
-                        # print i, "got date for:", current_segment, k, ":", v
+                        # print i, "got date for:",
+                        # current_segment, k, ":", v
 
                         segment_dict[k] = v
-
 
                     elif k.upper() == "SOURCE":
                         segment_source=set_source(segment_source, k, v)
                         # Apply headlessCamelCase to K
                         k = headlessCamel(k)
                         v = segment_source
-                        # print i, "set source in:", current_segment, ":", k, ":", v
+                        # print i, "set source in:",
+                        # current_segment, ":", k, ":", v
 
                         segment_dict[k] = v
 
@@ -543,13 +542,12 @@ def cms_file_parse2(inPath):
                                 else:
                                     segment_dict[block_info["name"]] = v
 
-
                         if multi:
                             # Add Source value to each block
                             segment_dict["source"] = segment_source
                             # print "Line_List:[", line_list, "]"
                             # print "Segment_dict:[", segment_dict, "]"
-                            if (k in segment_dict):
+                            if k in segment_dict:
                                 line_list.append(segment_dict)
                                 segment_dict = collections.OrderedDict()
 
@@ -558,7 +556,6 @@ def cms_file_parse2(inPath):
                         skip = False
                     # print "B[", i, ":", line_type, ":", l, "]"
 
-
             # ===================
             # Temporary Insertion
             # if i > 80:
@@ -566,13 +563,15 @@ def cms_file_parse2(inPath):
             # end of temporary insertion
             # ===================
 
-
-
     f.close()
 
     # write the last segment
     # print "Writing the last segment"
-    items, segment_dict, line_list = write_segment(items, current_segment, segment_dict, line_list, multi)
+    items, segment_dict, line_list = write_segment(items,
+                                                   current_segment,
+                                                   segment_dict,
+                                                   line_list,
+                                                   multi)
 
     return items
 
@@ -582,19 +581,19 @@ def cms_file_parse(inPath):
     # Using a redefined Parsing process
 
     # Set default variables on entry
-    k=""
-    v=""
-    items=collections.OrderedDict()
-    first_header=True
-    header_line=True
-    get_title=False
+    k = ""
+    v = ""
+    items = collections.OrderedDict()
+    first_header = True
+    header_line = True
+    get_title = False
 
-    line_type="Header"
-    segment_dict=collections.OrderedDict()
-    current_segment=""
-    segment_source=""
-    previous_segment=current_segment
-    line_dict=collections.OrderedDict()
+    line_type = "Header"
+    segment_dict = collections.OrderedDict()
+    current_segment = ""
+    segment_source = ""
+    previous_segment = current_segment
+    line_dict = collections.OrderedDict()
 
     # Open the file for reading
     with open(inPath, 'r') as f:
@@ -608,9 +607,10 @@ def cms_file_parse(inPath):
                 v = line[1].lstrip()
                 v = v.rstrip()
 
-            if len(l) <= 1 and header_line == False:
-                # The line is a detail line and is empty so ignore it and move on to next line
-                #print "empty line %s[%s] - skipping to next line" % (i,l)
+            if len(l) <= 1 and header_line is False:
+                # The line is a detail line and is empty
+                # so ignore it and move on to next line
+                # print "empty line %s[%s] - skipping to next line" % (i,l)
                 continue
 
             if header_line:
@@ -625,26 +625,28 @@ def cms_file_parse(inPath):
 
             if (divider in l) and not header_line:
                 # We have a divider. Is it an open or closing divider?
-                header_line=True
-                get_title=True
+                header_line = True
+                get_title = True
                 # First we need to write the old segment out
                 if first_header:
                     # file starts with a header line but
                     # there is nothing to write
-                    first_header=False
-                    #print "First Header - Nothing to write"
+                    first_header = False
+                    # print "First Header - Nothing to write"
                     continue
                 else:
                     # not the first header so we should write the segment
-                    #print "Not First Header - Write segment"
-                    print i,"writing segment",
-                    items, segment_dict = write_segment(items, current_segment, segment_dict)
+                    # print "Not First Header - Write segment"
+                    print i, "writing segment",
+                    items, segment_dict = write_segment(items,
+                                                        current_segment,
+                                                        segment_dict)
                     # Then we can continue
                     continue
 
             #print "HL/GT:",header_line,get_title
             if header_line and get_title:
-                if not (divider in l):
+                if not divider in l:
                     previous_segment = current_segment
                     # assign title to current_segment
                     current_segment = k.lower().replace(" ", "_")
@@ -653,19 +655,20 @@ def cms_file_parse(inPath):
                 else:
                     # blank lines for title were skipped so we hit divider
                     # before setting current_segment = title
-                    # So set to "claim_summary" since this is only unnamed segment
+                    # So set to "claim_summary"
+                    # since this is only unnamed segment
                     current_segment = "claim_summary"
                     get_title = False
 
-                #print "Header:",current_segment
+                # print "Header:",current_segment
                 # now match the title in seg["key"]
                 # and write any prefill information to the segment
                 if find_segment(k):
                     # Check the seq list for a match
-                    #print "Segment list: %s FOUND" % l
+                    # print "Segment list: %s FOUND" % l
                     seg_returned = get_segment(k)
                     k = seg_returned["name"]
-                    #print "k set to [%s]" % k
+                    # print "k set to [%s]" % k
 
                     current_segment, segment_dict = segment_prefill(seg_returned)
 
@@ -677,13 +680,13 @@ def cms_file_parse(inPath):
                     segment_dict[current_segment] = {}
 
                 print "%s:Current_Segment: %s" % (i, current_segment)
-                #print "Header Line:",header_line
+                # print "Header Line:",header_line
                 # go to next line in file
                 continue
 
             print "[%s:CSeg:%s|%s L:[%s]" % (i,current_segment,line_type,l)
 
-            #print "%s:Not a Heading Line" % i
+            # print "%s:Not a Heading Line" % i
             ######################################
             # Lines below are detail lines
 
@@ -708,30 +711,32 @@ def cms_file_parse(inPath):
                     # print "got the date line"
                     v = {"value": parse_time(l)}
                     k = "effectiveTime"
-                    segment_dict[current_segment]={k:v}
+                    segment_dict[current_segment] = {k: v}
                     continue
-            segment_source=set_source(segment_source,k,v)
-            if k.upper()=="SOURCE":
-                k=k.lower()
-                v=segment_source
-                segment_dict[current_segment]={k:v}
+            segment_source = set_source(segment_source, k, v)
+            if k.upper() == "SOURCE":
+                k = k.lower()
+                v = segment_source
+                segment_dict[current_segment] = {k: v}
                 continue
 
-            line_dict[k]=v
+            line_dict[k] = v
 
             # print "line_dict:", current_segment,":", line_dict
 
-            segment_dict[current_segment]=line_dict
+            segment_dict[current_segment] = line_dict
 
             # reset the line_dict
-            line_dict=collections.OrderedDict()
+            line_dict = collections.OrderedDict()
 
         # end of for loop
 
     f.close()
     # write the last segment
-    #print "Writing the last segment"
-    items, segment_dict = write_segment(items, current_segment, segment_dict)
+    # print "Writing the last segment"
+    items, segment_dict = write_segment(items,
+                                        current_segment,
+                                        segment_dict)
 
     return items
 
@@ -760,6 +765,8 @@ def build_key(mk, bi):
     lvl = bi["level"]
     mk[lvl] = bi["name"]
 
+    return mk
+
 
 def get_header_block_level(header_block):
 
@@ -768,3 +775,4 @@ def get_header_block_level(header_block):
         lvl = header_block["level"]
 
     return lvl
+
