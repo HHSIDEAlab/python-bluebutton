@@ -110,6 +110,19 @@ def process_subseg(strt_ln, ln_control, match_ln, strt_lvl,
     # FIXED: Removed "/" from field names (kvs["k"]) in
     #        assign_key_values()
 
+    # TODO: Insurance
+    # TODO: Insurance section employer subsidy not writing multiple plans
+    # TODO: planType from medicare section is written as category
+    # TODO: Employer Subsidy is not written as sub-category
+    # TODO: Only last Employer Subsidy entry is written
+    # TODO: Only last Other Insurance entry is written
+
+    # TODO: Claims
+    # TODO: "claim": [] written to claim header after first claim
+    # TODO: "details": [] written to first claim line details section
+    # TODO: Part D Claims are not written due to different format
+    # TODO: "type": Part D and no Claim Header
+
     # The claims section of the CMS BlueButton file appears to have an
     # issue. The Claim Headers are not titled there is only the to
     # dashed lines BUT the last claim header does not get preceded by
