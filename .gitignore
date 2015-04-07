@@ -3,3 +3,7 @@
 .idea/*
 *.swp
 .idea/*.xml
+
+Input_to_parse.txt
+text_out_debug.txt
+text_out_json.txt

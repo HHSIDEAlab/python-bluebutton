@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d0eb5c7-8b2e-4184-9d16-d3b589a2ad3a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Input_to_parse.txt" afterPath="$PROJECT_DIR$/Input_to_parse.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/bbp.py" afterPath="$PROJECT_DIR$/bluebutton/bbp.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/cms_parser.py" afterPath="$PROJECT_DIR$/bluebutton/cms_parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" afterPath="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/file_def_cms.py" afterPath="$PROJECT_DIR$/bluebutton/file_def_cms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="python-bluebutton.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,10 +89,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cms_parser_utilities.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cms_parser_utilities.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33282673" vertical-offset="9681" max-vertical-offset="25995">
+            <state vertical-scroll-proportion="-8.111111" vertical-offset="9681" max-vertical-offset="25995">
               <caret line="660" column="20" selection-start-line="660" selection-start-column="20" selection-end-line="660" selection-end-column="20" />
               <folding>
                 <element signature="e#236#282#0" expanded="true" />
@@ -108,6 +103,16 @@
                 <element signature="e#50996#51503#0" expanded="false" />
                 <element signature="e#52910#53037#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.10948905" vertical-offset="0" max-vertical-offset="685">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,7 +140,7 @@
       <file leaf-file-name="BlueButtonText-2.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BlueButtonText-2.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="31845">
+            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="31845">
               <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding />
             </state>
@@ -150,7 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/bluebutton/usa_states.py" />
         <option value="$PROJECT_DIR$/bluebutton/parse.py" />
         <option value="$PROJECT_DIR$/bluebutton/cms_custom.py" />
@@ -159,6 +163,7 @@
         <option value="$PROJECT_DIR$/bluebutton/cms_parser.py" />
         <option value="$PROJECT_DIR$/bluebutton/file_def_cms.py" />
         <option value="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -891,26 +896,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BlueButtonText-2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="31845">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bluebutton/usa_states.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
           <caret line="67" column="1" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12479201" vertical-offset="0" max-vertical-offset="601">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -977,7 +967,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33282673" vertical-offset="9681" max-vertical-offset="25995">
+        <state vertical-scroll-proportion="-8.111111" vertical-offset="9681" max-vertical-offset="25995">
           <caret line="660" column="20" selection-start-line="660" selection-start-column="20" selection-end-line="660" selection-end-column="20" />
           <folding>
             <element signature="e#236#282#0" expanded="true" />
@@ -988,6 +978,22 @@
             <element signature="e#50996#51503#0" expanded="false" />
             <element signature="e#52910#53037#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlueButtonText-2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="31845">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10948905" vertical-offset="0" max-vertical-offset="685">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
