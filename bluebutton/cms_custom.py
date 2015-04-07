@@ -53,7 +53,15 @@ def custom_family_history(strt_ln, ln_control, match_ln, strt_lvl,
     ln_control_alt = ln_control
 
     wrk_ln_head = False
-    kvs = {"k": "", "v": "", "source": "", "comments": [], "ln": 0}
+
+    kvs = {"k": "",
+           "v": "",
+           "source": "",
+           "comments": [],
+           "claimNumber": "",
+           "ln": 0,
+           "category": ""}
+
     wrk_segment = seg_name
     multi = key_is("multi", ln_control, "TRUE")
 
@@ -232,7 +240,13 @@ def write_conditions(wrk_ln, kvs, wrk_seg_def, ln_list):
     DBUG = False
 
     current_line = get_line_dict(ln_list, wrk_ln)
-    sub_kvs = {}
+    sub_kvs = {"k": "",
+           "v": "",
+           "source": "",
+           "comments": [],
+           "claimNumber": "",
+           "ln": 0,
+           "category": ""}
     for k, v in kvs.iteritems():
         sub_kvs[k] = v
 

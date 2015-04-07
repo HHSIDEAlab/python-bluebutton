@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d0eb5c7-8b2e-4184-9d16-d3b589a2ad3a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Input_to_parse.txt" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bluebutton/cms_custom.py" afterPath="$PROJECT_DIR$/bluebutton/cms_custom.py" />
     </list>
     <ignored path="python-bluebutton.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,11 +78,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cms_custom.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cms_custom.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bluebutton/cms_custom.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="164" max-vertical-offset="4620">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5270073" vertical-offset="3359" max-vertical-offset="4830">
+              <caret line="248" column="14" selection-start-line="248" selection-start-column="14" selection-end-line="248" selection-end-column="14" />
               <folding>
                 <element signature="e#170#216#0" expanded="true" />
               </folding>
@@ -92,8 +93,8 @@
       <file leaf-file-name="cms_parser_utilities.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.111111" vertical-offset="9681" max-vertical-offset="25995">
-              <caret line="660" column="20" selection-start-line="660" selection-start-column="20" selection-end-line="660" selection-end-column="20" />
+            <state vertical-scroll-proportion="-12.777778" vertical-offset="2085" max-vertical-offset="25995">
+              <caret line="162" column="26" selection-start-line="156" selection-start-column="4" selection-end-line="162" selection-end-column="26" />
               <folding>
                 <element signature="e#236#282#0" expanded="true" />
                 <element signature="e#38623#39144#0" expanded="false" />
@@ -107,41 +108,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.10948905" vertical-offset="0" max-vertical-offset="685">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="file_def_cms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bluebutton/file_def_cms.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="6665" max-vertical-offset="7440">
               <caret line="470" column="33" selection-start-line="470" selection-start-column="33" selection-end-line="470" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="usa_states.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bluebutton/usa_states.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1005" max-vertical-offset="1095">
-              <caret line="67" column="1" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlueButtonText-2.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BlueButtonText-2.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="31845">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -157,13 +128,13 @@
       <list>
         <option value="$PROJECT_DIR$/bluebutton/usa_states.py" />
         <option value="$PROJECT_DIR$/bluebutton/parse.py" />
-        <option value="$PROJECT_DIR$/bluebutton/cms_custom.py" />
         <option value="$PROJECT_DIR$/README.MD" />
         <option value="$PROJECT_DIR$/bluebutton/bbp.py" />
         <option value="$PROJECT_DIR$/bluebutton/cms_parser.py" />
         <option value="$PROJECT_DIR$/bluebutton/file_def_cms.py" />
         <option value="$PROJECT_DIR$/bluebutton/cms_parser_utilities.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/bluebutton/cms_custom.py" />
       </list>
     </option>
   </component>
@@ -925,16 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bluebutton/cms_custom.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="164" max-vertical-offset="4620">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#170#216#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bluebutton/bbp.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="590" max-vertical-offset="1335">
@@ -965,22 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.111111" vertical-offset="9681" max-vertical-offset="25995">
-          <caret line="660" column="20" selection-start-line="660" selection-start-column="20" selection-end-line="660" selection-end-column="20" />
-          <folding>
-            <element signature="e#236#282#0" expanded="true" />
-            <element signature="e#38623#39144#0" expanded="false" />
-            <element signature="e#42285#42419#0" expanded="false" />
-            <element signature="e#45588#45763#0" expanded="false" />
-            <element signature="e#48636#49349#0" expanded="false" />
-            <element signature="e#50996#51503#0" expanded="false" />
-            <element signature="e#52910#53037#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BlueButtonText-2.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="31845">
@@ -994,6 +939,32 @@
         <state vertical-scroll-proportion="0.10948905" vertical-offset="0" max-vertical-offset="685">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bluebutton/cms_parser_utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.777778" vertical-offset="2085" max-vertical-offset="25995">
+          <caret line="162" column="26" selection-start-line="156" selection-start-column="4" selection-end-line="162" selection-end-column="26" />
+          <folding>
+            <element signature="e#236#282#0" expanded="true" />
+            <element signature="e#38623#39144#0" expanded="false" />
+            <element signature="e#42285#42419#0" expanded="false" />
+            <element signature="e#45588#45763#0" expanded="false" />
+            <element signature="e#48636#49349#0" expanded="false" />
+            <element signature="e#50996#51503#0" expanded="false" />
+            <element signature="e#52910#53037#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bluebutton/cms_custom.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5270073" vertical-offset="3359" max-vertical-offset="4830">
+          <caret line="248" column="14" selection-start-line="248" selection-start-column="14" selection-end-line="248" selection-end-column="14" />
+          <folding>
+            <element signature="e#170#216#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
