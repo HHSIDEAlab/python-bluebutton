@@ -27,6 +27,11 @@ def cms_file_read(inPath):
     # Identify Headings and set them as level 0
     # Everything else assign as Level 1
 
+    # Add in claimNumber value to line_dict to simplify detail
+    # downstream processing of lines
+
+    DBUG = False
+
     ln_cntr = 0
     blank_ln = 0
     f_lines = []
@@ -36,8 +41,16 @@ def cms_file_read(inPath):
     header_line = False
     set_header = "HEADER"
     current_segment = ""
+    claim_number = ""
 
-    line_dict = {}
+    kvs = {}
+
+    line_dict = {"key": 0,
+                 "level": 0,
+                 "line": "",
+                 "type": "",
+                 "claimNumber": "",
+                 "category": ""}
 
     with open(inPath, 'r') as f:
         # get the line from the input file
@@ -80,9 +93,11 @@ def cms_file_read(inPath):
                         set_header = line_type
                         current_segment = tl
                         get_title = False
-                        if "Claim Lines for Claim Number" in l:
+                        if "CLAIM LINES FOR CLAIM NUMBER" in l.upper():
+                            # we have to account for Part D Claims
+                            kvs = assign_simple_key(l, kvs)
+                            claim_number = kvs["v"]
                             set_level = 1
-                            # set_header = "BODY"
                         else:
                             set_level = 0
                 else:
@@ -98,7 +113,6 @@ def cms_file_read(inPath):
                     set_level = 1
                     header_line = False
                     if current_segment == "claim Header":
-                        # set_header = "BODY"
                         set_header = "HEADER"
                     else:
                         set_header = "HEADER"
@@ -107,7 +121,8 @@ def cms_file_read(inPath):
                 line_dict = {"key": ln_cntr,
                              "level": set_level,
                              "line": current_segment,
-                             "type": set_header}
+                             "type": set_header,
+                             "claimNumber": claim_number}
 
             elif line_type == "HEADER" and not get_title:
                 # we got a second divider
@@ -122,11 +137,26 @@ def cms_file_read(inPath):
             else:
                 line_type = "BODY"
                 set_header = line_type
+                if "CLAIM NUMBER" in l.upper():
+                    kvs = assign_simple_key(l, kvs)
+                    claim_number = kvs["v"]
+                if "CLAIM TYPE: PART D" in l.upper():
+                    # We need to re-write the previous f_lines entry
+                    prev_line = f_lines[ln_cntr - 1]
+                    if DBUG:
+                        do_DBUG("prev_line:", prev_line)
+                    if prev_line[ln_cntr - 1]["line"].upper() == "CLAIM LINES FOR CLAIM NUMBER":
+                        prev_line[ln_cntr - 1]["line"] = "Part D Claims"
+                        f_lines[ln_cntr - 1] = prev_line
 
+                        if DBUG:
+                            do_DBUG("re-wrote f_lines:",
+                                    f_lines[ln_cntr - 1])
                 line_dict = {"key": ln_cntr,
                              "level": set_level + 1,
                              "line": l,
-                             "type": set_header}
+                             "type": set_header,
+                             "claimNumber": claim_number}
 
             f_lines.append({ln_cntr: line_dict})
 
@@ -152,6 +182,9 @@ def parse_lines(ln_list):
     # set variables
 
     DBUG = False
+
+    if DBUG:
+        to_json(ln_list)
 
     ln = {}
     ln_ctrl = {}
@@ -237,7 +270,7 @@ def parse_lines(ln_list):
 
             if key_value("custom", ln_ctrl) == "":
                 # No custom processing required
-                i, block_seg, block_name = process_subseg(i + 1,
+                i, block_seg, block_name = process_subseg(i, # + 1,
                                                      ln_ctrl,
                                                      match_ln,
                                                      wrk_lvl,
@@ -247,7 +280,7 @@ def parse_lines(ln_list):
 
             elif key_value("custom", ln_ctrl) == "family_history":
                 #custom processing required (ln_ctrl["custom"] is set)
-                i, block_seg, block_name = custom_family_history(i + 1,
+                i, block_seg, block_name = custom_family_history(i, # + 1,
                                                                  ln_ctrl,
                                                                  match_ln,
                                                                  wrk_lvl,
@@ -257,7 +290,7 @@ def parse_lines(ln_list):
 
             elif key_value("custom", ln_ctrl) == "claim_summary":
                 #custom processing required (ln_ctrl["custom"] is set)
-                i, block_seg, block_name = process_subseg(i + 1,
+                i, block_seg, block_name = process_subseg(i, # + 1,
                                                           ln_ctrl,
                                                           match_ln,
                                                           wrk_lvl,

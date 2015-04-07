@@ -73,6 +73,12 @@ if __name__ == "__main__":
             outdict = parse_lines(demodict)
             result = write_file(outdict, outfile)
 
+        if outtype == "CMSDICT":
+            # Det the interim file
+            demodict = cms_file_read(infile)
+
+            result = write_file(demodict, outfile)
+
     except():
         print "An unexpected error occurred. Here is the post-mortem:"
         print sys.exc_info()
