@@ -30,26 +30,24 @@ Use pip to install the parser.
     pip install python-bluebutton
 
 ## Converting a CMS BlueButton File
-### 1. Login to http://MyMedicare.gov
-### 2. Access the BlueButton feature
-### 3. Download your BlueButton as a text file
-### 4. Run the Python-BlueButton Parser:
+ 1. Login to http://MyMedicare.gov
+ 2. Access the BlueButton feature
+ 3. Download your BlueButton as a text file
+ 4. Run the Python-BlueButton Parser:
 
 To run the Python-BlueButton Parser we will make the following assumptions. You can adapt these to your system, 
 
-#### a) It is assumed that python is installed on your system can be run from any directory. 
+a) It is assumed that python is installed on your system can be run from any directory. 
 
-#### b) Your system allows you to refer to your home folder using ~ (tilde sign) 
+b) Your system allows you to refer to your home folder using ~ (tilde sign) 
 
-#### c) You downloaded the BlueButton text file to your /Downloads Folder as BlueButton.txt 
+c) You downloaded the BlueButton text file to your /Downloads Folder as BlueButton.txt 
 
-#### d) You want to save the output file from the parser utility to your /Desktop folder as text_json.txt 
+d) You want to save the output file from the parser utility to your /Desktop folder as text_json.txt 
 
-#### e) You installed the Python-BlueButton code to the BBParser folder off the root directory of your system
-
+e) You installed the Python-BlueButton code to the BBParser folder off the root directory of your system
 
 Execute the following command:
-
 python /BBParser/bluebutton/bbp.py CMSFILE ~/Downloads/BlueButton.txt ~/Desktop/BlueButton.txt
 
 
