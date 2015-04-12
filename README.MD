@@ -55,31 +55,34 @@ Using the Parser
 ================
 
 Here is another simple example using a VA BlueButton Text File:
+
 ::
-    # Import the library
+# Import the library
+    
     >>> from bluebutton.parse import *
     
-    # Open and parse the bluebutton file.
+# Open and parse the bluebutton file.
+
     >>> parsed = simple_parse("va_sample_file.txt")
     
 
-    # Get the bloodpressure readings
+# Get the bloodpressure readings
     >>> build_bp_readings(parsed)
     
     [{'Date': '08/02/2010', 'bp_sys': '141', 'bp_dia': '76', 'bp': 'bp=141/76', 'Time': ' 17:30'}, {'Date': '08/02/2010', 'bp_sys': '150', 'bp_dia': '76', 'bp': 'bp=150/76', 'Time': ' 17:20'}]
     
-    # Get the weight readings
+# Get the weight readings
     >>> build_wt_readings(parsed)
     
     [{'Date': '06/02/2010', 'wt': 'wt=242l', 'Time': ' 17:20'}, {'Date': '05/02/2010', 'wt': 'wt=244l', 'Time': ' 17:20'}, {'Date': '04/02/2010', 'wt': 'wt=246l', 'Time': ' 17:20'}]
     
     
-    #Get demographics
+#Get demographics
     >>> build_simple_demographics_readings(parsed)
     
     {'middle_initial': 'A', 'first_name': 'ONE', 'last_name': 'MHVVETERAN', 'gender': 'Male', 'num_age': 64, 'date_of_birth': '03/01/1948'}
     
-    #Convert demographics to JSON
+#Convert demographics to JSON
     
     print tojson(build_simple_demographics_readings(parsed))
     
@@ -92,7 +95,8 @@ Here is another simple example using a VA BlueButton Text File:
     "date_of_birth": "03/01/1948"
     }
 
-    # Get the medications
+# Get the medications
+
     >>> build_mds_readings(parsed)
     ...
     
