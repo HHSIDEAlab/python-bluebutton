@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Python-bluebutton by HHSIDEAlab</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Python-bluebutton</h1>
+        <h2>BlueButton Format Parser</h2>
+        <a href="https://github.com/HHSIDEAlab/python-bluebutton" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p>Bluebutton File Format Parser
+(c.) Alan Viars - Videntity Systems Inc. - 2011
+(c.) Mark Scrimshire - CMS - 2015
+Version 1.0 (CMS BlueButton JSON Generator)</p>
+
+<p>This library is dual licensed.  It is released under the GPL licnese 
+agreement and under a commercial license by Videntity systems Inc.</p>
+
+<p>Added CMS BlueButton Parser to convert Medicare BlueButton v2.0 to format
+that is partially compliant with CMS BlueButton 3.0 JSON Format</p>
+
+<p>Status: released. Converts CMS Medicare BlueButton v2.0 file to JSON.</p>
+
+<p>use command line:</p>
+
+<p>python bbp.py CMSFILE {input file} {output file}</p>
+
+<p>For CMS BlueButton file format information refer to:
+<a href="https://github.com/ekivemark/claims">https://github.com/ekivemark/claims</a></p>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>Use pip to install the parser.
+::
+    pip install python-bluebutton</p>
+
+<h1>
+<a id="converting-a-cms-bluebutton-file" class="anchor" href="#converting-a-cms-bluebutton-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Converting a CMS BlueButton File</h1>
+
+<ol>
+<li>Login to MyMedicare.gov</li>
+<li>Access the BlueButton feature</li>
+<li>Download your BlueButton as a text file</li>
+<li>Run the Python-BlueButton Parser: </li>
+</ol>
+
+<p>To run the Python-BlueButton Parser we will make the following assumptions. You can adapt these to your system,
+a) It is assumed that python is installed on your system can be run from any directory.
+b) Your system allows you to refer to your home folder using ~ (tilde sign)
+c) You downloaded the BlueButton text file to your /Downloads Folder as BlueButton.txt 
+d) You want to save the output file from the parser utility to your /Desktop folder as text_json.txt
+e) You installed the Python-BlueButton code to the BBParser folder off the root directory of your system</p>
+
+<p>Execute the following command:</p>
+
+<p>python /BBParser/bluebutton/bbp.py CMSFILE ~/Downloads/BlueButton.txt ~/Desktop/BlueButton.txt</p>
+
+<h1>
+<a id="using-the-parser" class="anchor" href="#using-the-parser" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using the Parser</h1>
+
+<p>Here is another simple example for a VA BlueButton format file:
+::</p>
+
+<pre><code># Import the library
+&gt;&gt;&gt; from bluebutton.parse import *
+
+# Open and parse the bluebutton file.
+&gt;&gt;&gt; parsed = simple_parse("va_sample_file.txt")
+
+
+# Get the bloodpressure readings
+&gt;&gt;&gt; build_bp_readings(parsed)
+
+[{'Date': '08/02/2010', 'bp_sys': '141', 'bp_dia': '76', 'bp': 'bp=141/76', 'Time': ' 17:30'}, {'Date': '08/02/2010', 'bp_sys': '150', 'bp_dia': '76', 'bp': 'bp=150/76', 'Time': ' 17:20'}]
+
+# Get the weight readings
+&gt;&gt;&gt; build_wt_readings(parsed)
+
+[{'Date': '06/02/2010', 'wt': 'wt=242l', 'Time': ' 17:20'}, {'Date': '05/02/2010', 'wt': 'wt=244l', 'Time': ' 17:20'}, {'Date': '04/02/2010', 'wt': 'wt=246l', 'Time': ' 17:20'}]
+
+
+#Get demographics
+&gt;&gt;&gt; build_simple_demographics_readings(parsed)
+
+{'middle_initial': 'A', 'first_name': 'ONE', 'last_name': 'MHVVETERAN', 'gender': 'Male', 'num_age': 64, 'date_of_birth': '03/01/1948'}
+
+#Convert demographics to JSON
+
+print tojson(build_simple_demographics_readings(parsed))
+
+{
+"middle_initial": "A", 
+"first_name": "ONE", 
+"last_name": "MHVVETERAN", 
+"gender": "Male", 
+"num_age": 64, 
+"date_of_birth": "03/01/1948"
+}
+
+# Get the medications
+&gt;&gt;&gt; build_mds_readings(parsed)
+...
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/HHSIDEAlab/python-bluebutton/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/HHSIDEAlab/python-bluebutton/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/HHSIDEAlab/python-bluebutton"></a> is maintained by <a href="https://github.com/HHSIDEAlab">HHSIDEAlab</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
